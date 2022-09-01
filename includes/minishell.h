@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 21:00:02 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/30 22:54:18 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:07:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "str.h"
+
+void	parse_args(char **s);
 
 #endif
