@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/30 23:35:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:29:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-t_str	str(void)
+t_str	__str__(void)
 {
-	static t_str	str = {ft_strlen, ft_strchr, ft_strrchr, strtrim};
+	static t_str	str = {ft_strlen, ft_strchr, ft_strrchr, strtrim, split};
 
 	return (str);
 }
