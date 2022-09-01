@@ -1,10 +1,11 @@
-SRC		=	$(SRC_DIR)/main.c \
-			$(SRC_DIR)/str.c \
-			$(SRC_DIR)/utils1.c \
+SRC		=	$(SRC_DIR)/parse/parse.c \
+			$(SRC_DIR)/str/str.c \
+			$(SRC_DIR)/str/utils1.c \
+			$(SRC_DIR)/main.c \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 
-SRC_DIR	=	srcs
+SRC_DIR		=	srcs
 
 OBJ_DIR		=	objs
 
@@ -13,7 +14,7 @@ NAME		=	minishell
 INC			=	includes/
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g
 
 RM			=	rm -rf
 
@@ -26,7 +27,7 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
 clean:
-	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*/*.o
 
 fclean:	clean
 	$(RM) $(NAME)
