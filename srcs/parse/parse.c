@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:18:32 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/31 18:15:19 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:44:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void	parse_args(char **s)
 		free(new_str[i]);
 	}
 	free(new_str);
-	free(*s);
 	return ;
 }
