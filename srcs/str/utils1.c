@@ -6,11 +6,49 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/30 23:35:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:21:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/str.h"
+
+static char	**new_str(char **str, char *s, char *c, int counter)
+{
+	char	*tmp;
+	int		i;
+
+	tmp = NULL;
+	i = -1;
+	while (*s && ft_strchr(c, *s))
+		s++;
+	while (s[++i] && !ft_strchr(c, s[i]) && s[i])
+		;
+	if (!tmp && i > 0)
+		tmp = (char *)malloc(i + 1);
+	if (tmp)
+	{
+		str = new_str(str, s + i, c, counter + 1);
+		tmp[i] = '\0';
+		while (--i > -1)
+			tmp[i] = s[i];
+	}
+	if (!str)
+		str = (char **) malloc(sizeof(char *) * (counter + 1));
+	if (!str)
+		return (NULL);
+	str[counter] = tmp;
+	return (str);
+}
+
+char	**split(char *s, char *c)
+{
+	char	**str;
+
+	if (!s)
+		return (NULL);
+	str = new_str(NULL, s, c, 0);
+	return (str);
+}
 
 char	*strtrim(char *s1, char *set)
 {
