@@ -1,4 +1,4 @@
-SRC		=	$(SRC_DIR)/parse/parse.c \
+SRC		=	$(SRC_DIR)/execution/prep.c \
 			$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/main.c \
@@ -24,7 +24,6 @@ $(NAME):	$(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
 clean:
 	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*/*.o
