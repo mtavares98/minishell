@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/07 21:46:35 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/07 21:59:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-int	main(void)
+typedef struct s_command		t_command;
+typedef struct s_redirection	t_redirection;
+
+struct s_command
 {
-	char	*str;
+	char		*path;
+	int			abs_path;
+	char		**args;
+	t_command	*next;
+};
 
-	while (1)
-	{
-		str = readline("MMshell>");
-		free(str);
-	}
-}
+struct s_redirection
+{
+	char	*infile;
+	int		infd;
+	char	*outfile;
+	int		outfd;
+};
+
+#endif

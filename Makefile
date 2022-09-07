@@ -1,5 +1,4 @@
-SRC		=	$(SRC_DIR)/execution/prep.c \
-			$(SRC_DIR)/str/str.c \
+SRC		=	$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/main.c \
 

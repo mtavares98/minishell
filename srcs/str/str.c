@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/31 17:29:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:46:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
 char	*ft_strrchr(char *str, char c)
 {

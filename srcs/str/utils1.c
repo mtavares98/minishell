@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/01 15:21:49 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:46:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/str.h"
+#include "../../includes/str.h"
 
 static char	**new_str(char **str, char *s, char *c, int counter)
 {
