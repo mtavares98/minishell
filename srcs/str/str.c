@@ -6,11 +6,14 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/07 21:46:49 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/10 00:24:16 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/str.h"
+
+/* This function return a pointer to the last ocurrence
+	of the char c in a given string */
 
 char	*ft_strrchr(char *str, char c)
 {
@@ -26,6 +29,9 @@ char	*ft_strrchr(char *str, char c)
 	return (&str[i]);
 }
 
+/* This function return a pointer to the first ocurrence
+	of the char c in a given string */
+
 char	*ft_strchr(char *str, char c)
 {
 	int	i;
@@ -39,6 +45,8 @@ char	*ft_strchr(char *str, char c)
 		return (NULL);
 	return (&str[i]);
 }
+
+/* This fuction returns a len of a string */
 
 int	ft_strlen(char *str)
 {
@@ -54,7 +62,9 @@ int	ft_strlen(char *str)
 
 t_str	__str__(void)
 {
-	static t_str	str = {ft_strlen, ft_strchr, ft_strrchr, strtrim, split};
+	static t_str	str = {
+		ft_strlen, ft_strncmp, _atoi, ft_strchr, ft_strrchr, strtrim, split
+	};
 
 	return (str);
 }

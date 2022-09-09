@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/07 21:46:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:33:05 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(void)
 	while (1)
 	{
 		str = readline("MMshell>");
+		printf("%lu\n", __str__().atoi(str));
 		free(str);
 	}
 }

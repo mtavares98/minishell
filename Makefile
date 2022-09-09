@@ -1,5 +1,6 @@
 SRC		=	$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
+			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
