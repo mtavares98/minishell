@@ -6,12 +6,25 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/10 00:24:16 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:33:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/str.h"
+#include "../../includes/string_utils.h"
 
+/* This fuction returns a len of a string */
+
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	len = -1;
+	if (!str)
+		return (0);
+	while (str[++len])
+		;
+	return (len);
+}
 /* This function return a pointer to the last ocurrence
 	of the char c in a given string */
 
@@ -46,24 +59,21 @@ char	*ft_strchr(char *str, char c)
 	return (&str[i]);
 }
 
-/* This fuction returns a len of a string */
+/*
+	Function that return true if a char is number
+		if i isn't returns false
+*/
 
-int	ft_strlen(char *str)
+int	isdig(char c)
 {
-	int	len;
-
-	len = -1;
-	if (!str)
-		return (0);
-	while (str[++len])
-		;
-	return (len);
+	return (c >= '0' && c <= '9');
 }
 
-t_str	__str__(void)
+t_str	string(void)
 {
 	static t_str	str = {
-		ft_strlen, ft_strncmp, _atoi, ft_strchr, ft_strrchr, strtrim, split
+		ft_strlen, ft_strncmp, _atoi, ft_strchr, ft_strrchr, strtrim, isdig,
+		ft_isspace, itoa
 	};
 
 	return (str);

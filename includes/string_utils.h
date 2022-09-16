@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   string_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 00:03:37 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/16 23:17:42 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/17 00:17:20 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef STRING_UTILS_H
+# define STRING_UTILS_H
 
-t_counter	*create_counter(void)
-{
-	static t_counter	*counter;
+# include "str.h"
+# include "allocs.h"
 
-	return (counter);
-}
+int		ft_strlen(char *str);
+char	*ft_strrchr(char *str, char c);
+char	*ft_strchr(char *str, char c);
+int		isdig(char c);
+int		ft_isspace(char c);
+char	*strtrim(char *s1, char *set);
+long	_atoi(char *s);
+char	*itoa(char *str, int *maxdig, int counter, int n);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 
-int	main(void)
-{
-	char	*str;
-
-	while (1)
-	{
-		str = readline("MMshell>");
-		printf("%lu\n", string().atoi(str));
-		free(str);
-	}
-}
+#endif
