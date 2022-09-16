@@ -18,17 +18,22 @@ CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g
 
 RM			=	rm -rf
 
+SHELL		=	/bin/bash
+
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	create_dirs $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
 clean:
-	$(RM) $(OBJ_DIR)/*.o $(OBJ_DIR)/*/*.o
+	$(RM) $(OBJ_DIR)
 
 fclean:	clean
 	$(RM) $(NAME)
+
+create_dirs:
+	mkdir -p objs/{str,parse}
 
 re:	fclean all
