@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   allocs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 21:00:02 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/16 23:53:30 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/17 00:11:00 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/17 00:15:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef ALLOCS_H
+# define ALLOCS_H
 
 # include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "str.h"
 
-typedef struct s_counter	t_counter;
+typedef struct s_allocs	t_allocs;
 
-struct s_counter
+struct s_allocs
 {
-	unsigned int	mallocs;
-	unsigned int	frees;
+	void	*(*calloc)(size_t nmemb, size_t size);
+	void	(*free_matrix)(void **matrix);
+	void	(*free_array)(void *array);
 };
+
+t_allocs	alloc(void);
 
 #endif
