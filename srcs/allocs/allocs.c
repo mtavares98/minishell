@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 00:16:52 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:27:54 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	free_matrix(void **matrix)
 	while (matrix[++i])
 	{
 		free(matrix[i]);
-		(create_counter())->frees++;
+		(counter())->frees++;
 	}
 	free(matrix);
-	(create_counter())->frees++;
+	(counter())->frees++;
 }
 
 void	free_array(void *array)
 {
 	free(array);
-	(create_counter())->frees++;
+	(counter())->frees++;
 }
 
 static void	ft_bzero(void *s, size_t n)
@@ -55,7 +55,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!ptr)
 		return (ptr);
 	ft_bzero(ptr, total);
-	(create_counter())->mallocs++;
+	(counter())->mallocs++;
 	return (ptr);
 }
 

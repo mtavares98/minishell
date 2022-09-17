@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 00:11:00 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 01:24:23 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:25:42 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ struct s_allocs
 };
 
 t_allocs	alloc(void);
-t_counter	*create_counter(void);
+t_counter	*counter(void);
 
 #endif
