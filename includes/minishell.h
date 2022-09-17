@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 21:00:02 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/16 23:53:30 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:23:06 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "str.h"
-
-typedef struct s_counter	t_counter;
-
-struct s_counter
-{
-	unsigned int	mallocs;
-	unsigned int	frees;
-};
+# include "allocs.h"
 
 #endif

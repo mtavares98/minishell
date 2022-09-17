@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 00:11:00 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 00:15:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:24:23 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 # include <stdlib.h>
 
-typedef struct s_allocs	t_allocs;
+typedef struct s_allocs		t_allocs;
+typedef struct s_counter	t_counter;
+
+struct s_counter
+{
+	unsigned int	mallocs;
+	unsigned int	frees;
+};
 
 struct s_allocs
 {
@@ -25,5 +32,6 @@ struct s_allocs
 };
 
 t_allocs	alloc(void);
+t_counter	*create_counter(void);
 
 #endif
