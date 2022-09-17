@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   allocs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 15:02:59 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/17 00:11:00 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/17 01:25:42 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
+#ifndef ALLOCS_H
+# define ALLOCS_H
 
-typedef struct s_command		t_command;
-typedef struct s_redirection	t_redirection;
+# include <stdlib.h>
 
-struct s_command
+typedef struct s_allocs		t_allocs;
+typedef struct s_counter	t_counter;
+
+struct s_counter
 {
-	int			status;
-	char		*path;
-	char		**args;
-	t_command	*next;
+	unsigned int	mallocs;
+	unsigned int	frees;
 };
 
-struct s_redirection
+struct s_allocs
 {
-	char	*limiter;
-	char	*infile;
-	int		infd;
-	char	*outfile;
-	int		outfd;
+	void	*(*calloc)(size_t nmemb, size_t size);
+	void	(*free_matrix)(void **matrix);
+	void	(*free_array)(void *array);
 };
+
+t_allocs	alloc(void);
+t_counter	*counter(void);
 
 #endif
