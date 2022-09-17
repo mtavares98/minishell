@@ -6,12 +6,15 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 01:27:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:33:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/allocs_utils.h"
 
+/*
+	It will free an matrix
+*/
 void	free_matrix(void **matrix)
 {
 	int	i;
@@ -26,12 +29,18 @@ void	free_matrix(void **matrix)
 	(counter())->frees++;
 }
 
+/*
+	It will free an array
+*/
 void	free_array(void *array)
 {
 	free(array);
 	(counter())->frees++;
 }
 
+/*
+	Sets n bytes of a void pointer to 0
+*/
 static void	ft_bzero(void *s, size_t n)
 {
 	char	*str;
@@ -43,6 +52,9 @@ static void	ft_bzero(void *s, size_t n)
 		str[i] = 0;
 }
 
+/*
+	Allocs a memory a sets all bytes to 0
+*/
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*ptr;
@@ -58,6 +70,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	(counter())->mallocs++;
 	return (ptr);
 }
+
+/*
+	Calls an struct with functions for allocation and deallocation of memory
+*/
 
 t_allocs	alloc(void)
 {
