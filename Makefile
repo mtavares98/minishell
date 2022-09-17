@@ -1,4 +1,5 @@
-SRC		=	$(SRC_DIR)/str/str.c \
+SRC		=	$(SRC_DIR)/allocs/allocs.c \
+			$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
@@ -34,6 +35,6 @@ fclean:	clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{str,parse}
+	mkdir -p objs/{str,allocs}
 
 re:	fclean all

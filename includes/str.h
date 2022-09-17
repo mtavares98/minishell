@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/16 23:32:29 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:34:43 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ struct s_str
 	int		(*isdig)(char c);
 	int		(*isspace)(char c);
 	char	*(*itoa)(char *s, int *maxdig, int counter, int n);
+	char	*(*substr)(char *s, unsigned int start, size_t len);
+	char	*(*contains)(char *big, char *little, size_t len);
+	int		(*isalnum)(char c);
 };
 
 t_str	string(void);

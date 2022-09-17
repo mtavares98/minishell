@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 01:25:49 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:31:07 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 	while (1)
 	{
 		str = readline("MMshell>");
-		printf("%lu\n", string().atoi(str));
+		counter()->mallocs++;
 		free(str);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/16 23:33:27 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:35:18 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_str	string(void)
 {
 	static t_str	str = {
 		ft_strlen, ft_strncmp, _atoi, ft_strchr, ft_strrchr, strtrim, isdig,
-		ft_isspace, itoa
+		ft_isspace, itoa, ft_substr, ft_strnstr, ft_isalnum
 	};
 
 	return (str);
