@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/08 15:44:21 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/17 15:02:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ struct s_command
 {
 	int			status;
 	char		*path;
-	int			abs_path;
 	char		**args;
 	t_command	*next;
 };
@@ -28,7 +27,6 @@ struct s_command
 struct s_redirection
 {
 	char	*limiter;
-	int		heredoc;
 	char	*infile;
 	int		infd;
 	char	*outfile;
