@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 00:19:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:52:36 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,3 +124,4 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 		;
 	return (s1[i] - s2[i]);
 }
+#include "../../includes/string_utils.h"

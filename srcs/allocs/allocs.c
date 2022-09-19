@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   allocs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 01:33:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:52:45 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/allocs_utils.h"
 

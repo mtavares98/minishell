@@ -3,6 +3,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
+			$(SRC_DIR)/argm/receive_args.c \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 
@@ -15,7 +16,7 @@ NAME		=	minishell
 INC			=	includes/
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g
+CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g -fsanitize=address
 
 RM			=	rm -rf
 
@@ -35,6 +36,6 @@ fclean:	clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{str,allocs}
+	mkdir -p objs/{str,allocs,argm}
 
 re:	fclean all

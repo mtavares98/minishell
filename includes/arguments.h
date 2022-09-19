@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   arguments.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 17:34:07 by mgranate         ###   ########.fr       */
+/*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
+/*   Updated: 2022/09/19 17:14:47 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef  ARGUMENTS_H
+# define ARGUMENTS_H
 
-t_counter	*counter(void)
-{
-	static t_counter	*counter;
+# include "execution.h"
 
-	return (counter);
-}
+int	receive_args(char *str, t_command *vars);
 
-int	main(void)
-{
-	char		*str;
-	t_command	vars;
-
-	while (1)
-	{
-		str = readline("MMshell>");
-		receive_args(str, &vars);
-		//counter()->mallocs++;
-		//free(str);
-	}
-}
+#endif
