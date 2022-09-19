@@ -6,27 +6,41 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/19 17:32:40 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:49:40 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_quotes(char *str, int *i, t_command *vars)
+int	check_quotes(char *str, int *i)
 {
-	int	ct;
+	char	*tmp;
+	int		ct;
 
-	ct = 1;
-	if (str[0] == '\'')
+	ct = *i;
+	if (str[*i] == '\'')
 	{
-		while (str[ct] != '\'')
-		{
-			if (string().len(str) - 1 == ct)
-				return (0);
-			i++;
-			ct++;
-		}
-		vars->args[0] = string().substr(str, 0, ct);
+		*i += 1;
+		while (str[*i] && str[*i] != '\'')
+			(*i)++;
+		if (*i == string().len(str))
+			return (0);
+		printf("i = %d\n", *i);
+		printf("ct = %d\n", ct);
+		tmp = string().substr(str, ct, *i - ct + 1);
+		printf("tmp = %s\n", tmp);
+		free(tmp);
+		return (1);
+	}
+	if (str[*i] == '"')
+	{
+		*i += 1;
+		while (str[*i] && str[*i] != '"')
+			(*i)++;
+		tmp = string().substr(str, ct, *i - ct + 1);
+		printf("tmp2 = %s\n", tmp);
+		free(tmp);
+		return (1);
 	}
 	return (1);
 }
@@ -51,15 +65,14 @@ int	check_quotes(char *str, int *i, t_command *vars)
 // 	return (1);
 // }
 
-int	receive_args(char *str, t_command *vars)
+int	receive_args(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
-		printf("str[i] = %c\n", str[i]);
-		if (((str[i] == '"' || str[i] == '\'') && !check_quotes(str + i, &i, vars)))
+		if (((str[i] == '"' || str[i] == '\'') && !check_quotes(str, &i)))
 			return (0);
 		// else if (str[i] == '|')
 		// 	add_elements_list(str[i], vars);
@@ -67,7 +80,6 @@ int	receive_args(char *str, t_command *vars)
 		// 	return (0);
 		// else if ((string().isalnum(str[i])))
 		// 	create_elements(str + i, &i, vars);
-		i++;
 	}
 	return (1);
 }

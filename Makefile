@@ -4,6 +4,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
 			$(SRC_DIR)/argm/receive_args.c \
+			$(SRC_DIR)/argm/nodes.c  \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 

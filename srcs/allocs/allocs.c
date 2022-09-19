@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 16:52:45 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:17:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!ptr)
 		return (ptr);
 	ft_bzero(ptr, total);
-	(counter())->mallocs++;
+	//(counter())->mallocs++;
 	return (ptr);
 }
 

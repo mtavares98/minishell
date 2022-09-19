@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/19 17:14:47 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:04:23 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "execution.h"
 
-int	receive_args(char *str, t_command *vars);
+int	receive_args(char *str);
 
 #endif
