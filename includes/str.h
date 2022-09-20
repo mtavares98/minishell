@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 14:34:43 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/18 21:58:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_str	t_str;
 
 struct s_str
 {
-	int		(*len)(char *s);
+	int		(*len)(char *s, char c);
 	int		(*strncmp)(char *s1, char *s2, size_t n);
 	long	(*atoi)(char *s);
 	char	*(*strchr)(char *s, char c);
@@ -32,6 +32,7 @@ struct s_str
 	char	*(*substr)(char *s, unsigned int start, size_t len);
 	char	*(*contains)(char *big, char *little, size_t len);
 	int		(*isalnum)(char c);
+	char	*(*strdup)(char *s);
 };
 
 t_str	string(void);

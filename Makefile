@@ -1,4 +1,10 @@
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
+			$(SRC_DIR)/cmd/cmd.c \
+			$(SRC_DIR)/cmd/cmd_utils.c \
+			$(SRC_DIR)/exec/exec_main.c \
+			$(SRC_DIR)/exec/utils.c \
+			$(SRC_DIR)/gnl/get_next_line.c \
+			$(SRC_DIR)/gnl/get_next_line_utils.c \
 			$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
@@ -15,11 +21,12 @@ NAME		=	minishell
 INC			=	includes/
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -I$(INC) -g
+
+#-fsanitize=address
+
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address -I$(INC)
 
 RM			=	rm -rf
-
-SHELL		=	/bin/bash
 
 all:	$(NAME)
 
@@ -35,6 +42,6 @@ fclean:	clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{str,allocs}
+	mkdir -p objs/{allocs,cmd,exec,gnl,str}
 
 re:	fclean all

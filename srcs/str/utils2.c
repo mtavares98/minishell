@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/17 14:35:01 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/18 22:11:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (start > (size_t)ft_strlen(s))
+	if (start > (size_t)ft_strlen(s, -1))
 		return (alloc().calloc(1, sizeof(char)));
-	if (len > (size_t)ft_strlen(s + start))
-		len = ft_strlen(s + start);
+	if (len > (size_t)ft_strlen(s + start, -1))
+		len = ft_strlen(s + start, -1);
 	str = alloc().calloc((len + 1), sizeof(char));
 	if (!str)
 		return (NULL);
@@ -57,7 +57,7 @@ char	*ft_strnstr(char *big, char *little, size_t len)
 	if (len == 0)
 		return (NULL);
 	i = -1;
-	little_len = ft_strlen(little);
+	little_len = ft_strlen(little, -1);
 	while (big[++i])
 	{
 		j = -1;
@@ -78,4 +78,25 @@ int	ft_isalnum(char c)
 {
 	return ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') \
 	|| (c >= 'A' && c <= 'Z'));
+}
+
+/*
+	The  strdup()  function returns a pointer to a new string which is a
+duplicate of the string s.  Memory for the new string is
+       obtained with malloc(3), and can be freed with free(3).
+*/
+
+char	*ft_strdup(char *s)
+{
+	char	*str;
+	int		i;
+
+	str = alloc().calloc(string().len(s, -1) + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (s[++i])
+		str[i] = s[i];
+	str[i] = 0;
+	return (str);
 }
