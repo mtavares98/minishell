@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   allocs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 19:17:20 by mgranate         ###   ########.fr       */
+/*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/21 14:41:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/allocs_utils.h"
 
 /*
-	It will free an matrix
+	It will free a matrix
 */
 void	free_matrix(void **matrix)
 {
@@ -24,10 +23,10 @@ void	free_matrix(void **matrix)
 	while (matrix[++i])
 	{
 		free(matrix[i]);
-		(counter())->frees++;
+		counter()->frees++;
 	}
 	free(matrix);
-	(counter())->frees++;
+	counter()->frees++;
 }
 
 /*
@@ -36,7 +35,7 @@ void	free_matrix(void **matrix)
 void	free_array(void *array)
 {
 	free(array);
-	(counter())->frees++;
+	counter()->frees++;
 }
 
 /*
@@ -54,12 +53,12 @@ static void	ft_bzero(void *s, size_t n)
 }
 
 /*
-	Allocs a memory a sets all bytes to 0
+	Allocates a memory a sets all bytes to 0
 */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*ptr;
-	size_t	total;
+	char		*ptr;
+	size_t		total;
 
 	total = nmemb * size;
 	if (nmemb == 0 || size == 0 || total / size != nmemb)
@@ -68,12 +67,12 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!ptr)
 		return (ptr);
 	ft_bzero(ptr, total);
-	//(counter())->mallocs++;
+	(counter())->mallocs++;
 	return (ptr);
 }
 
 /*
-	Calls an struct with functions for allocation and deallocation of memory
+	Calls a struct with functions for allocation and deallocates memory
 */
 
 t_allocs	alloc(void)

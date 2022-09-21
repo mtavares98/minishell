@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 21:00:02 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 17:09:33 by mgranate         ###   ########.fr       */
+/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/21 14:44:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "str.h"
 # include "allocs.h"
 # include "execution.h"
+# include "cmd.h"
 # include "arguments.h"
 
 #endif

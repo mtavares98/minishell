@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocs.h                                           :+:      :+:    :+:   */
+/*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 00:11:00 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 17:30:51 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/18 00:03:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALLOCS_H
-# define ALLOCS_H
+#ifndef CMD_H
+# define CMD_H
 
-# include <stdlib.h>
+typedef struct s_command		t_command;
+typedef struct s_cmdfunc		t_cmdfunc;
 
-typedef struct s_allocs		t_allocs;
-typedef struct s_counter	t_counter;
-
-struct s_counter
+struct s_cmdfunc
 {
-	int				status;
-	unsigned int	mallocs;
-	unsigned int	frees;
+	t_command	*(*add)(char *path, char **args);
+	t_command	*(*get)(int i);
+	void		(*remove)(int i);
 };
 
-struct s_allocs
+struct s_command
 {
-	void	*(*calloc)(size_t nmemb, size_t size);
-	void	(*free_matrix)(void **matrix);
-	void	(*free_array)(void *array);
+	char		*path;
+	char		**args;
+	int			ready;
+	t_command	*next;
 };
 
-t_allocs	alloc(void);
-t_counter	*counter(void);
+t_command	**this(t_command **cmd);
+t_command	**command(void);
+t_cmdfunc	cmdfunc(void);
 
 #endif

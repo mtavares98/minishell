@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 20:59:45 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 19:04:11 by mgranate         ###   ########.fr       */
+/*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/21 14:43:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,29 @@
 
 t_counter	*counter(void)
 {
-	static t_counter	*counter;
+	static t_counter	counter;
 
-	return (counter);
+	return (&counter);
 }
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
-	char		*str;
+	t_command		**cmd;
+	t_redirection	red;
+	char			*str;
 
+	(void)ac;
+	(void)av;
+	(void)envp;
 	while (1)
 	{
 		str = readline("MMshell>");
+		counter()->mallocs++;
+		create_cmd(&red);
+		cmd = this(command());
+		exec_main(cmd, &red, envp);
+		alloc().free_array(str);
 		receive_args(str);
-		//counter()->mallocs++;
-		//free(str);
+		(counter())->mallocs++;
 	}
 }
