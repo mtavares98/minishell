@@ -9,6 +9,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
+			$(SRC_DIR)/files_check/files_check.c \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 
@@ -17,6 +18,8 @@ SRC_DIR		=	srcs
 OBJ_DIR		=	objs
 
 NAME		=	minishell
+
+SHELL		=	/bin/bash
 
 INC			=	includes/
 
@@ -42,6 +45,6 @@ fclean:	clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{allocs,cmd,exec,gnl,str}
+	mkdir -p objs/{allocs,cmd,exec,gnl,str,files_check}
 
 re:	fclean all

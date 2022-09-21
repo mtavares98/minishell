@@ -23,7 +23,7 @@ int	ft_isspace(char c)
 
 /*
 	Returns a string without delimiters (the string set)
-		at the beguining and the end
+		at the beginning and the end
 */
 
 char	*strtrim(char *s1, char *set)
@@ -53,7 +53,7 @@ char	*strtrim(char *s1, char *set)
 
 /*
 	Converts a string in to a number.
-	See later for improvement because it return a long int
+	See later for improvement because it returns a long int
 */
 
 long	_atoi(char *s)

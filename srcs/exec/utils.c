@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 23:02:46 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:08:13 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,4 @@ char	*getpath(char **envp)
 		}
 	}
 	return (path);
-}
-
-/*
-	It will return a complete path for a file based on envp
-*/
-char	*get_complete_path(char *cmd, char **path)
-{
-	int		i;
-	int		j;
-	int		path_size;
-	char	*np;
-
-	path_size = string().len(*path, ':');
-	np = alloc().calloc(sizeof(char), string().len(cmd, -1) + path_size + 1);
-	if (!np)
-		return (NULL);
-	i = -1 * (path != NULL);
-	while (path && *path && ++i < path_size - 1)
-		np[i] = *(*path)++;
-	if (*path && (**path == ':' || **path != '\0'))
-	{
-		np[i++] = '/';
-		*path += 1;
-	}
-	j = 0;
-	while (cmd && cmd[j])
-		np[i++] = cmd[j++];
-	return (np);
 }

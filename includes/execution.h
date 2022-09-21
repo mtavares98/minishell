@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 14:57:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:16:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ struct s_redirection
 
 char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
-int		**pipesfd_or_processid(int nbcmd);
 int		exec_main(t_command **command, t_redirection *redirection, char **envp);
+int		check_files(t_command **cmd, char *path);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 22:10:12 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:20:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/string_utils.h"
 
-/* This fuction returns a len of a string */
+/* This function returns a len of a string */
 
 int	ft_strlen(char *str, char c)
 {
@@ -25,14 +25,14 @@ int	ft_strlen(char *str, char c)
 		;
 	return (len + (str[len] == c));
 }
-/* This function return a pointer to the last ocurrence
+/* This function return a pointer to the last occurrence
 	of the char c in a given string */
 
 char	*ft_strrchr(char *str, char c)
 {
 	int	i;
 
-	i = ft_strlen(str, -1) + 1;
+	i = ft_strlen(str, 0);
 	if (!str)
 		return (NULL);
 	while (str[--i] != c && i > -1)
@@ -42,7 +42,7 @@ char	*ft_strrchr(char *str, char c)
 	return (&str[i]);
 }
 
-/* This function return a pointer to the first ocurrence
+/* This function return a pointer to the first occurrence
 	of the char c in a given string */
 
 char	*ft_strchr(char *str, char c)
@@ -61,7 +61,7 @@ char	*ft_strchr(char *str, char c)
 
 /*
 	Function that return true if a char is number
-		if i isn't returns false
+		if it isn't returns false
 */
 
 int	isdig(char c)

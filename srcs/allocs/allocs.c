@@ -6,14 +6,14 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/19 17:34:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:20:35 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/allocs_utils.h"
 
 /*
-	It will free an matrix
+	It will free a matrix
 */
 void	free_matrix(void **matrix)
 {
@@ -53,7 +53,7 @@ static void	ft_bzero(void *s, size_t n)
 }
 
 /*
-	Allocs a memory a sets all bytes to 0
+	Allocates a memory a sets all bytes to 0
 */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -72,7 +72,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 }
 
 /*
-	Calls an struct with functions for allocation and deallocation of memory
+	Calls a struct with functions for allocation and deallocates memory
 */
 
 t_allocs	alloc(void)
