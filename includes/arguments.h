@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   arguments.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 14:44:48 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
+/*   Updated: 2022/09/19 19:04:23 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef  ARGUMENTS_H
+# define ARGUMENTS_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "str.h"
-# include "allocs.h"
 # include "execution.h"
-# include "cmd.h"
-# include "arguments.h"
+
+int	receive_args(char *str);
 
 #endif

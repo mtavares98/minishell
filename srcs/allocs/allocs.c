@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 23:45:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 14:20:35 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/21 14:41:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!ptr)
 		return (ptr);
 	ft_bzero(ptr, total);
-	counter()->mallocs++;
+	(counter())->mallocs++;
 	return (ptr);
 }
 
