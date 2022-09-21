@@ -15,12 +15,19 @@
 
 typedef struct s_command		t_command;
 typedef struct s_cmdfunc		t_cmdfunc;
+typedef struct s_tmp_arg		t_tmp_arg;
 
 struct s_cmdfunc
 {
-	t_command	*(*add)(char *path, char **args);
+	t_command	*(*add)(char *path, t_tmp_arg *args);
 	t_command	*(*get)(int i);
 	void		(*remove)(int i);
+};
+
+struct s_tmp_arg
+{
+	char		*args;
+	t_tmp_arg	*next;
 };
 
 struct s_command
@@ -31,8 +38,7 @@ struct s_command
 	t_command	*next;
 };
 
-t_command	**this(t_command **cmd);
-t_command	**command(void);
+t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
 
 #endif

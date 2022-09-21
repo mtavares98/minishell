@@ -27,7 +27,7 @@ struct s_counter
 
 struct s_allocs
 {
-	void	*(*calloc)(size_t nmemb, size_t size);
+	void	*(*calloc)(size_t size);
 	void	(*free_matrix)(void **matrix);
 	void	(*free_array)(void *array);
 };

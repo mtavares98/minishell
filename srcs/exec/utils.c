@@ -18,13 +18,13 @@ int	**pipesfd_or_processid(int nbcmd)
 	int	i;
 
 	if (nbcmd != 0)
-		pfd = alloc().calloc(nbcmd, sizeof(int *));
+		pfd = alloc().calloc(nbcmd * sizeof(int *));
 	if (!pfd)
 		return (NULL);
 	i = -1;
 	while (++i < nbcmd)
 	{
-		pfd[i] = alloc().calloc(nbcmd, sizeof(int));
+		pfd[i] = alloc().calloc(nbcmd * sizeof(int));
 		if (pfd[i])
 			return (NULL);
 	}

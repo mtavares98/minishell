@@ -75,7 +75,7 @@ int	exec_main(t_command **cmd, t_redirection *red, char **envp)
 		return (2);
 	printf("%s\n", cmdfunc().get(0)->path);
 	printf("%s\n", cmdfunc().get(1)->path);
-	prep_exec(cmd, red);
+	//prep_exec(cmd, red);
 	unlink(red->infile);
 	unlink(red->outfile);
 	cmdfunc().remove(0);

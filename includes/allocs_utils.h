@@ -18,6 +18,6 @@
 
 void		free_matrix(void **matrix);
 void		free_array(void *array);
-void		*ft_calloc(size_t nmemb, size_t size);
+void		*ft_calloc(size_t size);
 
 #endif

@@ -31,12 +31,11 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		str = readline("MMshell>");
+		receive_args(str);
 		counter()->mallocs++;
-		create_cmd(&red);
-		cmd = this(command());
+		cmd = this();
 		exec_main(cmd, &red, envp);
 		alloc().free_array(str);
-		receive_args(str);
 		(counter())->mallocs++;
 	}
 }

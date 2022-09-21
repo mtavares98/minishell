@@ -52,8 +52,7 @@ char	*ft_get_line(char *buff, char *line)
 	char	*new_line;
 
 	buff_size = ft_strlen_nl(buff);
-	new_line = alloc().calloc(sizeof(char), \
-	(buff_size + ft_strlen_nl(line) + 1));
+	new_line = alloc().calloc((buff_size + ft_strlen_nl(line) + 1));
 	if (!new_line)
 		return (NULL);
 	i = -1 * (line != NULL);
