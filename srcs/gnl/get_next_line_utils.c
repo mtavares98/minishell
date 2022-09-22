@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 16:14:30 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 22:00:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:33:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ char	*ft_get_line(char *buff, char *line)
 	char	*new_line;
 
 	buff_size = ft_strlen_nl(buff);
-	new_line = alloc().calloc(sizeof(char), \
-	(buff_size + ft_strlen_nl(line) + 1));
+	new_line = alloc().calloc(buff_size + ft_strlen_nl(line) + 1);
 	if (!new_line)
 		return (NULL);
 	i = -1 * (line != NULL);

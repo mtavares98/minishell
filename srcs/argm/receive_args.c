@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   receive_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/19 21:49:40 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:05:05 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_quotes(char *str, int *i)
 		*i += 1;
 		while (str[*i] && str[*i] != '\'')
 			(*i)++;
-		if (*i == string().len(str))
+		if (*i == string().len(str, -1))
 			return (0);
 		printf("i = %d\n", *i);
 		printf("ct = %d\n", ct);

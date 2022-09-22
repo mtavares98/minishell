@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/18 22:10:32 by mtavares         ###   ########.fr       */
-=======
-/*   Updated: 2022/09/19 16:52:36 by mgranate         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2022/09/22 15:31:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +41,7 @@ char	*strtrim(char *s1, char *set)
 		;
 	while (s1[--end] && string().strchr(set, s1[end]))
 		;
-	str = alloc().calloc(end - start + 1, sizeof(char));
+	str = alloc().calloc(end - start + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -101,7 +97,7 @@ char	*itoa(char *str, int *maxdig, int counter, int n)
 		str = itoa(str, maxdig, counter + 1, n / 10);
 	if (!str)
 	{
-		str = alloc().calloc(counter + 1 + (n < 0), sizeof(char));
+		str = alloc().calloc(counter + 1 + (n < 0));
 		if (!str)
 			return (NULL);
 		if (n < 0)
@@ -129,4 +125,3 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	return ((unsigned char)*(s1 + i - (n == i)) - \
 	(unsigned char)*(s2 + i - (n == i)));
 }
-#include "../../includes/string_utils.h"

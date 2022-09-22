@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 14:24:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:35:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_complete_path(char *cmd, char **path)
 	char	*np;
 
 	path_size = string().len(*path, ':');
-	np = alloc().calloc(sizeof(char), string().len(cmd, -1) + path_size + 1);
+	np = alloc().calloc(string().len(cmd, -1) + path_size + 1);
 	if (!np)
 		return (NULL);
 	i = -1 * (path != NULL);

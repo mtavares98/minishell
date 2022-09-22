@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/20 18:08:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:29:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	**pipesfd_or_processid(int nbcmd)
 	int	i;
 
 	if (nbcmd != 0)
-		pfd = alloc().calloc(nbcmd, sizeof(int *));
+		pfd = alloc().calloc(nbcmd * sizeof(int *));
 	if (!pfd)
 		return (NULL);
 	i = -1;
 	while (++i < nbcmd)
 	{
-		pfd[i] = alloc().calloc(nbcmd, sizeof(int));
+		pfd[i] = alloc().calloc(nbcmd * sizeof(int));
 		if (pfd[i])
 			return (NULL);
 	}

@@ -6,16 +6,66 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 13:41:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:25:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
 
+int	exec_builtin(int out, int in, t_command *cmd, char **envp)
+{
+	if (!string().strncmp(cmd->path, "echo", 5))
+		echo(cmd, envp);
+	else if (!string().strncmp(cmd->path, "cd", 3))
+		cd(cmd, envp);
+	else if (!string().strncmp(cmd->path, "pwd", 4))
+		pwd(cmd, envp);
+	else if (!string().strncmp(cmd->path, "export", 7))
+		export(cmd, envp);
+	else if (!string().strncmp(cmd->path, "unset", 6))
+		unset(cmd, envp);
+	else if (!string().strncmp(cmd->path, "env", 4))
+		env(cmd, envp);
+	else if (!string().strncmp(cmd->path, "exit", 5))
+		exit_func(cmd, envp);
+	else
+		return (0);
+	return (1);
+}
+
+int	exec_cmd(int out, int in, t_command *cmd, char **envp)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		return (1);
+	if (pid == 0)
+	{
+		if (dup2(in, STDIN_FILENO) == -1)
+		{
+			perror("dup2");
+			return (-1);
+		}
+		close(in);
+		if (dup2(out, STDOUT_FILENO) == -1)
+		{
+			perror("dup2");
+			return (-1);
+		}
+		close(out);
+		if (!exec_builtin(out, in, cmd, envp))
+			if (execve(cmd->path, cmd->args, envp) == -1)
+				perror("Execve");
+	}
+	close(in);
+	close(out);
+}
+
 int	exec_cmds(t_command **cmd, t_redirection *red, int **pipe_fd)
 {
-	if (pipe(pipe_fd) == -1)
-		return (1);
+	if (!pipe_fd)
+		;
 }
 
 int	**get_pipesfd(int num_cmd)
@@ -23,13 +73,13 @@ int	**get_pipesfd(int num_cmd)
 	int	i;
 	int	**pipe_fd;
 
-	pipe_fd = alloc().calloc(num_cmd - 1, sizeof(int *));
+	pipe_fd = alloc().calloc(num_cmd - 1 * sizeof(int *));
 	if (!pipe_fd)
 		return (NULL);
 	i = -1;
 	while (++i < num_cmd - 1)
 	{
-		pipe_fd[i] = alloc().calloc(2, sizeof(int));
+		pipe_fd[i] = alloc().calloc(2 * sizeof(int));
 		if (!pipe_fd[i])
 		{
 			alloc().free_matrix(pipe_fd);
