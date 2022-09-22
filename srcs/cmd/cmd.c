@@ -12,12 +12,7 @@
 
 #include "../../includes/cmd_utils.h"
 
-t_command	**this(t_command **cmd)
-{
-	return (cmd);
-}
-
-t_command	**command(void)
+t_command	**this(void)
 {
 	static t_command	*cmd;
 

@@ -6,12 +6,17 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/21 16:05:05 by mtavares         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/21 14:14:00 by mgranate         ###   ########.fr       */
+>>>>>>> c74e25c2085d5b8569f7198ca4b617bdd4c3f0ff
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+//CHECK QUOTES IN STRING, ITS MISSPLACED, NEED TO ORGANIZE STILL
 int	check_quotes(char *str, int *i)
 {
 	char	*tmp;
@@ -45,41 +50,40 @@ int	check_quotes(char *str, int *i)
 	return (1);
 }
 
-// int	add_elements_list(char a, t_command *vars)
-// {
-// 	printf("Str_pipe = %c\n", a);
-// 	return (1);
-// }
+int	check_bultin(char *btin, char *str)
+{
+	int	i;
+	int	ct;
 
-// int check_redirect(char *str, int *i, t_command *vars)
-// {
-// 	printf("i = %i\n", *i);
-// 	printf("Str_redirect = %s\n", str);
-// 	return (1);
-// }
+	ct = 0;
+	i = -1;
+	while ((str[++i] && btin[i]) || str[i] == '|')
+	{
+		if (str[i] == btin[i])
+			ct++;
+		if (string().len(btin, -1) < string().len(str, -1))
+		{
+			if (str[string().len(btin, -1)] != ' ')
+				return (0);
+		}
+	}
+	if (string().len(btin, -1) == ct)
+		return (1);
+	return (0);
+}
 
-// int	create_elements(char *str, int *i, t_command *vars)
-// {
-// 	printf("i = %ls\n", i);
-// 	printf("Str_elements = %s\n", str);
-// 	return (1);
-// }
+int	identify_command(char *str)
+{
+	if (check_bultin("echo", str))
+	{
+		argm_handler(str);
+	}
+	return (1);
+}
 
 int	receive_args(char *str)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (((str[i] == '"' || str[i] == '\'') && !check_quotes(str, &i)))
-			return (0);
-		// else if (str[i] == '|')
-		// 	add_elements_list(str[i], vars);
-		// else if ((str[i] == '<' || str[i] == '>') && !check_redirect(str + i, &i, vars))
-		// 	return (0);
-		// else if ((string().isalnum(str[i])))
-		// 	create_elements(str + i, &i, vars);
-	}
+	identify_command(str);
+	printlist(*this());
 	return (1);
 }

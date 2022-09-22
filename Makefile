@@ -12,6 +12,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/files_check/files_check.c \
 			$(SRC_DIR)/argm/receive_args.c \
 			$(SRC_DIR)/argm/nodes.c  \
+			$(SRC_DIR)/argm/handlers.c  \
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
 

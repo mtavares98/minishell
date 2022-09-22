@@ -12,21 +12,33 @@
 
 #include "../../includes/cmd_utils.h"
 
-t_command	*new_node(char *path, char **args)
+t_command	*new_node(char *path, t_tmp_arg *argms)
 {
+	int			i;
 	t_command	*node;
 
+<<<<<<< HEAD
+=======
+	//i = list_size(argms) + 1;
+>>>>>>> c74e25c2085d5b8569f7198ca4b617bdd4c3f0ff
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
 	node->path = path;
-	node->args = args;
+	while (--i >= 0)
+	{
+		node->args[i] = alloc().calloc(string().len(argms->args, -1) + 1);
+		if (!(node->args[i]))
+			return (0);
+		node->args[i] = argms->args;
+		argms = argms->next;
+	}
 	node->ready = 0;
 	node->next = NULL;
 	return (node);
 }
 
-t_command	*cmdadd(char *path, char **args)
+t_command	*cmdadd(char *path, t_tmp_arg *args)
 {
 	t_command	*new;
 	t_command	**cmd;
@@ -35,7 +47,7 @@ t_command	*cmdadd(char *path, char **args)
 	new = new_node(path, args);
 	if (!new)
 		return (NULL);
-	cmd = this(command());
+	cmd = this();
 	if (!*cmd)
 	{
 		*cmd = new;
@@ -53,7 +65,7 @@ t_command	*cmdget(int i)
 	t_command	*cmd;
 	int			j;
 
-	cmd = (*this(command()));
+	cmd = (*this());
 	if (!cmd && i < 0)
 		return (NULL);
 	j = -1;
@@ -79,7 +91,7 @@ void	cmdremove(int i)
 	t_command	**cmd;
 	int			j;
 
-	cmd = this(command());
+	cmd = this();
 	if (i < 0)
 		return ;
 	if (i == 0)
