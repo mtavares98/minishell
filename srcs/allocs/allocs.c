@@ -55,18 +55,16 @@ static void	ft_bzero(void *s, size_t n)
 /*
 	Allocates a memory a sets all bytes to 0
 */
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t size)
 {
-	char		*ptr;
-	size_t		total;
+	void	*ptr;
 
-	total = nmemb * size;
-	if (nmemb == 0 || size == 0 || total / size != nmemb)
+	if (size == 0)
 		return (NULL);
-	ptr = malloc(total);
+	ptr = malloc(size);
 	if (!ptr)
 		return (ptr);
-	ft_bzero(ptr, total);
+	ft_bzero(ptr, size);
 	(counter())->mallocs++;
 	return (ptr);
 }

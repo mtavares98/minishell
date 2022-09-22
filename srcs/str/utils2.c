@@ -27,10 +27,10 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start > (size_t)ft_strlen(s, -1))
-		return (alloc().calloc(1, sizeof(char)));
+		return (alloc().calloc(1));
 	if (len > (size_t)ft_strlen(s + start, -1))
 		len = ft_strlen(s + start, -1);
-	str = alloc().calloc((len + 1), sizeof(char));
+	str = alloc().calloc((len + 1));
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -91,7 +91,7 @@ char	*ft_strdup(char *s)
 	char	*str;
 	int		i;
 
-	str = alloc().calloc(string().len(s, -1) + 1, sizeof(char));
+	str = alloc().calloc(string().len(s, -1) + 1);
 	if (!str)
 		return (NULL);
 	i = -1;

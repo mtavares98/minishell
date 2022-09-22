@@ -15,6 +15,9 @@
 
 # include "execution.h"
 
-int	receive_args(char *str);
+int	        receive_args(char *str);
+int	        argm_handler(char *str);
+void	    printlist(t_command *vars);
+t_tmp_arg	*create_single_node(char *value);
 
 #endif

@@ -25,7 +25,7 @@ char	*get_complete_path(char *cmd, char **path)
 	char	*np;
 
 	path_size = string().len(*path, ':');
-	np = alloc().calloc(sizeof(char), string().len(cmd, -1) + path_size + 1);
+	np = alloc().calloc(string().len(cmd, -1) + path_size + 1);
 	if (!np)
 		return (NULL);
 	i = -1 * (path != NULL);
