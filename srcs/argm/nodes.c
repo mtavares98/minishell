@@ -32,7 +32,7 @@ void	printlist(t_command *vars)
 	printf("\n===============\n");
 }
 
-int	list_size(t_tmp_arg *list)
+int	list_size(t_tmp *list)
 {
 	int	i;
 
@@ -42,11 +42,11 @@ int	list_size(t_tmp_arg *list)
 	return (i);
 }
 
-t_tmp_arg	*create_single_node(char *value)
+t_tmp	*create_single_node(char *value)
 {
-	t_tmp_arg	*strc;
+	t_tmp	*strc;
 	
-	strc = (t_tmp_arg *)malloc(sizeof(t_tmp_arg));
+	strc = (t_tmp *)malloc(sizeof(t_tmp));
 	if (!strc)
 		return (0);
 	strc->args = (char *)malloc(sizeof(char *)* (string().len(value, -1) + 1));

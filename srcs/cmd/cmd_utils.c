@@ -12,7 +12,7 @@
 
 #include "../../includes/cmd_utils.h"
 
-t_command	*new_node(char *path, t_tmp_arg *argms)
+t_command	*new_node(char *path, t_tmp *argms)
 {
 	int			i;
 	t_command	*node;
@@ -35,7 +35,7 @@ t_command	*new_node(char *path, t_tmp_arg *argms)
 	return (node);
 }
 
-t_command	*cmdadd(char *path, t_tmp_arg *args)
+t_command	*cmdadd(char *path, t_tmp *args)
 {
 	t_command	*new;
 	t_command	**cmd;

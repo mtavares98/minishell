@@ -18,8 +18,8 @@
 # include "cmd.h"
 # include "str.h"
 
-t_command	*cmdadd(char *path, t_tmp_arg *args);
-t_command	*new_node(char *path, t_tmp_arg *argms);
+t_command	*cmdadd(char *path, t_tmp *args);
+t_command	*new_node(char *path, t_tmp *argms);
 t_command	*cmdget(int i);
 void		cmdremove(int i);
 t_command	**cmd(void);

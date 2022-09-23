@@ -15,8 +15,8 @@
 
 int	argm_handler(char *str)
 {
-	t_tmp_arg	*head;
-	t_tmp_arg	*args;
+	t_tmp	*head;
+	t_tmp	*args;
 	int			j;
 
 	j = 0;
