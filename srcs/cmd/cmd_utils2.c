@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arguments.h                                        :+:      :+:    :+:   */
+/*   cmd_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/23 15:03:50 by mgranate         ###   ########.fr       */
+/*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
+/*   Updated: 2022/09/23 15:34:11 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  ARGUMENTS_H
-# define ARGUMENTS_H
+#include "../../includes/cmd_utils.h"
 
-# include "execution.h"
+int	list_size(t_tmp *list)
+{
+	int	i;
 
-int	        receive_args(char *str);
-int	        argm_handler(char *str);
-void	    printlist(t_command *vars);
-t_tmp	    *create_single_node(char *value);
-char	    **ft_split(char *s, char c);
-
-#endif
+	i = 0;
+	while (list->next)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i);
+}

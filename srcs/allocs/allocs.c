@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 14:41:02 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:10:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*ft_calloc(size_t size)
 	if (!ptr)
 		return (ptr);
 	ft_bzero(ptr, size);
-	(counter())->mallocs++;
+	//(counter())->mallocs++;
 	return (ptr);
 }
 

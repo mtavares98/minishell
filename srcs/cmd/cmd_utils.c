@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 15:35:11 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:41:17 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@ t_command	*new_node(char *path, t_tmp *argms)
 	int			i;
 	t_command	*node;
 
-	//i = list_size(argms) + 1;
+	i = list_size(argms) + 1;
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
-	node->path = path;
+	if (path)
+	{
+		node->path = alloc().calloc(string().len(path, -1) + 1);
+		if (!node->path)
+			return (0);
+		node->path = path;
+	}
+	node->args = alloc().calloc((i + 1) * sizeof(char *));
+	if (!node->args)
+		return (0);
 	while (--i >= 0)
 	{
 		node->args[i] = alloc().calloc(string().len(argms->args, -1) + 1);

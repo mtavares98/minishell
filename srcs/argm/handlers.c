@@ -6,38 +6,63 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/21 14:08:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:32:22 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+t_tmp	*str_handler(char *str, t_tmp *head, t_tmp *arg)
+{
+	char	**split;
+	int		i;
+	int		sz;
+	
+	i = -1;
+	sz = 0;
+	split = ft_split(str, ' ');
+	while (split[sz])
+		sz++;
+	while (split[++i])
+	{
+		arg = create_single_node(split[i]);
+		arg->next = head;
+		head = arg;		
+	}
+	return (head);
+}
+
+char	*handler_path(char *str)
+{
+	int		i;
+	char	*path;
+	
+	i = 0;
+	while (*str && *str == ' ')
+		str++;
+	if (*str != '/')
+		return (0);
+	while (str[i] && (string().ft_isalnum(str[i]) || str[i] == '/'))
+		i++;
+	path = string().substr(str, 0, i);
+	str = str + i;
+	return (path);
+}
 
 int	argm_handler(char *str)
 {
-	t_tmp	*head;
-	t_tmp	*args;
-	int			j;
-
-	j = 0;
-	str = str + 4;
-	while (str[j])
-	{
-		args = create_single_node("hello");
-		args->next = head;
-		head = args;
-		j++;
-	}
-	// Create a loop that finds the first (character || " || ') 
-	// There should be two funcitons to handle the substring (one already made for the " && ')
-	// The return value of that function should be the substring of what we got from the original string
-	// Add that substring to the tmp_arg list
-	// Each time it loops and a substring is created, the function that receives the substrings needs to know
-	// where to start iterating on the string (maybe sent a counter pointer - already set fot the " ' function)
-	// In the end of the loop use crate new node - Arguments already inside.
-	// ATTENTION == ECHO FUNCTION DOES NOT RETURNS SPACES, ONLY BETWEEN "" || ''. 
-	cmdfunc().add("echo", head);
-	printlist(*this());
-	// DON'T FORGET TO CLEAN THE tmp_LIST 
+	static	t_tmp	*head;
+	static	t_tmp	*args;
+	char			*path;
+	int				i;
+	
+	path = handler_path(str);
+	i = string().len(path, -1);
+	str = str + i;
+	printf("str == %s", str);
+	head = str_handler(str, head, args);
+	cmdfunc().add(path, head);
+	free (path);
+	
 	return (1);
 }
