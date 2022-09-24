@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 15:35:11 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:39:40 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ t_command	*new_node(char *path, t_tmp *argms)
 	int			i;
 	t_command	*node;
 
+<<<<<<< HEAD
+=======
 	//i = list_size(argms) + 1;
+>>>>>>> c74e25c2085d5b8569f7198ca4b617bdd4c3f0ff
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
