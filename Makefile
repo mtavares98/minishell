@@ -34,20 +34,49 @@ CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address -I$(INC)
 
 RM			=	rm -rf
 
+COM_COLOR   = \033[0;34m
+OBJ_COLOR   = \033[0;36m
+OK_COLOR    = \033[0;32m
+ERROR_COLOR = \033[0;31m
+WARN_COLOR  = \033[0;33m
+NO_COLOR    = \033[m
+
+
 all:	$(NAME)
 
+header:
+	@printf "%b" "$(COM_COLOR)"
+	@echo "        ___  _____ ___  ___      _        "
+	@echo "       /   |/ __  \|  \/  |     | |       "
+	@echo "      / /| |\`' / /'| .  . | __ _| | _____ "
+	@echo "     / /_| |  / /  | |\/| |/ _\` | |/ / _ \\"
+	@echo "     \___  |./ /___| |  | | (_| |   <  __/"
+	@echo "         |_/\_____/\_|  |_/\__,_|_|\_\___| v2"
+	@echo
+
 $(NAME):	create_dirs $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
+	@printf "%b" "$(OK_COLOR)"
+	@echo  "✨✨ Upgraded Successfuly!! ✨✨"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
-clean:
-	$(RM) $(OBJ_DIR)
+	@printf "%b" "$(OBJ_COLOR)"
+	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
+	@$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
+	
+clean:	header
+	@echo $(PURPLE) "🧹🧹 Cleaning... 🧹🧹" $(EOC)
+	@$(RM) $(OBJ_DIR)
 
-fclean:	clean
+fclean:	header clean
 	$(RM) $(NAME)
 
 create_dirs:
 	mkdir -p objs/{allocs,cmd,exec,gnl,str,files_check,argm}
+git:
+	@git add .
+	@git commit -m "$m"
+	@git push
+	@echo "Commit sent to github"
 
 re:	fclean all

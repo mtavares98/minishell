@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 15:19:15 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:55:53 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	free_matrix(void **matrix)
 	while (matrix[++i])
 	{
 		free(matrix[i]);
+		matrix[i] = NULL;
 		counter()->frees++;
 	}
 	free(matrix);
+	matrix = NULL;
 	counter()->frees++;
 }
 
@@ -35,6 +37,7 @@ void	free_matrix(void **matrix)
 void	free_array(void *array)
 {
 	free(array);
+	array = NULL;
 	counter()->frees++;
 }
 
