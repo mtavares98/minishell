@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/23 15:33:38 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/23 23:51:37 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int ac, char **av, char **envp)
 		//cmd = this();
 		//exec_main(cmd, &red, envp);
 		alloc().free_array(str);
-		(counter())->mallocs++;
+		str = NULL;
+		printf("Mallocs == %d\n", (counter())->mallocs);
+		printf("Fress == %d\n", (counter())->frees);
 	}
 }

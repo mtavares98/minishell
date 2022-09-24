@@ -1,0 +1,1145 @@
+==15029== Memcheck, a memory error detector
+==15029== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==15029== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==15029== Command: ./minishell
+==15029== Parent PID: 3360
+==15029== 
+--15029-- 
+--15029-- Valgrind options:
+--15029--    --leak-check=full
+--15029--    --show-leak-kinds=all
+--15029--    --track-origins=yes
+--15029--    --verbose
+--15029--    --log-file=valgrind-out.txt
+--15029-- Contents of /proc/version:
+--15029--   Linux version 4.4.0-19041-Microsoft (Microsoft@Microsoft.com) (gcc version 5.4.0 (GCC) ) #1237-Microsoft Sat Sep 11 14:32:00 PST 2021
+--15029-- 
+--15029-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--15029-- Page sizes: currently 4096, max supported 4096
+--15029-- Valgrind library directory: /usr/lib/valgrind
+--15029-- Reading syms from /home/mgranate/minishell/minishell
+--15029-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--15029--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--15029--   .. CRC mismatch (computed 2977d8b2 wanted c64f09ed)
+--15029--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--15029--   .. CRC is valid
+--15029-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--15029--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--15029--   .. CRC mismatch (computed 41ddb025 wanted 9972f546)
+--15029--    object doesn't have a symbol table
+--15029--    object doesn't have a dynamic symbol table
+--15029-- Scheduler: using generic scheduler lock implementation.
+--15029-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==15029== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-15029-by-mgranate-on-???
+==15029== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-15029-by-mgranate-on-???
+==15029== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-15029-by-mgranate-on-???
+==15029== 
+==15029== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==15029== don't want to do, unless you know exactly what you're doing,
+==15029== or are doing some strange experiment):
+==15029==   /usr/lib/valgrind/../../bin/vgdb --pid=15029 ...command...
+==15029== 
+==15029== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==15029==   /path/to/gdb ./minishell
+==15029== and then give GDB the following command
+==15029==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=15029
+==15029== --pid is optional if only one valgrind process is running
+==15029== 
+==15029== error calling PR_SET_PTRACER, vgdb might block
+--15029-- REDIR: 0x4020d20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
+--15029-- REDIR: 0x4020b00 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
+--15029-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--15029--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--15029--   .. CRC mismatch (computed 50df1b30 wanted 4800a4cf)
+--15029--    object doesn't have a symbol table
+--15029-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--15029--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--15029--   .. CRC mismatch (computed f893b962 wanted 95ee359e)
+--15029--    object doesn't have a symbol table
+==15029== WARNING: new redirection conflicts with existing -- ignoring it
+--15029--     old: 0x04020d20 (strlen              ) R-> (0000.0) 0x580608c1 ???
+--15029--     new: 0x04020d20 (strlen              ) R-> (2007.0) 0x04c34db0 strlen
+--15029-- REDIR: 0x401d540 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c35ee0 (strcmp)
+--15029-- REDIR: 0x4021260 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c394f0 (mempcpy)
+--15029-- Reading syms from /lib/x86_64-linux-gnu/libreadline.so.7.0
+--15029--    object doesn't have a symbol table
+--15029-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--15029--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--15029--   .. CRC mismatch (computed f250d419 wanted 4aacab51)
+--15029--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--15029--   .. CRC is valid
+--15029-- Reading syms from /lib/x86_64-linux-gnu/libtinfo.so.5.9
+--15029--    object doesn't have a symbol table
+--15029-- REDIR: 0x5125a50 (libc.so.6:memmove) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124d60 (libc.so.6:strncpy) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125d30 (libc.so.6:strcasecmp) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51247b0 (libc.so.6:strcat) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124d90 (libc.so.6:rindex) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5127480 (libc.so.6:rawmemchr) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125bc0 (libc.so.6:mempcpy) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51259f0 (libc.so.6:bcmp) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124d20 (libc.so.6:strncmp) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124820 (libc.so.6:strcmp) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125b20 (libc.so.6:memset) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5142db0 (libc.so.6:wcschr) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124cc0 (libc.so.6:strnlen) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124890 (libc.so.6:strcspn) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125d80 (libc.so.6:strncasecmp) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124860 (libc.so.6:strcpy) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125ec0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124dc0 (libc.so.6:strpbrk) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51247e0 (libc.so.6:index) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124c90 (libc.so.6:strlen) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x512f380 (libc.so.6:memrchr) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125dd0 (libc.so.6:strcasecmp_l) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51259c0 (libc.so.6:memchr) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5143b70 (libc.so.6:wcslen) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125070 (libc.so.6:strspn) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125d00 (libc.so.6:stpncpy) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125cd0 (libc.so.6:stpcpy) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51274b0 (libc.so.6:strchrnul) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125e20 (libc.so.6:strncasecmp_l) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5124cf0 (libc.so.6:strncat) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x51b8700 (libc.so.6:__memcpy_chk) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5125900 (libc.so.6:strstr) redirected to 0x4a2c6e0 (_vgnU_ifunc_wrapper)
+--15029-- REDIR: 0x5215280 (libc.so.6:__strrchr_avx2) redirected to 0x4c34730 (rindex)
+--15029-- REDIR: 0x5215450 (libc.so.6:__strlen_avx2) redirected to 0x4c34cf0 (strlen)
+--15029-- REDIR: 0x511e020 (libc.so.6:malloc) redirected to 0x4c31aa0 (malloc)
+--15029-- REDIR: 0x513d200 (libc.so.6:__strcpy_sse2_unaligned) redirected to 0x4c34dd0 (strcpy)
+--15029-- REDIR: 0x5214e60 (libc.so.6:__strchr_avx2) redirected to 0x4c34950 (index)
+--15029-- REDIR: 0x520c3d0 (libc.so.6:__strncmp_sse42) redirected to 0x4c35570 (__strncmp_sse42)
+--15029-- REDIR: 0x5121050 (libc.so.6:calloc) redirected to 0x4c33a70 (calloc)
+--15029-- REDIR: 0x5215090 (libc.so.6:__strchrnul_avx2) redirected to 0x4c39020 (strchrnul)
+--15029-- REDIR: 0x52155e0 (libc.so.6:__strnlen_avx2) redirected to 0x4c34c90 (strnlen)
+--15029-- REDIR: 0x511e910 (libc.so.6:free) redirected to 0x4c32cd0 (free)
+--15029-- REDIR: 0x5215990 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c386e0 (memmove)
+--15029-- REDIR: 0x5130b30 (libc.so.6:__strcmp_sse2_unaligned) redirected to 0x4c35da0 (strcmp)
+--15029-- REDIR: 0x51255a0 (libc.so.6:__GI_strstr) redirected to 0x4c39760 (__strstr_sse2)
+--15029-- REDIR: 0x5215980 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4c395e0 (__memcpy_chk)
+--15029-- REDIR: 0x511fc50 (libc.so.6:realloc) redirected to 0x4c33cb0 (realloc)
+--15029-- REDIR: 0x513d830 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x4c352e0 (__strncpy_sse2_unaligned)
+--15029-- REDIR: 0x50c9c40 (libc.so.6:setenv) redirected to 0x4c39de0 (setenv)
+--15029-- REDIR: 0x5215970 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4c39130 (mempcpy)
+--15029-- REDIR: 0x52112e0 (libc.so.6:__memchr_avx2) redirected to 0x4c35f80 (memchr)
+--15029-- REDIR: 0x5211e50 (libc.so.6:__strcasecmp_l_avx) redirected to 0x4c35890 (strcasecmp_l)
+--15029-- REDIR: 0x513e810 (libc.so.6:__stpcpy_sse2_unaligned) redirected to 0x4c38200 (__stpcpy_sse2_unaligned)
+--15029-- REDIR: 0x5211e40 (libc.so.6:__strcasecmp_avx) redirected to 0x4c355f0 (strcasecmp)
+--15029-- REDIR: 0x52134b0 (libc.so.6:__strncasecmp_avx) redirected to 0x4c356d0 (strncasecmp)
+--15029-- REDIR: 0x5215e10 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4c385d0 (memset)
+--15029-- REDIR: 0x5211a60 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4c37e00 (bcmp)
+==15029== Invalid read of size 8
+==15029==    at 0x10912F: cmdadd (cmd_utils.c:66)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid write of size 8
+==15029==    at 0x109140: cmdadd (cmd_utils.c:68)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AF47: printlist (nodes.c:23)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AF62: printlist (nodes.c:24)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AFA3: printlist (nodes.c:26)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AFB4: printlist (nodes.c:26)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AFC0: printlist (nodes.c:32)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AEB9: receive_args (receive_args.c:44)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x10AED9: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x108CBA: free_matrix (allocs.c:25)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid free() / delete / delete[] / realloc()
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid free() / delete / delete[] / realloc()
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== Invalid read of size 8
+==15029==    at 0x109123: cmdadd (cmd_utils.c:67)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== Process terminating with default action of signal 2 (SIGINT)
+==15029==    at 0x50C6177: kill (syscall-template.S:78)
+==15029==    by 0x4E67D3A: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6A096: rl_getc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6A86D: rl_read_key (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52744: readline_internal_char (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F24: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== HEAP SUMMARY:
+==15029==     in use at exit: 130,568 bytes in 206 blocks
+==15029==   total heap usage: 341 allocs, 139 frees, 156,602 bytes allocated
+==15029== 
+==15029== Searching for pointers to 206 not-freed blocks
+==15029== Checked 170,304 bytes
+==15029== 
+==15029== 8 bytes in 1 blocks are still reachable in loss record 1 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x51249D9: strdup (strdup.c:42)
+==15029==    by 0x548FDDD: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489C25: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 9 bytes in 1 blocks are still reachable in loss record 2 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51B23: rl_set_prompt (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE1: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 9 bytes in 1 blocks are still reachable in loss record 3 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61F69: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6251D: rl_expand_prompt (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51B44: rl_set_prompt (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE1: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 10 bytes in 2 blocks are indirectly lost in loss record 4 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x10A4FB: ft_substr (utils2.c:33)
+==15029==    by 0x10B7E1: ft_split (args_aux.c:98)
+==15029==    by 0x10B112: str_handler (handlers.c:23)
+==15029==    by 0x10B3EF: argm_handler (handlers.c:81)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 13 bytes in 1 blocks are still reachable in loss record 5 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5F902: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CD3: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 14 bytes in 1 blocks are still reachable in loss record 6 of 48
+==15029==    at 0x4C33D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5487292: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548AF91: tparm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548FB34: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548FDCF: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489C25: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 15 bytes in 1 blocks are still reachable in loss record 7 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x51249D9: strdup (strdup.c:42)
+==15029==    by 0x5486AC9: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5486DBC: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7AD: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 15 bytes in 1 blocks are still reachable in loss record 8 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x51249D9: strdup (strdup.c:42)
+==15029==    by 0x548960D: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 15 bytes in 3 blocks are definitely lost in loss record 9 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108FF6: new_node (cmd_utils.c:38)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 16 bytes in 1 blocks are still reachable in loss record 10 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E52D9C: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 20 bytes in 1 blocks are still reachable in loss record 11 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D143: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5F1DD: rl_parse_and_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5F87E: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CD3: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 27 bytes in 1 blocks are still reachable in loss record 12 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x54875B4: _nc_home_terminfo (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5486DA6: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7AD: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 32 bytes in 1 blocks are indirectly lost in loss record 13 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 32 bytes in 2 blocks are indirectly lost in loss record 14 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 46 bytes in 1 blocks are still reachable in loss record 15 of 48
+==15029==    at 0x4C33D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5487292: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548EE66: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029== 
+==15029== 48 bytes in 1 blocks are still reachable in loss record 16 of 48
+==15029==    at 0x4C33B25: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5486EBB: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7AD: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 53 (48 direct, 5 indirect) bytes in 3 blocks are definitely lost in loss record 17 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x10B61F: ft_split (args_aux.c:75)
+==15029==    by 0x10B112: str_handler (handlers.c:23)
+==15029==    by 0x10B3EF: argm_handler (handlers.c:81)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 78 bytes in 1 blocks are still reachable in loss record 18 of 48
+==15029==    at 0x4C33D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5487292: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548EE97: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029== 
+==15029== 94 bytes in 1 blocks are still reachable in loss record 19 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x548A7F3: _nc_tparm_analyze (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548AB4D: tparm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548FB34: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548FDCF: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489C25: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 96 bytes in 1 blocks are still reachable in loss record 20 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5486E23: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7AD: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 101 (32 direct, 69 indirect) bytes in 1 blocks are definitely lost in loss record 21 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 120 bytes in 3 blocks are definitely lost in loss record 22 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x10B08E: create_single_node (nodes.c:54)
+==15029==    by 0x10B159: str_handler (handlers.c:28)
+==15029==    by 0x10B3EF: argm_handler (handlers.c:81)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 208 bytes in 1 blocks are still reachable in loss record 23 of 48
+==15029==    at 0x4C33B25: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x54895BA: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 256 bytes in 1 blocks are still reachable in loss record 24 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EC6: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 528 bytes in 1 blocks are still reachable in loss record 25 of 48
+==15029==    at 0x4C33B25: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x548F095: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 771 bytes in 1 blocks are still reachable in loss record 26 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x548F188: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 27 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61B1A: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 28 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61B30: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 29 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61B78: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 30 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61B97: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 31 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61BAF: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,024 bytes in 1 blocks are still reachable in loss record 32 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E61BC7: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E665D8: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E51C37: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52F0A: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,536 bytes in 1 blocks are still reachable in loss record 33 of 48
+==15029==    at 0x4C33D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E7575D: xrealloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E567F6: rl_add_funmap_entry (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E56895: rl_initialize_funmap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CC7: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 1,576 bytes in 1 blocks are still reachable in loss record 34 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x548E75A: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 2,032 bytes in 1 blocks are still reachable in loss record 35 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BCB9: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 2,176 bytes in 136 blocks are still reachable in loss record 36 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5680F: rl_add_funmap_entry (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E56895: rl_initialize_funmap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CC7: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 3,824 bytes in 1 blocks are still reachable in loss record 37 of 48
+==15029==    at 0x4C33D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5487292: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548EEB5: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F2FC: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F4E6: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548F7D0: _nc_read_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x5489288: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54895D1: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54899C2: tgetent (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAAB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029== 
+==15029== 4,080 bytes in 1 blocks are still reachable in loss record 38 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BC99: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 4,112 bytes in 1 blocks are still reachable in loss record 39 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B305: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BBEF: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 7,952 bytes in 1 blocks are still reachable in loss record 40 of 48
+==15029==    at 0x4C33B25: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x5486257: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x54869E8: _nc_find_type_entry (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x548A1A5: tgetstr (in /lib/x86_64-linux-gnu/libtinfo.so.5.9)
+==15029==    by 0x4E6BAF2: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 41 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B377: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BBEF: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 42 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B305: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BBFB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 43 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B377: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BBFB: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 44 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B305: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BC07: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 45 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6B377: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E6BC07: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CA8: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 8,224 bytes in 2 blocks are still reachable in loss record 46 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52D43: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 12,336 bytes in 3 blocks are still reachable in loss record 47 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52D56: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== 32,896 bytes in 8 blocks are still reachable in loss record 48 of 48
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x4E75738: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5697D: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5D995: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5F61E: rl_parse_and_bind (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E5F87E: ??? (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52CD3: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x4E52EE6: readline (in /lib/x86_64-linux-gnu/libreadline.so.7.0)
+==15029==    by 0x10A7FE: main (main.c:33)
+==15029== 
+==15029== LEAK SUMMARY:
+==15029==    definitely lost: 215 bytes in 10 blocks
+==15029==    indirectly lost: 74 bytes in 5 blocks
+==15029==      possibly lost: 0 bytes in 0 blocks
+==15029==    still reachable: 130,279 bytes in 191 blocks
+==15029==         suppressed: 0 bytes in 0 blocks
+==15029== 
+==15029== ERROR SUMMARY: 28 errors from 17 contexts (suppressed: 0 from 0)
+==15029== 
+==15029== 1 errors in context 1 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x109123: cmdadd (cmd_utils.c:67)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 1 errors in context 2 of 17:
+==15029== Invalid write of size 8
+==15029==    at 0x109140: cmdadd (cmd_utils.c:68)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 3 of 17:
+==15029== Invalid free() / delete / delete[] / realloc()
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 4 of 17:
+==15029== Invalid free() / delete / delete[] / realloc()
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 5 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x108CBA: free_matrix (allocs.c:25)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 6 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AED9: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 7 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AEB9: receive_args (receive_args.c:44)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 8 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AFC0: printlist (nodes.c:32)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 9 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AFB4: printlist (nodes.c:26)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd4b0 is 0 bytes inside a block of size 16 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108CD1: free_matrix (allocs.c:33)
+==15029==    by 0x10AEE1: receive_args (receive_args.c:45)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108F6A: new_node (cmd_utils.c:33)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 10 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AFA3: printlist (nodes.c:26)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 11 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AF62: printlist (nodes.c:24)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd458 is 8 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 12 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10AF47: printlist (nodes.c:23)
+==15029==    by 0x10AEA0: receive_args (receive_args.c:42)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd450 is 0 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== 
+==15029== 2 errors in context 13 of 17:
+==15029== Invalid read of size 8
+==15029==    at 0x10912F: cmdadd (cmd_utils.c:66)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Address 0x56cd468 is 24 bytes inside a block of size 32 free'd
+==15029==    at 0x4C32D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D0E: free_array (allocs.c:46)
+==15029==    by 0x10AEFE: receive_args (receive_args.c:46)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029==  Block was alloc'd at
+==15029==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15029==    by 0x108D85: ft_calloc (allocs.c:74)
+==15029==    by 0x108E76: new_node (cmd_utils.c:20)
+==15029==    by 0x1090D9: cmdadd (cmd_utils.c:56)
+==15029==    by 0x10B422: argm_handler (handlers.c:82)
+==15029==    by 0x10AE90: receive_args (receive_args.c:41)
+==15029==    by 0x10A80E: main (main.c:34)
+==15029== 
+==15029== ERROR SUMMARY: 28 errors from 17 contexts (suppressed: 0 from 0)

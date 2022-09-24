@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/23 15:06:37 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/23 23:59:06 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int	receive_args(char *str)
 {
 	argm_handler(str);
 	printlist(*this());
+	alloc().free_array((void *)(*this())->path);
+	alloc().free_matrix((void *)(*this())->args);
+	alloc().free_array((void *)(*this()));
+	
 	return (1);
 }

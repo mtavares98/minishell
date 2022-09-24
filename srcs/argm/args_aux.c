@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/23 16:28:34 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/24 10:28:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**ft_split(char *s, char c)
 
 	if (!s)
 		return (0);
-	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
+	lst = alloc().calloc((ft_countword(s, c) + 1) * sizeof(char *));
 	if (!lst)
 		return (0);
 	i = 0;
@@ -93,11 +93,8 @@ char	**ft_split(char *s, char c)
 		}
 		else if (!string().strchr(s, c))
 			word_len = string().len(s, -1);
-		else
-		{
-			
+		else			
 			word_len = string().strchr(s, c) - s;
-		}
 		lst[i++] = string().substr(s, 0, word_len);
 		s += word_len;
 	}

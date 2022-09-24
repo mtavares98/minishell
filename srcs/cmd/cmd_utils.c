@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/23 15:41:17 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/24 10:57:15 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_command	*new_node(char *path, t_tmp *argms)
 	int			i;
 	t_command	*node;
 
-	i = list_size(argms) + 1;
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
@@ -28,16 +27,20 @@ t_command	*new_node(char *path, t_tmp *argms)
 			return (0);
 		node->path = path;
 	}
-	node->args = alloc().calloc((i + 1) * sizeof(char *));
-	if (!node->args)
-		return (0);
-	while (--i >= 0)
+	if (argms)
 	{
-		node->args[i] = alloc().calloc(string().len(argms->args, -1) + 1);
-		if (!(node->args[i]))
+		i = list_size(argms);
+		node->args = alloc().calloc((i + 1) * sizeof(char *));
+		if (!node->args)
 			return (0);
-		node->args[i] = argms->args;
-		argms = argms->next;
+		while (--i >= 0)
+		{
+			node->args[i] = alloc().calloc(string().len(argms->args, -1) + 1);
+			if (!(node->args[i]))
+				return (0);
+			node->args[i] = argms->args;
+			argms = argms->next;
+		}
 	}
 	node->ready = 0;
 	node->next = NULL;
