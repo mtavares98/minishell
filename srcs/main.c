@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/23 20:57:25 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:28:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_counter	*counter(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	t_command		**cmd;
-	t_redirection	red;
 	char			*str;
 
 	(void)ac;
@@ -31,11 +29,11 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		str = readline("MMshell>");
-		receive_args(str);
 		counter()->mallocs++;
-		cmd = this();
-		exec_main(cmd, &red, envp);
+		receive_args(str);
 		alloc().free_array(str);
-		(counter())->mallocs++;
+		str = NULL;
+		printf("Mallocs == %d\n", (counter())->mallocs);
+		printf("Fress == %d\n", (counter())->frees);
 	}
 }

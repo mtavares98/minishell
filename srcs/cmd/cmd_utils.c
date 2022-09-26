@@ -6,42 +6,38 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/24 12:02:22 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:02:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cmd_utils.h"
 
-t_command	*new_node(char *path, t_tmp *argms)
+t_command	*new_node(char *path, char **split)
 {
-	int			i;
 	t_command	*node;
 
-	//i = list_size(argms) + 1;
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
-	node->path = path;
-	while (--i >= 0)
-	{
-		node->args[i] = alloc().calloc(string().len(argms->args, -1) + 1);
-		if (!(node->args[i]))
-			return (0);
-		node->args[i] = argms->args;
-		argms = argms->next;
-	}
+	if (path)
+		node->path = path;
+	if (split)
+		node->args = split;
 	node->ready = 0;
 	node->next = NULL;
 	return (node);
 }
 
-t_command	*cmdadd(char *path, t_tmp *args)
+t_command	*cmdadd(char *path, char **split)
 {
 	t_command	*new;
 	t_command	**cmd;
 	t_command	*tmp;
 
-	new = new_node(path, args);
+	new = NULL;
+	cmd = NULL;
+	tmp = NULL;
+	new = new_node(path, split);
 	if (!new)
 		return (NULL);
 	cmd = this();

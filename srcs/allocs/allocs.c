@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/23 20:55:53 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:31:39 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@ void	free_matrix(void **matrix)
 	int	i;
 
 	i = -1;
+	if(!matrix)
+		return ;
 	while (matrix[++i])
 	{
+		if (!matrix[i])
+			return ;
 		free(matrix[i]);
+		matrix[i] = NULL;
 		matrix[i] = NULL;
 		counter()->frees++;
 	}
 	free(matrix);
+	matrix = NULL;
 	matrix = NULL;
 	counter()->frees++;
 }
@@ -34,9 +40,13 @@ void	free_matrix(void **matrix)
 /*
 	It will free an array
 */
+
 void	free_array(void *array)
 {
+	if (!array)
+		return ;
 	free(array);
+	array = NULL;
 	array = NULL;
 	counter()->frees++;
 }

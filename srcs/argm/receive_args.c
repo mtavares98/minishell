@@ -6,80 +6,22 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/24 11:58:55 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:02:09 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//CHECK QUOTES IN STRING, ITS MISSPLACED, NEED TO ORGANIZE STILL
-int	check_quotes(char *str, int *i)
-{
-	char	*tmp;
-	int		ct;
-
-	ct = *i;
-	if (str[*i] == '\'')
-	{
-		*i += 1;
-		while (str[*i] && str[*i] != '\'')
-			(*i)++;
-		if (*i == string().len(str, -1))
-			return (0);
-		printf("i = %d\n", *i);
-		printf("ct = %d\n", ct);
-		tmp = string().substr(str, ct, *i - ct + 1);
-		printf("tmp = %s\n", tmp);
-		free(tmp);
-		return (1);
-	}
-	if (str[*i] == '"')
-	{
-		*i += 1;
-		while (str[*i] && str[*i] != '"')
-			(*i)++;
-		tmp = string().substr(str, ct, *i - ct + 1);
-		printf("tmp2 = %s\n", tmp);
-		free(tmp);
-		return (1);
-	}
-	return (1);
-}
-
-int	check_bultin(char *btin, char *str)
-{
-	int	i;
-	int	ct;
-
-	ct = 0;
-	i = -1;
-	while ((str[++i] && btin[i]) || str[i] == '|')
-	{
-		if (str[i] == btin[i])
-			ct++;
-		if (string().len(btin, -1) < string().len(str, -1))
-		{
-			if (str[string().len(btin, -1)] != ' ')
-				return (0);
-		}
-	}
-	if (string().len(btin, -1) == ct)
-		return (1);
-	return (0);
-}
-
-int	identify_command(char *str)
-{
-	if (check_bultin("echo", str))
-	{
-		argm_handler(str);
-	}
-	return (1);
-}
-
 int	receive_args(char *str)
 {
-	identify_command(str);
-	printlist(*this());
+	t_command	*cmd;
+
+	argm_handler(str);
+	cmd = *this();
+	while (cmd)
+	{
+		cmd = cmd->next;
+		cmdfunc().remove(0);
+	}
 	return (1);
 }
