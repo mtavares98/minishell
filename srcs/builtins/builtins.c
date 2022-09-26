@@ -1,29 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd.c                                              :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 21:10:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 16:44:12 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/22 16:19:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cmd_utils.h"
+#include "../../includes/minishell.h"
 
-t_command	**this(void)
-{
-	static t_command	*cmd;
-
-	return (&cmd);
-}
-
-t_cmdfunc	cmdfunc(void)
-{
-	static t_cmdfunc	funcs = {
-		cmdadd, cmdget, cmdremove
-	};
-
-	return (funcs);
-}
+int	echo()

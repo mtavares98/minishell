@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd.c                                              :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 21:10:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 16:44:12 by mtavares         ###   ########.fr       */
+/*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
+/*   Updated: 2022/09/22 16:17:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cmd_utils.h"
+#include "../../includes/minishell.h"
 
-t_command	**this(void)
+char	**create_env(char **envp)
 {
-	static t_command	*cmd;
+	int		i;
+	char	**env;
 
-	return (&cmd);
-}
-
-t_cmdfunc	cmdfunc(void)
-{
-	static t_cmdfunc	funcs = {
-		cmdadd, cmdget, cmdremove
-	};
-
-	return (funcs);
+	i = -1;
+	while (envp[++i])
+		;
+	env = alloc().calloc(sizeof(char *) * (i + 1));
+	if (!env)
+		return (NULL);
+	i = -1;
+	while (envp[++i])
+	{
+		env[i] = string().strdup(envp[i]);
+		if (!env[i])
+		{
+			alloc().free_matrix(env);
+			return (NULL);
+		}
+	}
+	return (env);
 }
