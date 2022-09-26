@@ -6,22 +6,22 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 15:40:57 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:05:45 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
 int	receive_args(char *str)
 {
+	t_command	*cmd;
+
 	argm_handler(str);
-	//printlist(*this());
-	//if ((*this())->path)
-	//	alloc().free_array((void *)(*this())->path);
-	//if ((*this())->args)
-	//	alloc().free_matrix((void *)(*this())->args);
-	//if ((*this()))
-	//	alloc().free_array((void *)(*this()));
+	cmd = *this();
+	while (cmd)
+	{
+		cmd = cmd->next;
+		cmdfunc().remove(0);
+	}
 	return (1);
 }

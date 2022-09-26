@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 15:38:49 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:05:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,15 @@
 
 t_command	*new_node(char *path, char **split)
 {
-	int			i;
 	t_command	*node;
 
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
 	if (path)
-	{
-		node->path = alloc().calloc(string().len(path, - 1) + 1);
-		if (!node->path)
-			return (0);
 		node->path = path;
-	}
 	if (split)
-	{
-		i = list_size(split);
-		node->args = alloc().calloc((i + 1) * sizeof(char *));
-		if (!node->args)
-			return (0);
-		while (--i >= 0)
-		{
-			node->args[i] = alloc().calloc(string().len(split[i], -1) + 1);
-			if (!(node->args[i]))
-				return (0);
-			node->args[i] = split[i];
-		}
-	}
+		node->args = split;
 	node->ready = 0;
 	node->next = NULL;
 	return (node);
@@ -75,7 +57,7 @@ t_command	*cmdget(int i)
 {
 	t_command	*cmd;
 	int			j;
-	
+
 	cmd = (*this());
 	if (!cmd && i < 0)
 		return (NULL);
