@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 15:25:39 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:37:38 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	argm_handler(char *str)
 	i = -1;
 	while (split[++i])
 		printf("Split[%d] == %s\n", i, split[i]);
-	//cmdfunc().add(path, split);
+	cmdfunc().add(path, split);
 	alloc().free_matrix((void *)(split));
 	return (1);
 }
