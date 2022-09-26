@@ -31,7 +31,7 @@ struct s_str
 	char	*(*itoa)(char *s, int *maxdig, int counter, int n);
 	char	*(*substr)(char *s, unsigned int start, size_t len);
 	char	*(*contains)(char *big, char *little, size_t len);
-	int		(*isalnum)(char c);
+	int		(*ft_isalnum)(char c);
 	char	*(*strdup)(char *s);
 };
 

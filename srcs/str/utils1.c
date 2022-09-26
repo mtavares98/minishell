@@ -6,10 +6,10 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 22:10:32 by mtavares         ###   ########.fr       */
-/*   Updated: 2022/09/19 16:52:36 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:27:14 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/string_utils.h"
 
@@ -126,4 +126,3 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 	return ((unsigned char)*(s1 + i - (n == i)) - \
 	(unsigned char)*(s2 + i - (n == i)));
 }
-#include "../../includes/string_utils.h"

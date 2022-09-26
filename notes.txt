@@ -1,0 +1,6 @@
+Mallocs:
+- Str Check
+- node List
+- argm
+- command struct
+- 
