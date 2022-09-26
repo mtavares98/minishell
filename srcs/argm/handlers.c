@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 15:25:39 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:04:28 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*handler_path(char *str)
 {
 	int		i;
 	char	*path;
-	
+
 	i = 0;
 	path = NULL;
 	while (*str && *str == ' ')
@@ -76,7 +76,7 @@ int	argm_handler(char *str)
 	char			*path;
 	int				i;
 	int				j;
-	
+
 	i = 0;
 	j = 0;
 	path = NULL;
@@ -99,7 +99,6 @@ int	argm_handler(char *str)
 	i = -1;
 	while (split[++i])
 		printf("Split[%d] == %s\n", i, split[i]);
-	//cmdfunc().add(path, split);
-	alloc().free_matrix((void *)(split));
+	cmdfunc().add(path, split);
 	return (1);
 }

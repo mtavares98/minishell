@@ -32,7 +32,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address -I$(INC)
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC)
 
 RM			=	rm -rf
 
@@ -73,7 +73,7 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@printf "%b" "$(OBJ_COLOR)"
 	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
 	@$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
-	
+
 clean:	header
 	@echo $(PURPLE) "🧹🧹 Cleaning... 🧹🧹" $(EOC)
 	@$(RM) $(OBJ_DIR)

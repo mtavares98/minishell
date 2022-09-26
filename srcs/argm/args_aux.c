@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 15:26:20 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:39:38 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t	ft_countword(char const *s, char c)
 // 2- Verificar se o caracter a seguir é espaço
 // 3A- Caso não seja aspas, iterar até encontrar um espaço
 // 3B- Caso seja aspas, incrementar o contador de aspas, e iterar até encontrar a proxima aspa
-// - Repetir os passos 
+// - Repetir os passos
 
 int	check_quotes(char *str, char ap)
 {
@@ -115,10 +115,10 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	while (*s)
 	{
-		if (*s == '\0')
-			break ;
 		while (*s == c && *s)
 			s++;
+		if (*s == '\0')
+			break ;
 		word_len = ft_split_aux(s, word_len, c);
 		printf("Word_Len == %ld\n", word_len);
 		lst[i++] = string().substr(s, 0, word_len);
