@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/24 10:28:20 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:26:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,10 @@ int	check_quotes(char *str, char ap)
 
 	ct = 0;
 	i = 0;
-	
 	while (str[++i] && str[i] != ap)
 		;
-	if (str[i + 1] == ' ')
-		return (i + 1);
+	if (str[i] == ' ')
+		return (i);
 	while (str[++i])
 	{
 		while (str[i] && str[i] != ' ')
@@ -59,9 +58,47 @@ int	check_quotes(char *str, char ap)
 			i++;
 		}
 		if (ct % 2 == 0)
-			return (i);	
+			return (i);
 	}
 	return (i);
+}
+
+int	add_quotes(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+	{
+		if (str[i] == '\'' )
+		{
+			i = i + check_quotes(str + i, '\'');
+			return (i);
+		}
+		if (str[i] == '"' )
+		{
+			i = i + check_quotes(str + i, '"');
+			return (i);
+		}
+		i++;
+	}
+	return (i);
+}
+
+int	ft_split_aux(char *s, int word_len, char c)
+{
+	if (*s == '\'' || *s == '"')
+	{
+		if (*s == '\'')
+			word_len = check_quotes(s, '\'');
+		else
+			word_len = check_quotes(s, '"');
+	}
+	else if (!string().strchr(s, c))
+		word_len = string().len(s, -1);
+	else
+		word_len = add_quotes(s);
+	return (word_len);
 }
 
 char	**ft_split(char *s, char c)
@@ -78,23 +115,12 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	while (*s)
 	{
-		while (*s == c && *s)
-			s++;
 		if (*s == '\0')
 			break ;
-		//There is an Edgecase here: when the word has quotes in the middle of the word and not beginig
-		// example: fasnakn"fas jkj" ->It will separate both
-		if (*s == '\'' || *s == '"')
-		{
-			if (*s == '\'')
-				word_len = check_quotes(s, '\'');
-			else
-				word_len = check_quotes(s, '"');
-		}
-		else if (!string().strchr(s, c))
-			word_len = string().len(s, -1);
-		else			
-			word_len = string().strchr(s, c) - s;
+		while (*s == c && *s)
+			s++;
+		word_len = ft_split_aux(s, word_len, c);
+		printf("Word_Len == %ld\n", word_len);
 		lst[i++] = string().substr(s, 0, word_len);
 		s += word_len;
 	}

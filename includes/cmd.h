@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/23 15:26:14 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:08:51 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_tmp			t_tmp;
 
 struct s_cmdfunc
 {
-	t_command	*(*add)(char *path, t_tmp *args);
+	t_command	*(*add)(char *path, char **split);
 	t_command	*(*get)(int i);
 	void		(*remove)(int i);
 };
@@ -40,6 +40,6 @@ struct s_command
 
 t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
-int			list_size(t_tmp *list);
+int			list_size(char **split);
 
 #endif

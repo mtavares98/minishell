@@ -6,47 +6,12 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/24 11:15:07 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:25:39 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	clean_stack(t_tmp *s)
-{
-	t_tmp	*tmp;
-
-	if (s)
-	{
-		int i = 0;
-		while (s)
-		{
-			i ++;
-			printf("I === %d\n", i);
-			tmp = (s)->next;
-			alloc().free_array((void *)(s));
-			s = NULL;
-			s = tmp;
-		}
-		alloc().free_array((void *)(s));
-		s = NULL;
-	}
-}
-
-t_tmp	*str_handler(char *str, t_tmp *head, t_tmp *arg, char **split)
-{
-	int		i;
-
-	i = -1;
-	split = ft_split(str, ' ');
-	while (split[++i])
-	{
-		arg = create_single_node(split[i]);
-		arg->next = head;
-		head = arg;
-	}
-	return (head);
-}
 
 char	*handler_path(char *str)
 {
@@ -66,21 +31,56 @@ char	*handler_path(char *str)
 	return (path);
 }
 
+int	count_quotes(char *str, char qt)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == qt)
+			return (i);
+		str++;
+		i++;
+	}
+	return (0);
+}
+
+int	validate_string(char * str)
+{
+	int	i;
+
+	i = 1;
+	if (!(*str) || !str[0])
+		return (0);
+	while (*str)
+	{
+		if (*str == '"')
+		{
+			i = count_quotes(str + 1, '"');
+			str = str + i + 1;
+		}
+		if (*str == '\'')
+		{
+			i = count_quotes(str + 1, '\'');
+			str = str + i + 1;
+		}
+		str++;
+	}
+	return (i);
+}
 
 int	argm_handler(char *str)
 {
-	static	t_tmp	*head;
-	static	t_tmp	*args;
+	char			**split;
 	char			*path;
 	int				i;
-	char		**split;
+	int				j;
 	
 	i = 0;
-	head = NULL;
-	args = NULL;
+	j = 0;
 	path = NULL;
 	split = NULL;
-	int j = 0;
 	while (str[j])
 	{
 		if (str[j] == '/')
@@ -92,10 +92,14 @@ int	argm_handler(char *str)
 		j++;
 	}
 	str = str + i;
-	head = str_handler(str, head, args, split);
+	if (!validate_string(str))
+		return (0);
+	printf("STR BEFORE SPLIT == %s\n", str);
+	split = ft_split(str, ' ');
+	i = -1;
+	while (split[++i])
+		printf("Split[%d] == %s\n", i, split[i]);
+	//cmdfunc().add(path, split);
 	alloc().free_matrix((void *)(split));
-	printf("head == %s\n", head->args);
-	cmdfunc().add(path, head);
-	clean_stack(head);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/24 10:46:54 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:18:08 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	printlist(t_command *vars)
 	printf("\n===============\n");
 }
 
-int	list_size(t_tmp *list)
+int	list_size(char **split)
 {
 	int	i;
 
 	i = 0;
-	while (list->next && i++)
-		list = list->next;
+	while (split[i])
+		i++;
 	return (i);
 }
 

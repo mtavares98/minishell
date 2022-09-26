@@ -6,21 +6,18 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/23 15:34:11 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:04:51 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cmd_utils.h"
 
-int	list_size(t_tmp *list)
+int	list_size(char **split)
 {
 	int	i;
 
 	i = 0;
-	while (list->next)
-	{
-		list = list->next;
+	while (split[i])
 		i++;
-	}
 	return (i);
 }
