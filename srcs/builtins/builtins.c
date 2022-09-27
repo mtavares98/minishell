@@ -6,31 +6,14 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 21:47:12 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:49:47 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	length(char **envp)
+int	cd(t_command *cmd, char **envp)
 {
-	int	i;
-
-	i = -1;
-	while (envp[++i])
-		;
-	return (i);
-}
-
-int	have_var(char *str, char **envp)
-{
-	int	i;
-
-	i = -1;
-	while (envp[++i])
-		if (!string().strncmp(str, envp[i], string().len(str, '=')))
-			return (i);
-	return (-1);
 }
 
 int	export(t_command *cmd, char **envp)
@@ -50,24 +33,14 @@ int	export(t_command *cmd, char **envp)
 			if (j != -1)
 			{
 				free(envp[j]);
-				string().strdup(cmd->args[i]);
+				envp[j] = string().strdup(cmd->args[i]);
 			}
 			else
-			{
-				tmp = envp;
-				envp = alloc().calloc(length(envp));
-				if (!envp)
-				{
-					envp = tmp;
+				if (deal_with_non_existing_var(cmd, i, envp))
 					return (255);
-				}
-				j = -1;
-				while (tmp[++j])
-					envp[j] = tmp[j];
-				envp[j] = cmd->args[i];
-			}
 		}
 	}
+	return (0);
 }
 
 int	env(t_command *cmd, char **envp)
