@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:06:54 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/25 18:08:07 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:41:13 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_command	*cmdadd(char *path, char **split);
 t_command	*new_node(char *path, char **split);
 t_command	*cmdget(int i);
 void		cmdremove(int i);
+int			list_size_cmd(void);
 t_command	**cmd(void);
 
 #endif

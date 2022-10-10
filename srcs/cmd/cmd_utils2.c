@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/25 18:04:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:40:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,16 @@ int	list_size(char **split)
 	while (split[i])
 		i++;
 	return (i);
+}
+
+int	list_size_cmd(void)
+{
+	t_command	*cmd;
+	int			len;
+
+	*this() = cmd;
+	len = -1;
+	while (cmd && ++len)
+		cmd = cmd->next;
+	return (len);
 }

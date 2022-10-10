@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 15:38:15 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:41:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ struct s_cmdfunc
 	t_command	*(*add)(char *path, char **split);
 	t_command	*(*get)(int i);
 	void		(*remove)(int i);
+	int			(*size)(void);
 };
 
 struct s_tmp

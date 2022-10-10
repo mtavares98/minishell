@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 15:25:48 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:43:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,11 @@ int	exec_cmd(int out, int in, t_command *cmd, char **envp)
 			return (-1);
 		}
 		close(out);
-		if (!exec_builtin(out, in, cmd, envp))
-			if (execve(cmd->path, cmd->args, envp) == -1)
-				perror("Execve");
+		if (execve(cmd->path, cmd->args, envp) == -1)
+			perror("Execve");
 	}
 	close(in);
 	close(out);
-}
-
-int	exec_cmds(t_command **cmd, t_redirection *red, int **pipe_fd)
-{
-	if (!pipe_fd)
-		;
 }
 
 int	**get_pipesfd(int num_cmd)
