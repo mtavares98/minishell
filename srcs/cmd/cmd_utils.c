@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 17:05:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:37:52 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cmd_utils.h"
+#include <stdio.h>
+
+char	*path_node(char	*path, char *new_path)
+{
+	int	i;
+
+	i = 0;
+	new_path = alloc().calloc((string().len(path, -1)) * sizeof(char *));
+	if (!new_path)
+		return (NULL);
+	while (path[i])
+	{
+		new_path[i] = path[i];
+		i++;
+	}
+	return (new_path);
+}
+
+char	**argms_node(char **args, char **split)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	args = alloc().calloc((list_size(split) + 1) * sizeof(char **));
+	while (split[i])
+	{
+		j = 0;
+		args[i] = alloc().calloc((string().len(split[i], - 1) + 1) * sizeof(char *));
+		while (split[i][j])
+		{
+			args[i][j] = split[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (args);
+}
 
 t_command	*new_node(char *path, char **split)
 {
@@ -20,9 +58,9 @@ t_command	*new_node(char *path, char **split)
 	if (!node)
 		return (NULL);
 	if (path)
-		node->path = path;
+		node->path = path_node(path, node->path);
 	if (split)
-		node->args = split;
+		node->args = argms_node(node->args, split);
 	node->ready = 0;
 	node->next = NULL;
 	return (node);

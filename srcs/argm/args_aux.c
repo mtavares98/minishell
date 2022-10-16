@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 16:39:38 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:05:18 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,13 @@ char	**ft_split(char *s, char c)
 	if (!lst)
 		return (0);
 	i = 0;
-	while (*s)
+	while (*s || *s != '|')
 	{
 		while (*s == c && *s)
 			s++;
 		if (*s == '\0')
 			break ;
 		word_len = ft_split_aux(s, word_len, c);
-		printf("Word_Len == %ld\n", word_len);
 		lst[i++] = string().substr(s, 0, word_len);
 		s += word_len;
 	}
