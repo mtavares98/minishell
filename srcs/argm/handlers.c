@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/01 18:41:01 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:27:24 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,16 @@ int	count_quotes(char *str, char qt)
 	int	i;
 
 	i = 0;
+	printf("%c\n", *str);
 	while (*str)
 	{
 		if (*str == qt)
+		{
+			i++;
 			return (i);
-		str++;
+		}
 		i++;
+		str++;
 	}
 	return (0);
 }
@@ -75,13 +79,17 @@ int	validate_string(char * str)
 	{
 		if (*str == '"')
 		{
+			if (!(*str + 1))
+				return (0);
 			i = count_quotes(str + 1, '"');
-			str = str + i + 1;
+			str = str + i;
 		}
 		if (*str == '\'')
 		{
+			if (!(*str + 1))
+				return (0);
 			i = count_quotes(str + 1, '\'');
-			str = str + i + 1;
+			str = str + i;
 		}
 		str++;
 	}

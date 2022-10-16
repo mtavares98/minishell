@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/01 17:05:18 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:28:13 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ static size_t	ft_countword(char const *s, char c)
 	}
 	return (count);
 }
-
-// Aspas e Duplas Aspas:
-// 1- Iterar até encontrar uma aspa;
-// 2- Verificar se o caracter a seguir é espaço
-// 3A- Caso não seja aspas, iterar até encontrar um espaço
-// 3B- Caso seja aspas, incrementar o contador de aspas, e iterar até encontrar a proxima aspa
-// - Repetir os passos
 
 int	check_quotes(char *str, char ap)
 {
@@ -113,7 +106,7 @@ char	**ft_split(char *s, char c)
 	if (!lst)
 		return (0);
 	i = 0;
-	while (*s || *s != '|')
+	while (*s)
 	{
 		while (*s == c && *s)
 			s++;
