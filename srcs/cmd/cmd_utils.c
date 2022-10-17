@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/01 18:37:52 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:03:58 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,11 @@ char	*path_node(char	*path, char *new_path)
 char	**argms_node(char **args, char **split)
 {
 	int	i;
-	int	j;
 
-	i = 0;
+	i = -1;
 	args = alloc().calloc((list_size(split) + 1) * sizeof(char **));
-	while (split[i])
-	{
-		j = 0;
-		args[i] = alloc().calloc((string().len(split[i], - 1) + 1) * sizeof(char *));
-		while (split[i][j])
-		{
-			args[i][j] = split[i][j];
-			j++;
-		}
-		i++;
-	}
+	while (split[++i])
+		args[i] = string().strdup(split[i]);
 	return (args);
 }
 
