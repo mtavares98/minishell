@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:10:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 16:44:12 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:42:12 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_command	**this(void)
 t_cmdfunc	cmdfunc(void)
 {
 	static t_cmdfunc	funcs = {
-		cmdadd, cmdget, cmdremove
+		cmdadd, cmdget, cmdremove, list_size_cmd
 	};
 
 	return (funcs);
