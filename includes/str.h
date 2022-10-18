@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 21:58:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:17:30 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ struct s_str
 	char	*(*strrchr)(char *s, char c);
 	char	*(*trim)(char *s1, char *set);
 	int		(*isdig)(char c);
-	int		(*isspace)(char c);
+	int		(*ft_isspace)(char c);
 	char	*(*itoa)(char *s, int *maxdig, int counter, int n);
 	char	*(*substr)(char *s, unsigned int start, size_t len);
 	char	*(*contains)(char *big, char *little, size_t len);

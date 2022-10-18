@@ -19,6 +19,12 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
+			$(SRC_DIR)/files_check/files_check.c \
+			$(SRC_DIR)/argm/receive_args.c \
+			$(SRC_DIR)/argm/nodes.c  \
+			$(SRC_DIR)/argm/handlers.c  \
+			$(SRC_DIR)/argm/args_aux.c  \
+			$(SRC_DIR)/argm/args_aux2.c	\
 
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
@@ -37,7 +43,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC)
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address -I$(INC)
 
 RM			=	rm -rf
 

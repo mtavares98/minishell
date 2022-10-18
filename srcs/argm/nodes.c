@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/25 18:18:08 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:13:42 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 void	printlist(t_command *vars)
 {
 	int	j;
-
-	j = 0;
+	int	i;
+	
+	i = 1;
 	printf("\n==============\n");
 	while (vars)
 	{
+		j = 0;
+		printf("===== List nº %d=======\n", i);
 		printf("Path == %s\n", vars->path);
 		if (!vars->args)
 			return ;
@@ -30,6 +33,7 @@ void	printlist(t_command *vars)
 		}
 		//printf("Status == [%d] ", vars->ready);
 		vars = vars->next;
+		i++;
 	}
 	printf("\n===============\n");
 }

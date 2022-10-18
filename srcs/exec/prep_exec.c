@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/01 15:43:59 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:41:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
 
-int	exec_builtin(int out, int in, t_command *cmd, char **envp)
+int	exec_builtin(t_command *cmd, char **envp)
 {
 	if (!string().strncmp(cmd->path, "echo", 5))
 		echo(cmd, envp);
@@ -33,7 +33,7 @@ int	exec_builtin(int out, int in, t_command *cmd, char **envp)
 	return (1);
 }
 
-int	exec_cmd(int out, int in, t_command *cmd, char **envp)
+int	exec_cmd(t_command *cmd, char **envp)
 {
 	int	pid;
 
@@ -42,23 +42,10 @@ int	exec_cmd(int out, int in, t_command *cmd, char **envp)
 		return (1);
 	if (pid == 0)
 	{
-		if (dup2(in, STDIN_FILENO) == -1)
-		{
-			perror("dup2");
-			return (-1);
-		}
-		close(in);
-		if (dup2(out, STDOUT_FILENO) == -1)
-		{
-			perror("dup2");
-			return (-1);
-		}
-		close(out);
-		if (execve(cmd->path, cmd->args, envp) == -1)
-			perror("Execve");
+		if (!exec_builtin(cmd, envp))
+			if (execve(cmd->path, cmd->args, envp) == -1)
+				perror("Execve");
 	}
-	close(in);
-	close(out);
 }
 
 int	**get_pipesfd(int num_cmd)
@@ -95,7 +82,7 @@ int	get_total_cmd(t_command *cmd)
 	return (num_cmd);
 }
 
-int	prep_exec(t_command **cmd, t_redirection *red)
+int	prep_exec(t_command **cmd)
 {
 	int	num_cmd;
 	int	**pipe_fd;
@@ -105,9 +92,9 @@ int	prep_exec(t_command **cmd, t_redirection *red)
 	if (!num_cmd)
 		return (2);
 	if (num_cmd == 1)
-		exec_cmds(cmd, red, pipe_fd);
+		exec_cmds(cmd, pipe_fd);
 	pipe_fd = get_pipesfd(num_cmd);
 	if (!pipe_fd)
 		return (1);
-	exec_cmds(cmd, red, pipe_fd);
+	exec_cmds(cmd, pipe_fd);
 }

@@ -6,29 +6,47 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/09/26 18:05:34 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:27:24 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+char	*path_handler2(char * str, char *path)
+{
+	int	i;
+
+	i = 0;
+	while (*str != '/')
+		str++;
+	while (str[i] && (string().ft_isalnum(str[i]) || str[i] == '/'))
+		i++;
+	path = string().substr(str, 0, i);
+	return (path);
+}
 
 char	*handler_path(char *str)
 {
 	int		i;
 	char	*path;
-
+	
 	i = 0;
 	path = NULL;
-	while (*str && *str == ' ')
-		str++;
-	if (*str != '/')
-		return (0);
-	while (str[i] && (string().ft_isalnum(str[i]) || str[i] == '/'))
+	if (str[i] == '/')
+	{
+		path = path_handler2(str, path);
+		return(path);
+	}
+	while (str[i])
+	{
+		if (str[i] == '/' && string().ft_isspace(str[i - 1]))
+		{
+			path = path_handler2(str, path);
+			return (path);
+		}
 		i++;
-	path = string().substr(str, 0, i);
-	str = str + i;
-	return (path);
+	}
+	return (NULL);
 }
 
 int	count_quotes(char *str, char qt)
@@ -36,12 +54,16 @@ int	count_quotes(char *str, char qt)
 	int	i;
 
 	i = 0;
+	printf("%c\n", *str);
 	while (*str)
 	{
 		if (*str == qt)
+		{
+			i++;
 			return (i);
-		str++;
+		}
 		i++;
+		str++;
 	}
 	return (0);
 }
@@ -57,13 +79,17 @@ int	validate_string(char * str)
 	{
 		if (*str == '"')
 		{
+			if (!(*str + 1))
+				return (0);
 			i = count_quotes(str + 1, '"');
-			str = str + i + 1;
+			str = str + i;
 		}
 		if (*str == '\'')
 		{
+			if (!(*str + 1))
+				return (0);
 			i = count_quotes(str + 1, '\'');
-			str = str + i + 1;
+			str = str + i;
 		}
 		str++;
 	}
@@ -74,31 +100,20 @@ int	argm_handler(char *str)
 {
 	char			**split;
 	char			*path;
-	int				i;
-	int				j;
 
-	i = 0;
-	j = 0;
 	path = NULL;
 	split = NULL;
-	while (str[j])
-	{
-		if (str[j] == '/')
-		{
-			path = handler_path(str);
-			i = string().len(path, -1);
-			break ;
-		}
-		j++;
-	}
-	str = str + i;
 	if (!validate_string(str))
+	{
+		printf("Invalid use of quotes\n");
 		return (0);
-	printf("STR BEFORE SPLIT == %s\n", str);
+	}
+	path = handler_path(str);
+	if (path)
+		str = get_substring(str, '/');
 	split = ft_split(str, ' ');
-	i = -1;
-	while (split[++i])
-		printf("Split[%d] == %s\n", i, split[i]);
 	cmdfunc().add(path, split);
+	alloc().free_matrix((void *)split);
+	alloc().free_array((void *)path);
 	return (1);
 }

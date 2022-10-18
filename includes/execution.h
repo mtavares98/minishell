@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/21 17:34:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:39:54 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "cmd.h"
 
 typedef struct s_exec			t_exec;
-typedef struct s_redirection	t_redirection;
 
 struct s_exec
 {
@@ -31,19 +30,10 @@ struct s_exec
 	int	i;
 };
 
-struct s_redirection
-{
-	char	*limiter;
-	char	*infile;
-	int		infd;
-	int		is_trunc;
-	char	*outfile;
-	int		outfd;
-};
-
+int		**pipesfd_or_processid(int nbcmd);
 char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
-int		exec_main(t_command **command, t_redirection *redirection, char **envp);
+int		execution(t_command **cmd, char **envp);
 int		check_files(t_command **cmd, char *path);
 
 #endif
