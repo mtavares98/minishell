@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 16:17:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:21:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**create_env(char **envp)
 		env[i] = string().strdup(envp[i]);
 		if (!env[i])
 		{
-			alloc().free_matrix(env);
+			alloc().free_matrix((void **)env);
 			return (NULL);
 		}
 	}

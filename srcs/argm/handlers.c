@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/16 15:27:24 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/21 17:03:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/arguments.h"
 
 char	*path_handler2(char * str, char *path)
 {
@@ -29,7 +29,7 @@ char	*handler_path(char *str)
 {
 	int		i;
 	char	*path;
-	
+
 	i = 0;
 	path = NULL;
 	if (str[i] == '/')
@@ -108,12 +108,11 @@ int	argm_handler(char *str)
 		printf("Invalid use of quotes\n");
 		return (0);
 	}
-	path = handler_path(str);
-	if (path)
-		str = get_substring(str, '/');
 	split = ft_split(str, ' ');
+	path = string().strdup(split[0]);
+	split++;
 	cmdfunc().add(path, split);
-	alloc().free_matrix((void *)split);
+	alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
 }

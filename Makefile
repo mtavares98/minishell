@@ -1,16 +1,18 @@
+#			$(SRC_DIR)/builtins/builtins.c \
+			$(SRC_DIR)/builtins/utils1.c \
+			$(SRC_DIR)/exec/prep_exec.c \
+
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
-			$(SRC_DIR)/argm/nodes.c  \
-			$(SRC_DIR)/argm/handlers.c  \
-			$(SRC_DIR)/argm/args_aux.c  \
-			$(SRC_DIR)/builtins/builtins.c \
-			$(SRC_DIR)/builtins/utils1.c \
+			$(SRC_DIR)/argm/nodes.c \
+			$(SRC_DIR)/argm/handlers.c \
+			$(SRC_DIR)/argm/args_aux.c \
+			$(SRC_DIR)/argm/args_aux2.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \
 			$(SRC_DIR)/env/env.c \
 			$(SRC_DIR)/exec/exec_main.c \
-			$(SRC_DIR)/exec/prep_exec.c \
 			$(SRC_DIR)/exec/utils.c \
 			$(SRC_DIR)/files_check/files_check.c \
 			$(SRC_DIR)/gnl/get_next_line.c \
@@ -19,12 +21,6 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
 			$(SRC_DIR)/main.c \
-			$(SRC_DIR)/files_check/files_check.c \
-			$(SRC_DIR)/argm/receive_args.c \
-			$(SRC_DIR)/argm/nodes.c  \
-			$(SRC_DIR)/argm/handlers.c  \
-			$(SRC_DIR)/argm/args_aux.c  \
-			$(SRC_DIR)/argm/args_aux2.c	\
 
 
 OBJ			=	$(subst $(SRC_DIR), $(OBJ_DIR), $(SRC:.c=.o))
@@ -93,7 +89,7 @@ fclean:	header header clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{allocs,cmd,exec,gnl,str,files_check,argm}
+	mkdir -p objs/{allocs,cmd,exec,gnl,str,files_check,argm,env}
 git:
 	@git add .
 	@git commit -m "$m"
