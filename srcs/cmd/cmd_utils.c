@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/17 15:03:58 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/21 21:03:41 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ t_command	*cmdadd(char *path, char **split)
 	t_command	**cmd;
 	t_command	*tmp;
 
-	new = NULL;
-	cmd = NULL;
 	tmp = NULL;
 	new = new_node(path, split);
 	if (!new)

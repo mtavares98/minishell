@@ -3,51 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/21 17:03:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/21 23:29:36 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/arguments.h"
 
-char	*path_handler2(char * str, char *path)
-{
-	int	i;
-
-	i = 0;
-	while (*str != '/')
-		str++;
-	while (str[i] && (string().ft_isalnum(str[i]) || str[i] == '/'))
-		i++;
-	path = string().substr(str, 0, i);
-	return (path);
-}
-
-char	*handler_path(char *str)
-{
-	int		i;
-	char	*path;
-
-	i = 0;
-	path = NULL;
-	if (str[i] == '/')
-	{
-		path = path_handler2(str, path);
-		return(path);
-	}
-	while (str[i])
-	{
-		if (str[i] == '/' && string().ft_isspace(str[i - 1]))
-		{
-			path = path_handler2(str, path);
-			return (path);
-		}
-		i++;
-	}
-	return (NULL);
-}
 
 int	count_quotes(char *str, char qt)
 {
@@ -96,6 +60,7 @@ int	validate_string(char * str)
 	return (i);
 }
 
+
 int	argm_handler(char *str)
 {
 	char			**split;
@@ -109,9 +74,20 @@ int	argm_handler(char *str)
 		return (0);
 	}
 	split = ft_split(str, ' ');
-	path = string().strdup(split[0]);
-	split++;
-	cmdfunc().add(path, split);
+	if (!split || !split[0])
+		return (0);
+	path = handler_path(split[0]);
+	if (split[0][0] == '/')
+	{
+		split [0] = handle_split(split[0]);
+		cmdfunc().add(path, split);
+	}
+	else
+		{
+		split++;
+		cmdfunc().add(path, split);
+		split--;	
+		}
 	alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
