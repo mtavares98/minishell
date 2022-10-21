@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/21 23:29:36 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/22 00:25:29 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	count_quotes(char *str, char qt)
 	int	i;
 
 	i = 0;
-	printf("%c\n", *str);
 	while (*str)
 	{
 		if (*str == qt)
@@ -60,6 +59,23 @@ int	validate_string(char * str)
 	return (i);
 }
 
+char	*handle_split(char *split)
+{
+	int		sz;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	sz = string().len(split, - 1);
+	while (split[--sz] != '/')
+		i++;
+	tmp = string().substr(split, sz + 1, i);
+	while (split[++i])
+		split[i] = '\0';
+	alloc().free_array(split);
+	return (tmp);
+}
+
 
 int	argm_handler(char *str)
 {
@@ -76,7 +92,7 @@ int	argm_handler(char *str)
 	split = ft_split(str, ' ');
 	if (!split || !split[0])
 		return (0);
-	path = handler_path(split[0]);
+	path = string().strdup(split[0]);
 	if (split[0][0] == '/')
 	{
 		split [0] = handle_split(split[0]);

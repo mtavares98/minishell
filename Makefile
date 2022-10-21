@@ -8,7 +8,6 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/handlers.c \
 			$(SRC_DIR)/argm/args_aux.c \
 			$(SRC_DIR)/argm/args_aux2.c \
-			$(SRC_DIR)/argm/path_handler.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \
