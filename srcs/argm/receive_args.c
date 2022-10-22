@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/16 15:57:41 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:30:22 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	select_string(char *str)
 			while(str[word_len] && str[word_len] != '"')
 				word_len++;
 			if (word_len >= string().len(str, -1))
+			{
+				printf("Wrong use of Quotes\n");
 				return(string().len(str, -1));
+			}
 		}
 		if (str[word_len] == '\'' && *str)
 		{
@@ -35,7 +38,10 @@ int	select_string(char *str)
 			while(str[word_len] != '\'')
 				word_len++;
 			if (word_len >= string().len(str, -1))
+			{
+				printf("Wrong use of Quotes\n");
 				return(string().len(str, -1));
+			}
 		}
 		word_len++;
 	}

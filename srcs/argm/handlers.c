@@ -6,58 +6,12 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/22 00:25:29 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:33:19 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/arguments.h"
 
-
-int	count_quotes(char *str, char qt)
-{
-	int	i;
-
-	i = 0;
-	while (*str)
-	{
-		if (*str == qt)
-		{
-			i++;
-			return (i);
-		}
-		i++;
-		str++;
-	}
-	return (0);
-}
-
-int	validate_string(char * str)
-{
-	int	i;
-
-	i = 1;
-	if (!(*str) || !str[0])
-		return (0);
-	while (*str)
-	{
-		if (*str == '"')
-		{
-			if (!(*str + 1))
-				return (0);
-			i = count_quotes(str + 1, '"');
-			str = str + i;
-		}
-		if (*str == '\'')
-		{
-			if (!(*str + 1))
-				return (0);
-			i = count_quotes(str + 1, '\'');
-			str = str + i;
-		}
-		str++;
-	}
-	return (i);
-}
 
 char	*handle_split(char *split)
 {
@@ -76,7 +30,6 @@ char	*handle_split(char *split)
 	return (tmp);
 }
 
-
 int	argm_handler(char *str)
 {
 	char			**split;
@@ -84,11 +37,6 @@ int	argm_handler(char *str)
 
 	path = NULL;
 	split = NULL;
-	if (!validate_string(str))
-	{
-		printf("Invalid use of quotes\n");
-		return (0);
-	}
 	split = ft_split(str, ' ');
 	if (!split || !split[0])
 		return (0);
