@@ -75,21 +75,24 @@ $(NAME):	create_dirs $(OBJ)
 	@printf "%b" "$(OK_COLOR)"
 	@echo  "✨✨ Upgraded Successfuly!! ✨✨"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
+	@printf "%b" "$(NO_COLOR)"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@printf "%b" "$(OBJ_COLOR)"
 	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
 	@$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
+	@printf "%b" "$(NO_COLOR)"
 
 clean:	header
 	@echo $(PURPLE) "🧹🧹 Cleaning... 🧹🧹" $(EOC)
 	@$(RM) $(OBJ_DIR)
 
-fclean:	header header clean
+fclean:	clean
 	$(RM) $(NAME)
 
 create_dirs:
-	mkdir -p objs/{allocs,cmd,exec,gnl,str,files_check,argm,env}
+	mkdir objs
+	mkdir objs/{allocs,cmd,exec,gnl,str,files_check,argm,env}
 git:
 	@git add .
 	@git commit -m "$m"
