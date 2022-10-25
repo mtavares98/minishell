@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:47:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/01 17:54:57 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:37:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/arguments.h"
 
 char	*get_substring(char *str, char c)
 {
 	int	i;
 
 	i = 0;
-
 	while (str[i] != c)
 		i++;
 	while (str[i] && !(string().ft_isspace(str[i])))
@@ -27,8 +26,8 @@ char	*get_substring(char *str, char c)
 
 char	**recicly_split(char **split)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**new_split;
 
 	new_split = split;

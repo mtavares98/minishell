@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/01 15:40:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:22:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cmd_utils.h"
 
-int	list_size(char **split)
+/* int	list_size(char **split)
 {
 	int	i;
 
@@ -20,14 +20,14 @@ int	list_size(char **split)
 	while (split[i])
 		i++;
 	return (i);
-}
+} */
 
 int	list_size_cmd(void)
 {
 	t_command	*cmd;
 	int			len;
 
-	*this() = cmd;
+	cmd = *this();
 	len = -1;
 	while (cmd && ++len)
 		cmd = cmd->next;

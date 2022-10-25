@@ -6,55 +6,18 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/16 15:27:24 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/22 00:25:29 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/arguments.h"
 
-char	*path_handler2(char * str, char *path)
-{
-	int	i;
-
-	i = 0;
-	while (*str != '/')
-		str++;
-	while (str[i] && (string().ft_isalnum(str[i]) || str[i] == '/'))
-		i++;
-	path = string().substr(str, 0, i);
-	return (path);
-}
-
-char	*handler_path(char *str)
-{
-	int		i;
-	char	*path;
-	
-	i = 0;
-	path = NULL;
-	if (str[i] == '/')
-	{
-		path = path_handler2(str, path);
-		return(path);
-	}
-	while (str[i])
-	{
-		if (str[i] == '/' && string().ft_isspace(str[i - 1]))
-		{
-			path = path_handler2(str, path);
-			return (path);
-		}
-		i++;
-	}
-	return (NULL);
-}
 
 int	count_quotes(char *str, char qt)
 {
 	int	i;
 
 	i = 0;
-	printf("%c\n", *str);
 	while (*str)
 	{
 		if (*str == qt)
@@ -96,6 +59,24 @@ int	validate_string(char * str)
 	return (i);
 }
 
+char	*handle_split(char *split)
+{
+	int		sz;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	sz = string().len(split, - 1);
+	while (split[--sz] != '/')
+		i++;
+	tmp = string().substr(split, sz + 1, i);
+	while (split[++i])
+		split[i] = '\0';
+	alloc().free_array(split);
+	return (tmp);
+}
+
+
 int	argm_handler(char *str)
 {
 	char			**split;
@@ -108,12 +89,22 @@ int	argm_handler(char *str)
 		printf("Invalid use of quotes\n");
 		return (0);
 	}
-	path = handler_path(str);
-	if (path)
-		str = get_substring(str, '/');
 	split = ft_split(str, ' ');
-	cmdfunc().add(path, split);
-	alloc().free_matrix((void *)split);
+	if (!split || !split[0])
+		return (0);
+	path = string().strdup(split[0]);
+	if (split[0][0] == '/')
+	{
+		split [0] = handle_split(split[0]);
+		cmdfunc().add(path, split);
+	}
+	else
+		{
+		split++;
+		cmdfunc().add(path, split);
+		split--;	
+		}
+	alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 15:31:39 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/21 21:21:35 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ void	free_matrix(void **matrix)
 			return ;
 		free(matrix[i]);
 		matrix[i] = NULL;
-		matrix[i] = NULL;
 		counter()->frees++;
 	}
 	free(matrix);
-	matrix = NULL;
 	matrix = NULL;
 	counter()->frees++;
 }
