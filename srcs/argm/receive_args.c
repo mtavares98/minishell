@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/22 20:30:22 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:25:03 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	select_string(char *str)
 
 int	receive_args(char *str)
 {
-	t_command	*cmd;
 	int			i;
 
 	while (*str)
@@ -62,13 +61,6 @@ int	receive_args(char *str)
 		if (!(str[i]))
 			break ;
 		str = str + i + 1;
-	}
-	cmd = *this();
-	printlist(*this());
-	while (cmd)
-	{
-		cmd = cmd->next;
-		cmdfunc().remove(0);
 	}
 	return (1);
 }

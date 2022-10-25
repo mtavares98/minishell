@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/22 20:33:19 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:17:59 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,7 @@ int	argm_handler(char *str)
 		cmdfunc().add(path, split);
 	}
 	else
-		{
-		split++;
 		cmdfunc().add(path, split);
-		split--;	
-		}
 	alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
