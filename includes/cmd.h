@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/01 15:41:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:17:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ struct s_command
 {
 	char		*path;
 	char		**args;
-	int			ready;
 	t_command	*next;
 };
 

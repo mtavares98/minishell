@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 15:26:10 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:35:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	**create_env(char **envp)
 	return (env);
 }
 
-// Use Malloc to create an array that's gonna take the env. variables 
+// Use Malloc to create an array that's gonna take the env. variables
 // extern char **g_environ forma de declarar uma varaivel global que pode estar em varios ficheiros, tentar perceber a aplicação prática disto
 // Export == Export's variables or modifies existing env variables
 // ENV == Prints out all variables with a value, meaning strings that contain an = sign
 // Unset which removes the variable, cant take as argument the "=", just the name raw
-// Export without any arguments prints the list in asci order 
+// Export without any arguments prints the list in asci order

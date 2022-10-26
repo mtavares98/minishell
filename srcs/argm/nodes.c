@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/01 17:13:42 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:19:50 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	printlist(t_command *vars)
 {
 	int	j;
 	int	i;
-	
+
 	i = 1;
-	printf("\n==============\n");
+	printf("===============\n");
 	while (vars)
 	{
 		j = 0;
@@ -31,11 +31,10 @@ void	printlist(t_command *vars)
 			printf("Arg[%d] == %s\n", j, vars->args[j]);
 			j++;
 		}
-		//printf("Status == [%d] ", vars->ready);
 		vars = vars->next;
 		i++;
 	}
-	printf("\n===============\n");
+	printf("===============\n");
 }
 
 int	list_size(char **split)

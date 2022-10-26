@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/21 21:03:41 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:34:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_command	*new_node(char *path, char **split)
 		node->path = path_node(path, node->path);
 	if (split)
 		node->args = argms_node(node->args, split);
-	node->ready = 0;
 	node->next = NULL;
 	return (node);
 }

@@ -1,6 +1,5 @@
 #			$(SRC_DIR)/builtins/builtins.c \
 			$(SRC_DIR)/builtins/utils1.c \
-			$(SRC_DIR)/exec/prep_exec.c \
 
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
@@ -39,7 +38,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC)
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) #-fsanitize=address
 
 RM			=	rm -rf
 

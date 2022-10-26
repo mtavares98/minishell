@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   receive_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/16 15:57:41 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:20:13 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	select_string(char *str)
 {
 	int		word_len;
 	char	*new_str;
-	
+
 	new_str = NULL;
 	word_len = 0;
 	while (str[word_len] && str[word_len] != '|')
@@ -47,7 +47,6 @@ int	select_string(char *str)
 
 int	receive_args(char *str)
 {
-	t_command	*cmd;
 	int			i;
 
 	while (*str)
@@ -56,13 +55,6 @@ int	receive_args(char *str)
 		if (!(str[i]))
 			break ;
 		str = str + i + 1;
-	}
-	cmd = *this();
-	printlist(*this());
-	while (cmd)
-	{
-		cmd = cmd->next;
-		cmdfunc().remove(0);
 	}
 	return (1);
 }

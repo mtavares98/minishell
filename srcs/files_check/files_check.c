@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 15:35:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/25 00:45:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,23 @@ int	get_full_path(t_command **cmd, char *path)
 {
 	if (!*cmd)
 		return (1);
-	while (path && !(*cmd)->ready)
+	while (path)
 	{
 		if ((*cmd)->path)
 			alloc().free_array((*cmd)->path);
 		(*cmd)->path = get_complete_path((*cmd)->args[0], &path);
 		if (!(*cmd)->path)
+		{
+			perror("Error malloc");
 			return (2);
+		}
 		if (access((*cmd)->path, F_OK) != -1)
 			break ;
 		if (!*path)
+		{
+			printf("command not found\n");
 			return (3);
+		}
 	}
 	(*cmd) = (*cmd)->next;
 	return (0);
@@ -89,7 +95,10 @@ int	check_files(t_command **cmd, char *path)
 		if (string().strchr(tmp->path, '/'))
 		{
 			if (access((*cmd)->path, F_OK) == -1)
+			{
+				perror("access");
 				return (1);
+			}
 		}
 		else if (!is_builtin(tmp->path))
 			if (get_full_path(&tmp, path))
