@@ -6,13 +6,14 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 00:45:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:39:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This directory will be reponse of checking if a given file exist */
 
 #include "../../includes/minishell.h"
+#include "../../includes/arguments.h"
 
 /*
 	It will return a complete path for a file
@@ -31,7 +32,7 @@ char	*get_complete_path(char *cmd, char **path)
 	i = -1 * (path != NULL);
 	while (path && *path && ++i < path_size - 1)
 		np[i] = *(*path)++;
-	if (*path && (**path == ':' || **path != '\0'))
+	if (**path == ':' || **path != '\0')
 	{
 		np[i++] = '/';
 		*path += 1;
@@ -66,18 +67,16 @@ int	get_full_path(t_command **cmd, char *path)
 			return (3);
 		}
 	}
-	(*cmd) = (*cmd)->next;
 	return (0);
 }
 
 int	is_builtin(char *cmd)
 {
-	if (!string().strncmp(cmd, "echo", 5) || !string().strncmp(cmd, "cd", 3) \
-	|| !string().strncmp(cmd, "pwd", 4) || !string().strncmp(cmd, "export", 7) \
+	return (!string().strncmp(cmd, "echo", 5) || \
+	!string().strncmp(cmd, "cd", 3) || \
+	!string().strncmp(cmd, "pwd", 4) || !string().strncmp(cmd, "export", 7) \
 	|| !string().strncmp(cmd, "unset", 6) || !string().strncmp(cmd, "env", 4) \
-	|| !string().strncmp(cmd, "exit", 5))
-		return (1);
-	return (0);
+	|| !string().strncmp(cmd, "exit", 5));
 }
 
 /* This will return an int based on (*cmd)->path variable for check
