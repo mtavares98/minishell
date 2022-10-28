@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 14:22:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:35:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	exec_cmd(int in, int out, t_command **cmd, char **envp)
 	}
 	if (in)
 		close(in);
-	if (out != 1 && dup2(in, STDIN_FILENO) == -1)
+	if (out != 1 && dup2(out, STDOUT_FILENO) == -1)
 	{
 		perror("dup2 out");
 		return (1);
@@ -92,16 +92,15 @@ int	handle_process(int **pipe_fd, t_command **cmd, char **envp)
 	int	i;
 
 	num_cmd = get_num_cmd(*cmd);
-	i = 0;
-	if (pipe(pipe_fd[i]) == -1)
+	i = -1;
+	if (pipe(pipe_fd[++i]) == -1)
 	{
 		perror("pipe1");
 		return (1);
 	}
 	name(0, pipe_fd[i][1], cmd, envp);
 	cmdfunc().remove(0);
-	printlist(*this());
-	while (++i < num_cmd - 2)
+	while (++i < num_cmd - 1)
 	{
 		if (pipe(pipe_fd[i]) == -1)
 		{
@@ -112,14 +111,15 @@ int	handle_process(int **pipe_fd, t_command **cmd, char **envp)
 		cmdfunc().remove(0);
 	}
 	name(pipe_fd[i - 1][0], 1, cmd, envp);
+	i = -1;
+	while (++i < num_cmd)
+		wait(NULL);
 	cmdfunc().remove(0);
-	wait(NULL);
 	return (0);
 }
 
 int	prep_exec(t_command **cmd, char **envp)
 {
-	int	pid;
 	int	**pipe_fd;
 	int	num_cmd;
 
@@ -128,11 +128,8 @@ int	prep_exec(t_command **cmd, char **envp)
 		return (2);
 	if (num_cmd == 1)
 	{
-		pid = fork();
-		if (pid == -1)
-			perror("fork");
-		if (pid == 0)
-			exec_cmd(0, 1, cmd, envp);
+		name(0, 1, cmd, envp);
+		wait(NULL);
 		return (0);
 	}
 	pipe_fd = get_pipesfd(num_cmd);
