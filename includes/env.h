@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 02:51:42 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:19:15 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ struct s_env
 	char	**str;
 };
 
-t_env		*this_env(void);
-char		**create_env(char **envp);
+t_env	*this_env(void);
+char	**create_env(char **envp);
+void	free_memory(t_command **cmd, t_env *env);
 
 #endif

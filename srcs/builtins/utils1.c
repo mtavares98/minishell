@@ -6,11 +6,31 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 00:31:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 22:25:42 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	is_nbr(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (string().ft_isspace(s[++i]))
+		;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	if (!string().isdig(s[i]))
+		return (0);
+	while (string().isdig(s[i]))
+		i++;
+	while (string().ft_isspace(s[i]))
+		i++;
+	if (s[i])
+		return (0);
+	return (1);
+}
 
 int	length(char **envp)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 15:40:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/29 21:28:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ long	_atoi(char *s)
 	n = 0;
 	i = -1;
 	sig = 1;
-	if (!s || !s[0] || !ft_strncmp(s, "-", 2) || !ft_strncmp(s, "+", 2))
-		return (2147483648);
 	while (ft_isspace(s[++i]))
 		;
 	if (s[i] == '-' || s[i] == '+')
@@ -76,13 +74,9 @@ long	_atoi(char *s)
 		i++;
 	}
 	while (isdig(s[i]))
-	{
 		n = n * 10 + sig * (s[i++] - '0');
-		if (n > INT_MAX || n < INT_MIN)
-			return (2147483648);
-	}
-	if (!ft_isspace(s[i]) && s[i])
-		return (2147483648);
+	while (ft_isspace(s[i]))
+		i++;
 	return (n);
 }
 

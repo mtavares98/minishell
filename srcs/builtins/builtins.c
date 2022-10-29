@@ -6,11 +6,39 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 00:34:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 23:16:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+
+int	exit_func(t_command **cmd, t_env *env, int out)
+{
+	int	status;
+
+	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]))
+		status = string().atoi((*cmd)->args[1]);
+	else if ((*cmd)->args[1])
+	{
+		write(out, "exit: ", 6);
+		write(out, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
+		write(out, ": numeric argument required\n", 28);
+		status = 2;
+	}
+	else if (!(*cmd)->args[1])
+		status = 0;
+	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]) && (*cmd)->args[2])
+	{
+		write(out, "exit: too many arguments\n", 25);
+		status = 1;
+	}
+	if (status != 1)
+	{
+		free_memory(cmd, env);
+		exit(status);
+	}
+	return (status);
+}
 
 /* int	export(t_command *cmd, char **envp)
 {
@@ -37,9 +65,9 @@
 		}
 	}
 	return (0);
-}
+} */
 
-int	env(t_command *cmd, char **envp)
+int	env(t_command *cmd, char **envp, int out)
 {
 	int	i;
 
@@ -50,21 +78,28 @@ int	env(t_command *cmd, char **envp)
 		return (1);
 	i = -1;
 	while (envp[++i])
-		printf("%s\n", envp[i]);
+	{
+		write(out, envp[i], string().len(envp[i], -1));
+		write(out, "\n", 1);
+	}
 	return (0);
 }
 
-int	pwd(void)
+int	pwd(int out)
 {
 	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
+	{
+		perror("pwd");
 		return (1);
-	printf("%s\n", pwd);
+	}
+	write(out, pwd, string().len(pwd, -1));
+	write(out, "\n", 1);
 	free(pwd);
 	return (0);
-} */
+}
 
 int	echo(t_command *cmd, int out)
 {

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 01:42:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 23:15:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,22 @@ char	*getpath(char **envp)
 	return (path);
 }
 
-int	exec_builtins(int out, t_command *cmd)
+int	exec_builtins(int out, t_command **cmd)
 {
-	if (!string().strncmp(cmd->path, "echo", 5))
-		return (echo(cmd, out));
+	if (!string().strncmp((*cmd)->path, "echo", 5))
+		return (echo(*cmd, out));
 	/* else if (!string().strncmp(cmd->path, "cd", 3))
-		cd(cmd, envp);
-	else if (!string().strncmp(cmd->path, "pwd", 4))
-		pwd(cmd, envp);
-	else if (!string().strncmp(cmd->path, "export", 7))
+		cd(cmd, envp); */
+	else if (!string().strncmp((*cmd)->path, "pwd", 4))
+		return (pwd(out));
+	/* else if (!string().strncmp(cmd->path, "export", 7))
 		export(cmd, envp);
 	else if (!string().strncmp(cmd->path, "unset", 6))
-		unset(cmd, envp);
-	else if (!string().strncmp(cmd->path, "env", 4))
-		env(cmd, envp);
-	else if (!string().strncmp(cmd->path, "exit", 5))
-		exit_func(cmd, envp); */
+		unset(cmd, envp); */
+	else if (!string().strncmp((*cmd)->path, "env", 4))
+		return (env(*cmd, this_env()->env, out));
+	else if (!string().strncmp((*cmd)->path, "exit", 5))
+		return (exit_func(cmd, this_env(), out));
 	else
 		return (0);
 }

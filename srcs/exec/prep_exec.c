@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 02:46:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 20:32:28 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	name(int *in, int *out, t_command **cmd)
 		}
 	}
 	else
-		exec_builtins(*out, *cmd);
+		exec_builtins(*out, cmd);
 	close_fd(in, out);
 	return (0);
 }
