@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 02:11:29 by mtavares         ###   ########.fr       */
+/*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
+/*   Updated: 2022/10/29 02:51:42 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef ENV_H
+# define ENV_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "str.h"
 # include "allocs.h"
-# include "execution.h"
-# include "cmd.h"
-# include "arguments.h"
-# include "env.h"
 
-void	printlist(t_command *vars);
-int		is_builtin(char *cmd);
+typedef struct s_env		t_env;
+
+struct s_env
+{
+	char	**env;
+	int		**pipe;
+	char	**str;
+};
+
+t_env		*this_env(void);
+char		**create_env(char **envp);
 
 #endif

@@ -6,17 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/26 22:49:47 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 00:34:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/builtins.h"
 
-int	cd(t_command *cmd, char **envp)
-{
-}
-
-int	export(t_command *cmd, char **envp)
+/* int	export(t_command *cmd, char **envp)
 {
 	char	**tmp;
 	int		arg;
@@ -68,18 +64,20 @@ int	pwd(void)
 	printf("%s\n", pwd);
 	free(pwd);
 	return (0);
-}
+} */
 
-int	echo(t_command *cmd)
+int	echo(t_command *cmd, int out)
 {
 	int	i;
 
-	i = 0 + (!string().strncmp(cmd->args[1], '-n', 3));
+	i = 0 + (!string().strncmp(cmd->args[1], "-n", 3));
 	while (cmd->args[++i])
 	{
-		printf("%s", cmd->args[i]);
+		write(out, cmd->args[i], string().len(cmd->args[i], -1));
 		if (cmd->args[i + 1])
-			printf(" ");
+			write(out, " ", 1);
 	}
+	if (string().strncmp(cmd->args[1], "-n", 3))
+		write(out, "\n", 1);
 	return (0);
 }

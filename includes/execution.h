@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 13:56:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 02:40:47 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "get_next_line.h"
 # include "str.h"
 # include "cmd.h"
+# include "env.h"
 
 typedef struct s_exec			t_exec;
 
@@ -30,12 +31,14 @@ struct s_exec
 	int	i;
 };
 
-char	**create_env(char **envp);
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
-int		prep_exec(t_command **cmd, char **envp);
-int		execution(t_command **cmd, char **envp);
+int		exec_builtins(int out, t_command *cmd);
+void	close_fd(int *in, int *out);
+void	name2(int out, t_command **cmd);
+int		prep_exec(t_command **cmd);
+int		execution(t_command **cmd);
 int		check_files(t_command **cmd, char *path);
 
 #endif

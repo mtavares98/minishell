@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/26 18:27:38 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 02:58:29 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ t_counter	*counter(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	char	**env;
 	char	*str;
 
 	(void)ac;
 	(void)av;
-	env = create_env(envp);
-	if (!env)
+	this_env()->env = create_env(envp);
+	if (!this_env()->env)
 		return (printf("Error malloc on env\n"));
 	while (1)
 	{
@@ -41,9 +40,8 @@ int	main(int ac, char **av, char **envp)
 		counter()->mallocs++;
 		receive_args(str);
 		alloc().free_array(str);
-		// str = NULL;
-		execution(this(), env);
-		// printlist(*this());
+		str = NULL;
+		execution(this());
 		free_commands(this());
 	}
 }

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 02:11:29 by mtavares         ###   ########.fr       */
+/*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
+/*   Updated: 2022/10/29 00:30:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "str.h"
-# include "allocs.h"
-# include "execution.h"
 # include "cmd.h"
-# include "arguments.h"
-# include "env.h"
+# include "str.h"
+# include <unistd.h>
 
-void	printlist(t_command *vars);
-int		is_builtin(char *cmd);
+int	echo(t_command *cmd, int out);
 
 #endif
