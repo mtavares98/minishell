@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/30 00:56:04 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/30 21:22:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	close_pipes(int **pipe_fd, int i)
 	}
 }
 
-static int	start_pipes(int **pipe_fd, int num_cmd)
+static int	start_pipes(int **pipe_fd)
 {
 	int	i;
 
 	i = -1;
-	while (++i < num_cmd - 1)
+	while (pipe_fd[++i])
 	{
 		if (pipe(pipe_fd[i]) == -1)
 		{
@@ -60,9 +60,7 @@ int	**get_pipesfd(int num_cmd)
 			return (NULL);
 		}
 	}
-	if (!pipe_fd[1])
-		printf("pipefd correto\n");
-	if (start_pipes(pipe_fd, num_cmd))
+	if (start_pipes(pipe_fd))
 		alloc().free_matrix((void **)pipe_fd);
 	return (pipe_fd);
 }

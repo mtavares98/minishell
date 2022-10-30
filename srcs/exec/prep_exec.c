@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/30 01:44:45 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/30 22:13:29 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,12 @@ int	exec_cmd(int in, int out, t_command **cmd)
 	}
 	if (out != 1)
 		close(out);
-	if (!is_builtin((*cmd)->path))
+	if (execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
 	{
-		if (execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
-		{
-			perror("Execve");
-			exit(EXIT_FAILURE);
-		}
-
+		perror("Execve");
+		exit(EXIT_FAILURE);
 	}
-	else
-		this_env()->status = exec_builtins(out, cmd);
-	free_memory(cmd, this_env());
-	alloc().free_matrix((void **)this_env()->env);
-	this_env()->env = NULL;
-	exit(this_env()->status);
+	return (this_env()->status);
 }
 
 int	name(int *in, int *out, t_command **cmd)
@@ -71,7 +62,16 @@ int	name(int *in, int *out, t_command **cmd)
 			return (2);
 		}
 		if (pid == 0)
+		{
+			if (is_builtin((*cmd)->path))
+			{
+				this_env()->status = exec_builtins(*out, cmd);
+				free_memory(cmd, this_env());
+				alloc().free_matrix((void **)this_env()->env);
+				exit (this_env()->status);
+			}
 			exec_cmd(*in, *out, cmd);
+		}
 	}
 	else
 		exec_builtins(*out, cmd);
