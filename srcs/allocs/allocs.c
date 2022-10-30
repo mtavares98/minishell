@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   allocs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/21 21:21:35 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/30 01:07:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/allocs_utils.h"
+#include <stdio.h>
 
 /*
 	It will free a matrix
@@ -20,14 +21,11 @@ void	free_matrix(void **matrix)
 	int	i;
 
 	i = -1;
-	if(!matrix)
+	if (!matrix)
 		return ;
 	while (matrix[++i])
 	{
-		if (!matrix[i])
-			return ;
 		free(matrix[i]);
-		matrix[i] = NULL;
 		counter()->frees++;
 	}
 	free(matrix);
@@ -52,7 +50,7 @@ void	free_array(void *array)
 /*
 	Sets n bytes of a void pointer to 0
 */
-static void	ft_bzero(void *s, size_t n)
+static void	*ft_bzero(void *s, size_t n)
 {
 	char	*str;
 	size_t	i;
@@ -61,6 +59,7 @@ static void	ft_bzero(void *s, size_t n)
 	i = -1;
 	while (++i < n)
 		str[i] = 0;
+	return (s);
 }
 
 /*
@@ -75,7 +74,7 @@ void	*ft_calloc(size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (ptr);
-	ft_bzero(ptr, size);
+	ptr = ft_bzero(ptr, size);
 	(counter())->mallocs++;
 	return (ptr);
 }

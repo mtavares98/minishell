@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 23:15:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/30 00:56:04 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	**get_pipesfd(int num_cmd)
 			return (NULL);
 		}
 	}
+	if (!pipe_fd[1])
+		printf("pipefd correto\n");
 	if (start_pipes(pipe_fd, num_cmd))
 		alloc().free_matrix((void **)pipe_fd);
 	return (pipe_fd);
@@ -70,8 +72,8 @@ char	*getpath(char **envp)
 	char	*path;
 	int		i;
 
-	i = -1;
 	path = NULL;
+	i = -1;
 	while (envp[++i])
 	{
 		if (!string().strncmp(envp[i], "PATH=", 5))

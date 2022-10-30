@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 23:16:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/30 00:22:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	exit_func(t_command **cmd, t_env *env, int out)
 	if (status != 1)
 	{
 		free_memory(cmd, env);
+		if (env->env)
+			alloc().free_matrix((void **)env->env);
 		exit(status);
 	}
 	return (status);

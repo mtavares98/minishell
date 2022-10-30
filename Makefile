@@ -40,7 +40,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) #-fsanitize=address
 
 RM			=	rm -rf
 
@@ -98,5 +98,8 @@ git:
 	@git commit -m "$m"
 	@git push
 	@echo "Commit sent to github"
+
+valgrind:	all
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
 
 re:	fclean all

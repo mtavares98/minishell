@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 20:29:20 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 23:34:40 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
 int		exec_builtins(int out, t_command **cmd);
 void	close_fd(int *in, int *out);
-void	name2(int out, t_command **cmd);
 int		prep_exec(t_command **cmd);
 int		execution(t_command **cmd);
 int		check_files(t_command **cmd, char *path);

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 20:32:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/30 01:44:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,21 @@ int	exec_cmd(int in, int out, t_command **cmd)
 	}
 	if (out != 1)
 		close(out);
-	if (execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
-		perror("Execve");
-	return (0);
+	if (!is_builtin((*cmd)->path))
+	{
+		if (execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
+		{
+			perror("Execve");
+			exit(EXIT_FAILURE);
+		}
+
+	}
+	else
+		this_env()->status = exec_builtins(out, cmd);
+	free_memory(cmd, this_env());
+	alloc().free_matrix((void **)this_env()->env);
+	this_env()->env = NULL;
+	exit(this_env()->status);
 }
 
 int	name(int *in, int *out, t_command **cmd)
@@ -59,12 +71,7 @@ int	name(int *in, int *out, t_command **cmd)
 			return (2);
 		}
 		if (pid == 0)
-		{
-			if (!is_builtin((*cmd)->path))
-				exec_cmd(*in, *out, cmd);
-			else
-				name2(*out, cmd);
-		}
+			exec_cmd(*in, *out, cmd);
 	}
 	else
 		exec_builtins(*out, cmd);
@@ -92,7 +99,7 @@ void	handle_process(int **pipe_fd, t_command **cmd)
 	name(&pipe_fd[i - 1][0], &tmp, cmd);
 	i = -1;
 	while (++i < num_cmd)
-		wait(NULL);
+		wait(&this_env()->status);
 	cmdfunc().remove(0);
 }
 
@@ -110,7 +117,8 @@ int	prep_exec(t_command **cmd)
 		in = 0;
 		out = 1;
 		name(&in, &out, cmd);
-		wait(NULL);
+		if (!is_builtin((*cmd)->path))
+			wait(&this_env()->status);
 		return (0);
 	}
 	this_env()->pipe = get_pipesfd(num_cmd);
@@ -120,6 +128,6 @@ int	prep_exec(t_command **cmd)
 		return (1);
 	}
 	handle_process(this_env()->pipe, cmd);
-	alloc().free_matrix((void **)this_env()->pipe);
+	free_memory(cmd, this_env());
 	return (0);
 }
