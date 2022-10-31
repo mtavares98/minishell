@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/31 11:24:16 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 14:20:46 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	receive_args(char *str)
 {
 	int			i;
 
+	if (!validate_quotes(str))
+		return (0);
 	if (!validate_quotes(str))
 		return (0);
 	while (*str)

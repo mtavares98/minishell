@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/18 22:39:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:56:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ struct s_exec
 	int	i;
 };
 
-int		**pipesfd_or_processid(int nbcmd);
+char	**create_env(char **envp);
+int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
+int		prep_exec(t_command **cmd, char **envp);
 int		execution(t_command **cmd, char **envp);
 int		check_files(t_command **cmd, char *path);
 

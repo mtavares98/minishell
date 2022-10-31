@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 16:22:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 14:18:56 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,9 @@
 # include "cmd.h"
 # include "arguments.h"
 # include "env.h"
+
+void	printlist(t_command *vars);
+
+void	printlist(t_command *vars);
 
 #endif

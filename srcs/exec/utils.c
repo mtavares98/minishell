@@ -6,29 +6,31 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 15:29:19 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:12:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
 
-int	**pipesfd_or_processid(int nbcmd)
+int	**get_pipesfd(int num_cmd)
 {
-	int	**pfd;
 	int	i;
+	int	**pipe_fd;
 
-	if (nbcmd != 0)
-		pfd = alloc().calloc(nbcmd * sizeof(int *));
-	if (!pfd)
+	pipe_fd = alloc().calloc((num_cmd - 1) * sizeof(int *));
+	if (!pipe_fd)
 		return (NULL);
 	i = -1;
-	while (++i < nbcmd)
+	while (++i < num_cmd - 1)
 	{
-		pfd[i] = alloc().calloc(nbcmd * sizeof(int));
-		if (pfd[i])
+		pipe_fd[i] = alloc().calloc(2 * sizeof(int));
+		if (!pipe_fd[i])
+		{
+			alloc().free_matrix((void **)pipe_fd);
 			return (NULL);
+		}
 	}
-	return (pfd);
+	return (pipe_fd);
 }
 
 char	*getpath(char **envp)
