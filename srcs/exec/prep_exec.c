@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:00:58 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/31 21:08:35 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	name(int *in, int *out, t_command **cmd)
 		}
 	}
 	else
-		exec_builtins(*out, cmd);
+		this_env()->status = exec_builtins(*out, cmd);
 	close_fd(in, out);
-	return (0);
+	return (this_env()->status);
 }
 
 void	handle_process(int **pipe_fd, t_command **cmd)
@@ -119,6 +119,7 @@ int	prep_exec(t_command **cmd)
 		name(&in, &out, cmd);
 		if (!is_builtin((*cmd)->path))
 			wait(&this_env()->status);
+		free_memory(cmd, this_env());
 		return (0);
 	}
 	this_env()->pipe = get_pipesfd(num_cmd);
