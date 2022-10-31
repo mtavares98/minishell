@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/22 21:34:11 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:22:59 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	add_quotes(char *str)
 			i = i + check_quotes(str + i, '\'');
 			return (i);
 		}
-		if (str[i] == '"' )
+		if (str[i] == '"')
 		{
 			i = i + check_quotes(str + i, '"');
 			return (i);

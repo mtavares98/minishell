@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/25 16:17:59 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:46:31 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ char	*handle_split(char *split)
 	return (tmp);
 }
 
+
 int	argm_handler(char *str)
 {
 	char			**split;
 	char			*path;
-
+	
 	path = NULL;
 	split = NULL;
 	split = ft_split(str, ' ');

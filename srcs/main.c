@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 16:54:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:42:03 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char **av, char **envp)
 		counter()->mallocs++;
 		receive_args(str);
 		cmd = *this();
-		handle_env(envp, cmd);
+		//handle_env(envp, cmd);
 		printlist(*this());
 		while (cmd)
 		{

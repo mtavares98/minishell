@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 17:45:15 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/10/31 10:42:52 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,14 @@ char	**create_env(char **envp)
 
 void	print_export(char **envp)
 {
-	int		i;
+	//int		i;
 	int		nb;
-	char	**tmp_env;
+	//char	**tmp_env;
 
-	i = -1;
+	//i = -1;
 	while (envp[nb])
 		nb++;
-	tmp_env = create_env(envp);
-	while (i < nb)
-	{
-		
-	}
+	//tmp_env = create_env(envp);
 }
 
 int	export_handler(t_command *cmd, char **envp)
@@ -62,6 +58,7 @@ int	export_handler(t_command *cmd, char **envp)
 
 int	env_handler(t_command *cmd)
 {
+	(void)cmd;
 	return (0);
 }
 
