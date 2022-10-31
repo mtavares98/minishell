@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_main.c                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:00:44 by mtavares         ###   ########.fr       */
+/*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
+/*   Updated: 2022/10/29 23:30:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execution.h"
-#include "../../includes/arguments.h"
+#ifndef ENV_H
+# define ENV_H
 
-int	execution(t_command **cmd)
+# include "allocs.h"
+
+typedef struct s_env		t_env;
+
+struct s_env
 {
-	char	*pathenv;
+	char	**env;
+	int		**pipe;
+	int		status;
+};
 
-	pathenv = getpath(this_env()->env);
-	if (check_files((cmd), pathenv + 5))
-		return (2);
-	if (prep_exec(cmd))
-		return (1);
-	return (0);
-}
+t_env	*this_env(void);
+char	**create_env(char **envp);
+void	free_memory(t_command **cmd, t_env *env);
+
+#endif

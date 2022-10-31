@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 00:40:17 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 02:11:29 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include "execution.h"
 # include "cmd.h"
 # include "arguments.h"
+# include "env.h"
 
 void	printlist(t_command *vars);
+int		is_builtin(char *cmd);
 
 #endif

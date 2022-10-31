@@ -6,11 +6,18 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/26 14:35:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/29 02:25:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_env	*this_env(void)
+{
+	static t_env	env;
+
+	return (&env);
+}
 
 char	**create_env(char **envp)
 {

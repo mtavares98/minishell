@@ -1,5 +1,3 @@
-#			$(SRC_DIR)/builtins/builtins.c \
-			$(SRC_DIR)/builtins/utils1.c \
 
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
@@ -7,6 +5,8 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/handlers.c \
 			$(SRC_DIR)/argm/args_aux.c \
 			$(SRC_DIR)/argm/args_aux2.c \
+			$(SRC_DIR)/builtins/builtins.c \
+			$(SRC_DIR)/builtins/utils1.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \
@@ -14,6 +14,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/exec/exec_main.c \
 			$(SRC_DIR)/exec/prep_exec.c \
 			$(SRC_DIR)/exec/utils.c \
+			$(SRC_DIR)/exec/utils2.c \
 			$(SRC_DIR)/files_check/files_check.c \
 			$(SRC_DIR)/gnl/get_next_line.c \
 			$(SRC_DIR)/gnl/get_next_line_utils.c \
@@ -97,5 +98,8 @@ git:
 	@git commit -m "$m"
 	@git push
 	@echo "Commit sent to github"
+
+valgrind:	all
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
 
 re:	fclean all

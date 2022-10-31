@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_main.c                                        :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:00:44 by mtavares         ###   ########.fr       */
+/*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
+/*   Updated: 2022/10/29 23:13:30 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execution.h"
-#include "../../includes/arguments.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-int	execution(t_command **cmd)
-{
-	char	*pathenv;
+# include "cmd.h"
+# include "str.h"
+# include "env.h"
+# include <unistd.h>
+# include <stdio.h>
 
-	pathenv = getpath(this_env()->env);
-	if (check_files((cmd), pathenv + 5))
-		return (2);
-	if (prep_exec(cmd))
-		return (1);
-	return (0);
-}
+int	is_nbr(char *s);
+int	env(t_command *cmd, char **envp, int out);
+int	exit_func(t_command **cmd, t_env *env, int out);
+int	echo(t_command *cmd, int out);
+int	pwd(int out);
+
+#endif
