@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:00:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:31:13 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	execution(t_command **cmd)
 
 	pathenv = getpath(this_env()->env);
 	if (check_files((cmd), pathenv + 5))
+	{
+		free_memory(cmd, this_env());
 		return (2);
+	}
 	if (prep_exec(cmd))
 		return (1);
 	return (0);
