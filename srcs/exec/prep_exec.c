@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:08:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:44:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
-#include "../../includes/minishell.h"
 
 int	get_num_cmd(t_command *cmd)
 {
@@ -44,9 +43,12 @@ int	exec_cmd(int in, int out, t_command **cmd)
 	if (execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
 	{
 		perror("Execve");
+		free_memory(cmd, this_env());
+		if (this_env()->env)
+			alloc().free_matrix((void **)this_env()->env);
 		exit(EXIT_FAILURE);
 	}
-	return (this_env()->status);
+	return (0);
 }
 
 int	name(int *in, int *out, t_command **cmd)
@@ -67,7 +69,8 @@ int	name(int *in, int *out, t_command **cmd)
 			{
 				this_env()->status = exec_builtins(*out, cmd);
 				free_memory(cmd, this_env());
-				alloc().free_matrix((void **)this_env()->env);
+				if (this_env()->env)
+					alloc().free_matrix((void **)this_env()->env);
 				exit (this_env()->status);
 			}
 			exec_cmd(*in, *out, cmd);
@@ -75,8 +78,7 @@ int	name(int *in, int *out, t_command **cmd)
 	}
 	else
 		this_env()->status = exec_builtins(*out, cmd);
-	close_fd(in, out);
-	return (this_env()->status);
+	return(this_env()->status);
 }
 
 void	handle_process(int **pipe_fd, t_command **cmd)
@@ -84,8 +86,10 @@ void	handle_process(int **pipe_fd, t_command **cmd)
 	int	num_cmd;
 	int	i;
 	int	tmp;
+	// int	num_cmd_not_builtins;
 
 	num_cmd = get_num_cmd(*cmd);
+	// num_cmd_not_builtins = get_cmd_not_builtin(*cmd);
 	i = -1;
 	tmp = 0;
 	name(&tmp, &pipe_fd[++i][1], cmd);
@@ -99,7 +103,7 @@ void	handle_process(int **pipe_fd, t_command **cmd)
 	name(&pipe_fd[i - 1][0], &tmp, cmd);
 	i = -1;
 	while (++i < num_cmd)
-		wait(&this_env()->status);
+		wait(NULL);
 	cmdfunc().remove(0);
 }
 
@@ -118,7 +122,7 @@ int	prep_exec(t_command **cmd)
 		out = 1;
 		name(&in, &out, cmd);
 		if (!is_builtin((*cmd)->path))
-			wait(&this_env()->status);
+			wait(NULL);
 		free_memory(cmd, this_env());
 		return (0);
 	}

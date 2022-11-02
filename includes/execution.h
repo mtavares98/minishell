@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 23:34:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:07:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ struct s_exec
 
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
+int		is_builtin(char *cmd);
+int		get_cmd_not_builtin(t_command *cmd);
 char	*getpath(char **envp);
 int		exec_builtins(int out, t_command **cmd);
 void	close_fd(int *in, int *out);
