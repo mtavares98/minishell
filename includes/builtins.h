@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:50:55 by mgranate         ###   ########.fr       */
+/*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
+/*   Updated: 2022/10/29 23:13:30 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "str.h"
-# include "allocs.h"
-# include "execution.h"
 # include "cmd.h"
-# include "arguments.h"
+# include "str.h"
 # include "env.h"
+# include <unistd.h>
+# include <stdio.h>
 
-void	printlist(t_command *vars);
+int	is_nbr(char *s);
+int	env(t_command *cmd, char **envp, int out);
+int	exit_func(t_command **cmd, t_env *env, int out);
+int	echo(t_command *cmd, int out);
+int	pwd(int out);
 
 #endif

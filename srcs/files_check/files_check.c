@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/28 17:39:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/31 21:01:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,17 @@ int	get_full_path(t_command **cmd, char *path)
 int	is_builtin(char *cmd)
 {
 	return (!string().strncmp(cmd, "echo", 5) || \
+	!string().strncmp(cmd, "pwd", 4) || !string().strncmp(cmd, "exit", 5) \
+	|| !string().strncmp(cmd, "env", 4));
+}
+/* int	is_builtin(char *cmd)
+{
+	return (!string().strncmp(cmd, "echo", 5) || \
 	!string().strncmp(cmd, "cd", 3) || \
 	!string().strncmp(cmd, "pwd", 4) || !string().strncmp(cmd, "export", 7) \
 	|| !string().strncmp(cmd, "unset", 6) || !string().strncmp(cmd, "env", 4) \
 	|| !string().strncmp(cmd, "exit", 5));
-}
+} */
 
 /* This will return an int based on (*cmd)->path variable for check
 addindex the file exists. If the variable have absolute path it will test

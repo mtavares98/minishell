@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 19:02:18 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/02 23:53:32 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ t_counter	*counter(void)
 
 int	main(int ac, char **av, char **envp)
 {
-	char	**env;
 	char	*str;
 	t_command	*cmd;
 
 	(void)ac;
 	(void)av;
-	env = create_env(envp);
-	if (!env)
+	this_env()->env = create_env(envp);
+	if (!this_env()->env)
 		return (printf("Error malloc on env\n"));
 	while (1)
 	{
@@ -50,8 +49,7 @@ int	main(int ac, char **av, char **envp)
 			cmdfunc().remove(0);
 		}
 		alloc().free_array(str);
-		// str = NULL;
-		execution(this(), env);
-		free_commands(this());
+		str = NULL;
+		execution(this());
 	}
 }

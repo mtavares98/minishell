@@ -6,13 +6,20 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:37:38 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/02 23:46:33 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 char	**g_env;
+
+t_env	*this_env(void)
+{
+	static t_env	env;
+
+	return (&env);
+}
 
 char	**create_env(char **envp)
 {
