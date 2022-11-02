@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 14:20:03 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:02:18 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av, char **envp)
 {
 	char	**env;
 	char	*str;
+	t_command	*cmd;
 
 	(void)ac;
 	(void)av;
@@ -41,8 +42,8 @@ int	main(int ac, char **av, char **envp)
 		counter()->mallocs++;
 		receive_args(str);
 		cmd = *this();
-		//handle_env(envp, cmd);
-		printlist(*this());
+		handle_env(cmd);
+		//printlist(*this());
 		while (cmd)
 		{
 			cmd = cmd->next;
@@ -51,7 +52,6 @@ int	main(int ac, char **av, char **envp)
 		alloc().free_array(str);
 		// str = NULL;
 		execution(this(), env);
-		// printlist(*this());
 		free_commands(this());
 	}
 }

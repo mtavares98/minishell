@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/31 14:20:46 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:17:10 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,17 @@ int	select_string(char *str)
 }
 int	count_quotes(char *str, int	i, char c)
 {
+	if (!str[i + 1])
+	{
+		printf("Wrong Use of Quotes\n");
+		return (0);
+	}
+	i++;
 	while (str[i] && str[i] != c)
 		i++;
 	if (str[i] == c)
-		return(i + 1);
+		return(i);
+	printf("Wrong Use of Quotes\n");
 	return (0);
 }
 
@@ -44,25 +51,19 @@ int	validate_quotes(char *str)
 	{
 		if (str[i] == '\'' )
 		{
-			if (!count_quotes(str, i + 1, '\''))
-			{
-				printf("Wrong Use of Quotes\n");
+			i = count_quotes(str, i, '\'');
+			if (i == 0)
 				return (0);
-			}
-			i = count_quotes(str, i + 1, '\'');
 		}
 		if (str[i] == '"')
 		{
-			if (!count_quotes(str, i + 1, '"'))
-			{
-				printf("Wrong Use of Quotes\n");
+			i = count_quotes(str, i, '"');
+			if (i == 0)
 				return (0);
-			}
-			i = count_quotes(str, i + 1, '"');
 		}
-		if (i > string().len(str, -1))
-			return (1);
 		i++;
+		if (i >= string().len(str, -1))
+			return (1);
 	}
 	return (1);
 }
@@ -71,8 +72,6 @@ int	receive_args(char *str)
 {
 	int			i;
 
-	if (!validate_quotes(str))
-		return (0);
 	if (!validate_quotes(str))
 		return (0);
 	while (*str)

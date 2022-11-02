@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   env_argms.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:51:53 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/02 23:08:34 by mgranate         ###   ########.fr       */
+/*   Created: 2022/11/02 22:54:18 by mgranate          #+#    #+#             */
+/*   Updated: 2022/11/02 23:25:05 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/minishell.h"
 
-#ifndef ENV_H
-# define ENV_H
+// É preciso ainda retirar as aspas dos argumentos antes de os imprimir.
+void	env_arg(t_command *cmd)
+{
+	int	i;
 
-char	**create_env(char **envp);
-int		handle_env(t_command *cmd);
-void	env_arg(t_command *cmd);
-void	print_env();
-
-#endif
+	i = 0;
+	while(cmd->args[++i])
+	{
+		if(!string().strchr(cmd->args[i], '='))
+		{
+			printf("env: ‘%s’: No such file or directory\n", cmd->args[i]);
+			return ;
+		}
+	}
+	i = 0;
+	print_env();
+	while (cmd->args[++i])
+		printf("%s\n", cmd->args[i]);
+}

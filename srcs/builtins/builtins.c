@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 16:48:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:53:12 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,6 @@ int	export(t_command *cmd, char **envp)
 	return (0);
 }
 
-int	env(t_command *cmd, char **envp)
-{
-	int	i;
-
-	i = -1;
-	while (cmd->args[++i])
-		;
-	if (i != 1)
-		return (1);
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
-	return (0);
-}
 
 int	pwd(void)
 {

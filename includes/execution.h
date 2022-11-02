@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/25 13:56:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/02 18:55:58 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ struct s_exec
 	int	i;
 };
 
-char	**create_env(char **envp);
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 char	*getpath(char **envp);
