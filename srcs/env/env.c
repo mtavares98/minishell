@@ -6,13 +6,11 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:46:33 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:27:47 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	**g_env;
 
 t_env	*this_env(void)
 {
@@ -21,36 +19,13 @@ t_env	*this_env(void)
 	return (&env);
 }
 
-char	**create_env(char **envp)
-{
-	int		i;
-
-	i = -1;
-	while (envp[++i])
-		;
-	g_env = alloc().calloc(sizeof(char *) * (i + 1));
-	if (!g_env)
-		return NULL;
-	i = -1;
-	while (envp[++i])
-	{
-		g_env[i] = string().strdup(envp[i]);
-		if (!g_env[i])
-		{
-			alloc().free_matrix((void **)g_env);
-			return NULL;
-		}
-	}
-	return (g_env);
-}
-
-void	print_env()
+void	print_env(t_env *env)
 {
 	int	i;
 
 	i = -1;
-	while (g_env[++i])
-		printf("%s\n", g_env[i]);
+	while (env->env[i])
+		printf("%s\n", env->env[i]);
 }
 
 void	print_export(char **envp)
@@ -65,31 +40,44 @@ void	print_export(char **envp)
 	//tmp_env = create_env(envp);
 }
 
-int	export_handler(t_command *cmd)
+int	export_handler(t_command *cmd, t_env *env)
 {
 	(void)cmd;
+	(void)env;
+	
 	//if (!cmd->args[1])
 	//	print_export();
 	return (0);
 }
 
-int	env_handler(t_command *cmd)
+int	env_handler(t_command *cmd, t_env *env)
 {
 	if (!cmd->args[1])
-		print_env();
+		print_env(env);
 	else
-		env_arg(cmd);
+		env_arg(cmd, env);
 	return (0);
 }
-
-int	handle_env(t_command *cmd)
+int	unset_handler(t_command *cmd, t_env *env)
 {
 	(void)cmd;
+	(void)env;
+	return(0);
+}
+
+int	handle_env(t_command *cmd, char **envp)
+{
+	t_env	*env;
+	
+	env = this_env();
+	env->env = create_env(envp);
 	//Dont forget to handle the exp and env when tey have quotes, like so: "export" or "env"
 	if (!string().strncmp(cmd->args[0], "export", 5))
-		export_handler(cmd);
+		export_handler(cmd, env);
+	if(!string().strncmp(cmd->args[0], "unset", 4))
+		unset_handler(cmd, env);
 	if (!string().strncmp(cmd->args[0], "env", 2))
-		env_handler(cmd);
+		env_handler(cmd, env);
 	return (0);	
 }
 

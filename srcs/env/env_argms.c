@@ -6,14 +6,14 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 22:54:18 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/02 23:25:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:13:00 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 // É preciso ainda retirar as aspas dos argumentos antes de os imprimir.
-void	env_arg(t_command *cmd)
+void	env_arg(t_command *cmd, t_env *env)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	env_arg(t_command *cmd)
 		}
 	}
 	i = 0;
-	print_env();
+	print_env(env);
 	while (cmd->args[++i])
 		printf("%s\n", cmd->args[i]);
 }

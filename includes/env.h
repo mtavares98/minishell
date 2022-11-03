@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:47:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:26:51 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ struct s_env
 
 t_env	*this_env(void);
 char	**create_env(char **envp);
+int		handle_env(t_command *cmd, char **envp);
 void	free_memory(t_command **cmd, t_env *env);
-char	**create_env(char **envp);
-int		handle_env(t_command *cmd);
-void	env_arg(t_command *cmd);
-void	print_env();
+void	env_arg(t_command *cmd, t_env *env);
+void	print_env(t_env *env);
 
 #endif
