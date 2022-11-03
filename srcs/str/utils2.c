@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/22 15:29:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:42:11 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,9 @@ char	*ft_strdup(char *s)
 		str[i] = s[i];
 	str[i] = 0;
 	return (str);
+}
+
+int	ft_ischar(char c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

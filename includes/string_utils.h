@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:17:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 22:01:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:42:36 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strnstr(char *big, char *little, size_t len);
 int		ft_isalnum(char c);
 char	*ft_strdup(char *s);
+int		ft_ischar(char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/03 00:27:10 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 01:25:53 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
-	//this_env()->env = create_env(envp);
-	//if (!this_env()->env)
-	//	return (printf("Error malloc on env\n"));
+	this_env()->env = create_env(envp, -1);
+	if (!this_env()->env)
+		return (printf("Error malloc on env\n"));
 	while (1)
 	{
 		str = readline("MMshell>");
 		counter()->mallocs++;
 		receive_args(str);
 		cmd = *this();
-		handle_env(cmd, envp);
+		handle_env(cmd);
 		//printlist(*this());
 		while (cmd)
 		{

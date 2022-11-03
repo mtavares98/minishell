@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/03 00:27:47 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 02:01:59 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,6 @@ t_env	*this_env(void)
 	static t_env	env;
 
 	return (&env);
-}
-
-void	print_env(t_env *env)
-{
-	int	i;
-
-	i = -1;
-	while (env->env[i])
-		printf("%s\n", env->env[i]);
-}
-
-void	print_export(char **envp)
-{
-	//int		i;
-	int		nb;
-	//char	**tmp_env;
-
-	//i = -1;
-	while (envp[nb])
-		nb++;
-	//tmp_env = create_env(envp);
 }
 
 int	export_handler(t_command *cmd, t_env *env)
@@ -60,17 +39,31 @@ int	env_handler(t_command *cmd, t_env *env)
 }
 int	unset_handler(t_command *cmd, t_env *env)
 {
-	(void)cmd;
+	int	i;
+
 	(void)env;
+	i = -1;
+	if (!cmd->args[1])
+		return (0);
+	while (cmd->args[++i])
+	{
+		if (!string().ft_ischar(cmd->args[i][0]))
+		{
+			printf("bash: unset: `%s': not a valid identifier\n", cmd->args[i]);
+			i++;
+			if (!cmd->args[i])
+				return (0);
+		}
+		unset_arg(cmd->args[i], env);
+	}
 	return(0);
 }
 
-int	handle_env(t_command *cmd, char **envp)
+int	handle_env(t_command *cmd)
 {
 	t_env	*env;
 	
 	env = this_env();
-	env->env = create_env(envp);
 	//Dont forget to handle the exp and env when tey have quotes, like so: "export" or "env"
 	if (!string().strncmp(cmd->args[0], "export", 5))
 		export_handler(cmd, env);

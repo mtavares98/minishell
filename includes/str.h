@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/01 16:17:30 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 00:43:04 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct s_str
 	char	*(*contains)(char *big, char *little, size_t len);
 	int		(*ft_isalnum)(char c);
 	char	*(*strdup)(char *s);
+	int		(*ft_ischar)(char c);
 };
 
 t_str	string(void);
