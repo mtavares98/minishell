@@ -6,17 +6,65 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 22:54:18 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/03 02:02:27 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:55:25 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	remove_aux(char *argm, char c, int i)
+{
+	char	*tmp;
+	int		j;
+
+	j = i;
+	tmp = argm;
+	while (tmp[++j])
+	{
+		if (tmp[j] == c)
+		{
+			j++;
+			argm[i] = tmp[j];
+		}
+		argm[i] = tmp[j];
+		i++;
+	}
+	printf("Argm == %s\n", argm);
+	return (i);
+}
+
+char	*remove_quotes(char *argm)
+{
+	int 	i;
+
+	i = -1;
+	while (argm[++i])
+	{
+		if (argm[i] == '\'' )
+			i = remove_aux(argm, '\'', i);
+		if (argm[i] == '"')
+		{
+			i = remove_aux(argm, '"', i);
+			printf("I == %d\n", i);
+			printf("Argm == %s\n", argm);
+		}
+		if (i == -1)
+			return (argm);
+	}
+	while (argm[i])
+	{
+		argm[i] = 0;
+		i++;
+	}
+	return (argm);
+}
 
 // É preciso ainda retirar as aspas dos argumentos antes de os imprimir.
 void	env_arg(t_command *cmd, t_env *env)
 {
 	int	i;
 
+	(void)env;
 	i = 0;
 	while(cmd->args[++i])
 	{
@@ -27,9 +75,12 @@ void	env_arg(t_command *cmd, t_env *env)
 		}
 	}
 	i = 0;
-	print_env(env);
+	//print_env(env);
 	while (cmd->args[++i])
+	{
+		remove_quotes(cmd->args[i]);
 		printf("%s\n", cmd->args[i]);
+	}
 }
 
 char	**remove_env(int rm, t_env *env)

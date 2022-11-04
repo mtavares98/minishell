@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/03 02:01:59 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:59:25 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	export_handler(t_command *cmd, t_env *env)
 	(void)env;
 	
 	//if (!cmd->args[1])
-	//	print_export();
+		//print_export();
 	return (0);
 }
 
