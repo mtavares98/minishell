@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:47:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/21 16:37:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:47:45 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,15 @@ char	**recicly_split(char **split)
 		i++;
 	}
 	return (new_split);
+}
+
+int	check_spaces(char *s)
+{
+	while (*s)
+	{
+		if (!string().ft_isspace(*s))
+			return (0);
+		s++;
+	}
+	return (1);
 }

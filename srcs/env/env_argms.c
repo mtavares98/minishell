@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 22:54:18 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/04 12:55:25 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 23:44:08 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,80 +16,76 @@ int	remove_aux(char *argm, char c, int i)
 {
 	char	*tmp;
 	int		j;
+	int		ct;
 
-	j = i;
-	tmp = argm;
-	while (tmp[++j])
+	ct = 0;
+	j = -1;
+	tmp = alloc().calloc(string().len(argm, -1) - 1);
+	while (++j < i)
+		tmp[j] = argm[j];
+	while (argm[++i])
 	{
-		if (tmp[j] == c)
+		if (argm[i] == c && ct == 0)
 		{
-			j++;
-			argm[i] = tmp[j];
+			ct = i - 2;
+			i++;
+			if (i >= string().len(argm, -1))
+				break ;
 		}
-		argm[i] = tmp[j];
-		i++;
+		tmp[j++] = argm[i];
 	}
-	printf("Argm == %s\n", argm);
-	return (i);
+	argm = string().strdup(tmp);
+	//i = -1;
+	// while (tmp[++i])
+	// 	argm[i] = tmp[i];
+	// i--;
+	// while (argm[++i])
+	// 	argm[i] = 0;
+	alloc().free_array(tmp);
+	return (ct);
 }
 
 char	*remove_quotes(char *argm)
 {
-	int 	i;
+	int	i;
 
 	i = -1;
 	while (argm[++i])
 	{
 		if (argm[i] == '\'' )
 			i = remove_aux(argm, '\'', i);
-		if (argm[i] == '"')
-		{
+		else if (argm[i] == '"')
 			i = remove_aux(argm, '"', i);
-			printf("I == %d\n", i);
-			printf("Argm == %s\n", argm);
-		}
-		if (i == -1)
+		if (i >= string().len(argm, -1))
 			return (argm);
-	}
-	while (argm[i])
-	{
-		argm[i] = 0;
-		i++;
 	}
 	return (argm);
 }
 
-// É preciso ainda retirar as aspas dos argumentos antes de os imprimir.
 void	env_arg(t_command *cmd, t_env *env)
 {
 	int	i;
 
 	(void)env;
 	i = 0;
-	while(cmd->args[++i])
+	while (cmd->args[++i])
 	{
-		if(!string().strchr(cmd->args[i], '='))
+		if (!string().strchr(cmd->args[i], '='))
 		{
 			printf("env: ‘%s’: No such file or directory\n", cmd->args[i]);
 			return ;
 		}
 	}
 	i = 0;
-	//print_env(env);
-	while (cmd->args[++i])
-	{
-		remove_quotes(cmd->args[i]);
-		printf("%s\n", cmd->args[i]);
-	}
+	print_env(env->env, cmd);
 }
 
 char	**remove_env(int rm, t_env *env)
 {
-	char **tmp_env;
+	char	**tmp_env;
 
 	tmp_env = create_env(env->env, rm);
 	//env->env = create_env(tmp_env, -1);
-	//print_env(env);
 	alloc().free_array(env->env);
 	return (tmp_env);
 }

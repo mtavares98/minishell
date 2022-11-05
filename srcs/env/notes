@@ -1,0 +1,11 @@
+tmp = Arg - aspas 
+Returnar tmp
+na iteracao principal meter um conter que vai memorizar a posicao
+
+Casos a dar erro em quotes evaluation:
+"this"is'spartan="'
+"this|"='ths'
+"this'"'='this' '
+env "this"is='"""'
+"everyhtin'is'working"'='"as it should"
+everyhtin'is'working=as it should

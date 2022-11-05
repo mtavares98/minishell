@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/31 10:22:59 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:37:19 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	check_quotes(char *str, char ap)
 	i = 0;
 	while (str[++i] && str[i] != ap)
 		;
-	if (str[i] == ' ')
+	i++;
+	if (str[i] && string().ft_isspace(str[i]))
 		return (i);
-	while (str[++i])
+	while (str[i])
 	{
 		while (str[i] && str[i] != ' ')
 		{
@@ -50,8 +51,11 @@ int	check_quotes(char *str, char ap)
 				ct++;
 			i++;
 		}
-		if (ct % 2 == 0)
+		if (!str[i])
 			return (i);
+		if (ct % 2 == 0 && str[i] == ' ')
+			return (i);
+		i++;
 	}
 	return (i);
 }
@@ -76,16 +80,6 @@ int	add_quotes(char *str)
 		i++;
 	}
 	return (i);
-}
-int	check_spaces(char *s)
-{
-	while (*s)
-	{
-		if (!string().ft_isspace(*s))
-			return (0);
-		s++;
-	}
-	return (1);
 }
 
 int	ft_split_aux(char *s, int word_len)

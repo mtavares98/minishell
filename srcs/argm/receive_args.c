@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/02 18:17:10 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:48:16 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,28 @@ int	select_string(char *str)
 {
 	int		word_len;
 	char	*new_str;
-	
+	char	qt;
+
 	new_str = NULL;
 	word_len = 0;
 	while (str[word_len] && str[word_len] != '|')
+	{
+		if (str[word_len] == '"' || str[word_len] == '\'')
+		{
+			qt = str[word_len];
+			word_len++;
+			while (str[word_len] && str[word_len] != qt)
+				word_len++;
+		}
 		word_len++;
+	}
 	new_str = string().substr(str, 0, word_len);
 	argm_handler(new_str);
 	alloc().free_array((void *)new_str);
 	return (word_len);
 }
-int	count_quotes(char *str, int	i, char c)
+
+int	count_quotes(char *str, int i, char c)
 {
 	if (!str[i + 1])
 	{
@@ -37,7 +48,7 @@ int	count_quotes(char *str, int	i, char c)
 	while (str[i] && str[i] != c)
 		i++;
 	if (str[i] == c)
-		return(i);
+		return (i);
 	printf("Wrong Use of Quotes\n");
 	return (0);
 }

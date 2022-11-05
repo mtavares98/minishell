@@ -13,6 +13,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/env/env.c \
 			$(SRC_DIR)/env/env_argms.c \
 			$(SRC_DIR)/env/env_utils.c \
+			$(SRC_DIR)/env/export_handler.c \
 			$(SRC_DIR)/exec/exec_main.c \
 			$(SRC_DIR)/exec/prep_exec.c \
 			$(SRC_DIR)/exec/utils.c \
