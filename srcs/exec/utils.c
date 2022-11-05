@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/30 21:22:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/05 23:41:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	close_pipes(int **pipe_fd, int i)
 	int	j;
 
 	j = -1;
-	while (++j <= i)
+	while (++j < i)
 	{
 		close(pipe_fd[j][0]);
 		close(pipe_fd[j][1]);
@@ -35,7 +35,7 @@ static int	start_pipes(int **pipe_fd)
 		if (pipe(pipe_fd[i]) == -1)
 		{
 			perror("pipe");
-			close_pipes(pipe_fd, i);
+			close_pipes(pipe_fd, i + 1);
 			return (1);
 		}
 	}
