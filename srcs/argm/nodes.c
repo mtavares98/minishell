@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/24 23:19:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/04 23:21:17 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	printlist(t_command *vars)
+void	printlist(t_command *vars, t_env *env)
 {
 	int	j;
 	int	i;
@@ -34,6 +34,8 @@ void	printlist(t_command *vars)
 		vars = vars->next;
 		i++;
 	}
+	if (env->pipe)
+		printf("Existe pipe\n");
 	printf("===============\n");
 }
 

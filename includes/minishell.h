@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/01 13:59:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/04 23:20:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # include "arguments.h"
 # include "env.h"
 
-void	printlist(t_command *vars);
+void	printlist(t_command *vars, t_env *env);
 
 #endif

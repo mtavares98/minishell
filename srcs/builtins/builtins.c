@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/30 00:22:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/04 22:23:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,23 @@ int	exit_func(t_command **cmd, t_env *env, int out)
 {
 	int	status;
 
-	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]))
-		status = string().atoi((*cmd)->args[1]);
-	else if ((*cmd)->args[1])
+	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
+		status = 2;
+	else if ((*cmd)->args[1] && (*cmd)->args[2])
 	{
 		write(out, "exit: ", 6);
 		write(out, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
-		write(out, ": numeric argument required\n", 28);
-		status = 2;
+		write(out, ": too many arugments\n", 21);
+		return (1);
 	}
-	else if (!(*cmd)->args[1])
+	else if ((*cmd)->args[1])
+		status = string().atoi((*cmd)->args[1]);
+	else
 		status = 0;
-	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]) && (*cmd)->args[2])
-	{
-		write(out, "exit: too many arguments\n", 25);
-		status = 1;
-	}
-	if (status != 1)
-	{
-		free_memory(cmd, env);
-		if (env->env)
-			alloc().free_matrix((void **)env->env);
-		exit(status);
-	}
-	return (status);
+	free_memory(cmd, env);
+	if (env->env)
+		alloc().free_matrix((void **)env->env);
+	exit(status);
 }
 
 /* int	export(t_command *cmd, char **envp)

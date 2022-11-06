@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/26 14:35:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/04 23:21:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		receive_args(char *str);
 int		argm_handler(char *str);
 int		validate_string(char *str);
 
-void	printlist(t_command *vars);
+// void	printlist(t_command *vars);
 t_tmp	*create_single_node(char *value);
 //Functions that will handle the arguments receive
 //and separate them into path and argms:
