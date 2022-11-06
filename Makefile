@@ -6,6 +6,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/args_aux.c \
 			$(SRC_DIR)/argm/args_aux2.c \
 			$(SRC_DIR)/builtins/builtins.c \
+			$(SRC_DIR)/builtins/builtins2.c \
 			$(SRC_DIR)/builtins/utils1.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
@@ -40,7 +41,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) -fsanitize=address
 
 RM			=	rm -rf
 

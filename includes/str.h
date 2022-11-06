@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/01 16:17:30 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/06 22:45:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct s_str
 	char	*(*contains)(char *big, char *little, size_t len);
 	int		(*ft_isalnum)(char c);
 	char	*(*strdup)(char *s);
+	char	*(*strjoin)(char *s1, char *s2);
 };
 
 t_str	string(void);

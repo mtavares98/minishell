@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/31 21:01:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/06 22:57:22 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	is_builtin(char *cmd)
 {
 	return (!string().strncmp(cmd, "echo", 5) || \
 	!string().strncmp(cmd, "pwd", 4) || !string().strncmp(cmd, "exit", 5) \
-	|| !string().strncmp(cmd, "env", 4));
+	|| !string().strncmp(cmd, "env", 4) || !string().strncmp(cmd, "export", 7) \
+	|| !string().strncmp(cmd, "cd", 3));
 }
 /* int	is_builtin(char *cmd)
 {

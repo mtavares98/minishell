@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:17:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/09/18 22:01:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/06 22:45:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strnstr(char *big, char *little, size_t len);
 int		ft_isalnum(char c);
 char	*ft_strdup(char *s);
+char	*strjoin(char *s1, char *s2);
 
 #endif
