@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 22:57:59 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:35:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	exec_builtins(int out, t_command **cmd)
 		return (pwd(out));
 	else if (!string().strncmp((*cmd)->path, "export", 7))
 		return (export(out, *cmd, this_env()));
-	/* else if (!string().strncmp(cmd->path, "unset", 6))
-		unset(cmd, envp); */
+	else if (!string().strncmp((*cmd)->path, "unset", 6))
+		return (unset(*cmd, this_env()));
 	else if (!string().strncmp((*cmd)->path, "env", 4))
 		return (env(*cmd, this_env()->env, out));
 	else if (!string().strncmp((*cmd)->path, "exit", 5))

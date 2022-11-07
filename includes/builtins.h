@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 22:55:42 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:33:54 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
+int		unset(t_command *cmd, t_env *env);
 int		export(int out, t_command *cmd, t_env *env);
 int		cd(t_command *cmd, t_env *env);
 int		env(t_command *cmd, char **envp, int out);

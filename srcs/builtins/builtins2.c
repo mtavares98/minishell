@@ -6,11 +6,66 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:32:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 23:14:11 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:37:35 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+
+int	set_env(t_command *cmd, t_env *env, int i)
+{
+	char	**tmp;
+	int		len;
+	int		j;
+	int		k;
+
+	tmp = env->env;
+	len = length(env->env);
+	env->env = alloc().calloc(sizeof(char *) * len);
+	if (!env->env)
+		return (1);
+	j = -1;
+	k = 0;
+	while (tmp[++j])
+	{
+		if (!string().strncmp(cmd->args[i], tmp[j], \
+		string().len(cmd->args[i], -1)))
+			alloc().free_array((void *)tmp[j]);
+		else
+			env->env[k++] = tmp[j];
+	}
+	alloc().free_array((void *)tmp);
+	return (0);
+}
+
+int	is_unset(t_command *cmd, char **env, int i)
+{
+	int	j;
+
+	j = -1;
+	while (env[++j])
+		if (!string().strncmp(cmd->args[i], env[j], \
+		string().len(cmd->args[i], -1)))
+			return (1);
+	return (0);
+}
+
+int	unset(t_command *cmd, t_env *env)
+{
+	int	i;
+
+	i = -1;
+	while (cmd->args[++i])
+	{
+		if (is_unset(cmd, env->env, i))
+		{
+			env->status = set_env(cmd, env, i);
+			if (env->status)
+				return (1);
+		}
+	}
+	return (0);
+}
 
 int	change_env(t_env *env)
 {

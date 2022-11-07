@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 22:55:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:18:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,15 @@ int	export(int out, t_command *cmd, t_env *env)
 		print_exp(out, env->env);
 	while (cmd->args[++i])
 	{
-		j = string().len(cmd->args[i], '=') - 1;
-		if (cmd->args[i][j] == '=')
+		j = have_var(cmd->args[i], env->env);
+		if (j != -1)
 		{
-			j = have_var(cmd->args[i], env->env);
-			if (j != -1)
-			{
-				free(env->env[j]);
-				env->env[j] = string().strdup(cmd->args[i]);
-			}
-			else
-				if (deal_with_non_existing_var(cmd, i, this_env()))
-					return (255);
+			free(env->env[j]);
+			env->env[j] = string().strdup(cmd->args[i]);
 		}
+		else
+			if (deal_with_non_existing_var(cmd, i, this_env()))
+				return (255);
 	}
 	return (0);
 }
@@ -76,8 +72,11 @@ int	env(t_command *cmd, char **envp, int out)
 	i = -1;
 	while (envp[++i])
 	{
-		write(out, envp[i], string().len(envp[i], -1));
-		write(out, "\n", 1);
+		if (string().strchr(envp[i], '='))
+		{
+			write(out, envp[i], string().len(envp[i], -1));
+			write(out, "\n", 1);
+		}
 	}
 	return (0);
 }
