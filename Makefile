@@ -6,6 +6,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/args_aux.c \
 			$(SRC_DIR)/argm/args_aux2.c \
 			$(SRC_DIR)/builtins/builtins.c \
+			$(SRC_DIR)/builtins/builtins2.c \
 			$(SRC_DIR)/builtins/utils1.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
@@ -99,7 +100,7 @@ git:
 	@git push
 	@echo "Commit sent to github"
 
-valgrind:	all
+valgrind:	re
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
 
 re:	fclean all
