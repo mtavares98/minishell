@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/04 23:50:29 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:44:16 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int	main(int ac, char **av, char **envp)
 		}
 		alloc().free_array(str);
 		str = NULL;
-		execution(this());
+		//execution(this());
 	}
 }

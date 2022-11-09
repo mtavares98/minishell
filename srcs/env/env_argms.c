@@ -6,60 +6,47 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 22:54:18 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/04 23:44:08 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:15:59 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	remove_aux(char *argm, char c, int i)
+void	remove_aux(char c, int *i, char *tmp)
 {
-	char	*tmp;
 	int		j;
 	int		ct;
 
-	ct = 0;
-	j = -1;
-	tmp = alloc().calloc(string().len(argm, -1) - 1);
-	while (++j < i)
-		tmp[j] = argm[j];
-	while (argm[++i])
+	ct = -1;
+	while (++ct < 2)
 	{
-		if (argm[i] == c && ct == 0)
-		{
-			ct = i - 2;
-			i++;
-			if (i >= string().len(argm, -1))
-				break ;
-		}
-		tmp[j++] = argm[i];
+		j = *i - 1;
+		while (tmp[++j])
+			tmp[j] = tmp[j + 1];
+		tmp[j] = 0;
+		while (tmp[*i] != c && ct == 0)
+			(*i)++;
 	}
-	argm = string().strdup(tmp);
-	//i = -1;
-	// while (tmp[++i])
-	// 	argm[i] = tmp[i];
-	// i--;
-	// while (argm[++i])
-	// 	argm[i] = 0;
-	alloc().free_array(tmp);
-	return (ct);
+	*i -=1;
 }
 
 char	*remove_quotes(char *argm)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = -1;
-	while (argm[++i])
+	tmp = string().strdup(argm);
+	while (tmp[++i])
 	{
-		if (argm[i] == '\'' )
-			i = remove_aux(argm, '\'', i);
-		else if (argm[i] == '"')
-			i = remove_aux(argm, '"', i);
-		if (i >= string().len(argm, -1))
-			return (argm);
+		if (tmp[i] == '\'' )
+			remove_aux( '\'', &i, tmp);
+		else if (tmp[i] == '"')
+			remove_aux('"', &i, tmp);
+		if (i >= string().len(tmp, -1))
+			return (tmp);
 	}
-	return (argm);
+	return (tmp);
 }
 
 void	env_arg(t_command *cmd, t_env *env)
@@ -85,7 +72,6 @@ char	**remove_env(int rm, t_env *env)
 	char	**tmp_env;
 
 	tmp_env = create_env(env->env, rm);
-	//env->env = create_env(tmp_env, -1);
 	alloc().free_array(env->env);
 	return (tmp_env);
 }

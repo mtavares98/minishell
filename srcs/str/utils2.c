@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/03 00:42:11 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:48:42 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
-
 /*
 	The strnstr() function locates the first occurrence of the
 null-terminated string little in the string big, where not more than

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 22:25:42 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:53:43 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ int	length(char **envp)
 	return (i);
 }
 
-int	deal_with_non_existing_var(t_command *cmd, int i, char **envp)
+int	deal_with_non_existing_var(char *argm, char **envp)
 {
 	char	**tmp;
 	int		j;
 
 	tmp = envp;
-	envp = alloc().calloc(length(envp));
+	printf("lenght_tmp: %d\n", length(tmp));
+	envp = alloc().calloc(sizeof(char *) * (length(tmp) + 1));
 	if (!envp)
 	{
 		envp = tmp;
@@ -56,9 +57,13 @@ int	deal_with_non_existing_var(t_command *cmd, int i, char **envp)
 	}
 	j = -1;
 	while (tmp[++j])
+	{
 		envp[j] = tmp[j];
+		//printf("enp[%d]:  %s\n",j, envp[j]);
+	}
 	free(tmp);
-	envp[j] = cmd->args[i];
+	envp[j] = string().strdup(argm);
+	printf("enp[%d]:  %s\n",j, envp[j]);
 	return (0);
 }
 

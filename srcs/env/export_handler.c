@@ -6,39 +6,43 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 23:33:30 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/05 00:03:13 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:18:35 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	import_variable(t_command *cmd, char *env, int i)
+void	replace_env(char *tmp, t_env *env, int j)
 {
-	char	*tmp;
-	int		j;
-	
-	j = 0;
-	while (cmd->args[++j])
-	{
-		tmp = string().substr(cmd->args[j], 0, string().len(cmd->args[j], '=') - 1);
-		remove_quotes(tmp);
-		if (string().contains(env[i], tmp, string().len(tmp, -1)))
-		{
-			env[i] = string().
-		}
-		alloc().free_array(tmp);
-	}	
+	alloc().free_array(env->env[j]);
+	env->env[j] = string().strdup(tmp);
 }
 
 int	export_values(t_command *cmd, t_env *env)
 {
-	int	i;
-
-	i = -1;
-	while (env->env[i])
+	char	*tmp;
+	int		i;
+	int		j;
+	int		ct;
+	
+	i = 0;
+	while (cmd->args[++i])
 	{
-		import_variable(cmd, env->env, i);
-	}	
+		ct = 0;
+		j = -1;
+		while (env->env[++j])
+		{
+			tmp = remove_quotes(cmd->args[i]);
+			if (string().contains(env->env[j], string().substr(tmp, 0, string().len(tmp, '=')), string().len(tmp, -1)))
+			{
+				printf("DEBUGG\n");
+				replace_env(tmp, env, j);
+				ct++;
+			}
+		}
+		if (ct == 0)
+			deal_with_non_existing_var(tmp, env->env);
+	}
 	return (0);
 }
 
