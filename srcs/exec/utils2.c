@@ -6,11 +6,22 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:09:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/05 23:43:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:08:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
+
+void	update_status(t_env *env)
+{
+	int	status;
+
+	if (WIFEXITED(env->status))
+	{
+		status = WEXITSTATUS(env->status);
+		env->status = status;
+	}
+}
 
 void	free_memory(t_command **cmd, t_env *env)
 {

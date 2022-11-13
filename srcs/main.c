@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/04 23:31:48 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:02:04 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int ac, char **av, char **envp)
 	{
 		str = readline("MMshell>");
 		counter()->mallocs++;
+		if (str && *str)
+			add_history(str);
 		receive_args(str);
 		alloc().free_array(str);
 		str = NULL;

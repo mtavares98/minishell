@@ -8,6 +8,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/builtins/builtins.c \
 			$(SRC_DIR)/builtins/builtins2.c \
 			$(SRC_DIR)/builtins/utils1.c \
+			$(SRC_DIR)/builtins/utils2.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \

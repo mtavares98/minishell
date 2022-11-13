@@ -6,32 +6,32 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 21:18:59 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:01:04 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+#include "../../includes/minishell.h"
 
 int	exit_func(t_command **cmd, t_env *env)
 {
 	int	status;
 
 	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
-		status = 2;
+		status = print_error(*cmd, 2, ": numeric argument required\n");
 	else if ((*cmd)->args[1] && (*cmd)->args[2])
 	{
-		write(2, "exit: ", 6);
-		write(2, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
-		write(2, ": too many arugments\n", 21);
-		return (1);
+		status = print_error(*cmd, 1, ": too many arugments\n");
+		return (status);
 	}
 	else if ((*cmd)->args[1])
 		status = string().atoi((*cmd)->args[1]);
 	else
-		status = 0;
+		status = env->status;
 	free_memory(cmd, env);
 	if (env->env)
 		alloc().free_matrix((void **)env->env);
+	rl_clear_history();
 	exit(status);
 }
 

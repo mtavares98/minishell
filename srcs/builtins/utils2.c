@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_main.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 22:03:37 by mtavares         ###   ########.fr       */
+/*   Created: 2022/11/13 17:45:22 by mtavares          #+#    #+#             */
+/*   Updated: 2022/11/13 17:58:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execution.h"
-#include "../../includes/arguments.h"
+#include "../../includes/builtins.h"
 
-int	execution(t_command **cmd)
+int	print_error(t_command *cmd, int status, char *str)
 {
-	char	*pathenv;
-
-	pathenv = getpath(this_env()->env);
-	if (check_files((cmd), pathenv + 5 * (pathenv != NULL)))
-	{
-		free_memory(cmd, this_env());
-		return (2);
-	}
-	if (prep_exec(cmd))
-		return (1);
-	return (0);
+	write(2, "MMShell: ", 9);
+	write(2, cmd->args[0], string().len(cmd->args[0], -1));
+	write(2, ": ", 2);
+	write(2, cmd->args[1], string().len(cmd->args[1], -1));
+	write(2, str, string().len(str, -1));
+	return (status);
 }
