@@ -1,4 +1,3 @@
-
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
 			$(SRC_DIR)/argm/nodes.c \
@@ -12,9 +11,6 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \
 			$(SRC_DIR)/env/env.c \
-			$(SRC_DIR)/env/env_argms.c \
-			$(SRC_DIR)/env/env_utils.c \
-			$(SRC_DIR)/env/export_handler.c \
 			$(SRC_DIR)/exec/exec_main.c \
 			$(SRC_DIR)/exec/prep_exec.c \
 			$(SRC_DIR)/exec/utils.c \

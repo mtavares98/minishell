@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/14 16:24:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:42:05 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*get_substring(char *str, char c);
 char	*handle_split(char *split);
 char	*path_handler2(char * str, char *path);
 char	*handler_path(char *str);
+char	*remove_quotes(char *argm);
 
 #endif
