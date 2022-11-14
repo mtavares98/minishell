@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/09 00:48:42 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:30:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,29 @@ char	*ft_strdup(char *s)
 	i = -1;
 	while (s[++i])
 		str[i] = s[i];
+	str[i] = 0;
+	return (str);
+}
+
+char	*strjoin(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+	int		s2_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	s2_len = string().len(s2, -1);
+	str = alloc().calloc((sizeof(char) * (s2_len + string().len(s1, -1) + 1)));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		str[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		str[i++] = s2[j];
 	str[i] = 0;
 	return (str);
 }

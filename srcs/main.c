@@ -6,9 +6,10 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/09 10:44:16 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:28:04 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/minishell.h"
 #include "../includes/env.h"

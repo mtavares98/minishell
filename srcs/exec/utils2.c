@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:09:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/03 09:57:19 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:29:44 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,43 +24,51 @@ void	free_memory(t_command **cmd, t_env *env)
 	}
 	if (env->pipe)
 	{
-		i = -1;
-		while (env->pipe[++i])
+		i = 0;
+		while (env->pipe[i])
 		{
 			j = -1;
 			while (++j < 2)
 				if (env->pipe[i][j] != -1)
 					close(env->pipe[i][j]);
+			i++;
 		}
 		alloc().free_matrix((void **)env->pipe);
 		env->pipe = NULL;
 	}
 }
 
-/* int	get_cmd_not_builtin(t_command *cmd)
+void	close_fd_exeption(t_env *env, int in, int out)
 {
-	int	len;
+	int	i;
+	int	j;
 
-	len = 0;
-	if (!cmd)
-		return (0);
-	while (cmd)
+	i = -1;
+	if (!env->pipe)
+		return ;
+	while (env->pipe[++i])
 	{
-		if (!is_builtin(cmd->path))
-			len++;
-		cmd = cmd->next;
+		j = -1;
+		while (++j < 2)
+		{
+			if (env->pipe[i][j] != in && env->pipe[i][j] != out \
+			&& env->pipe[i][j] != -1)
+			{
+				close(env->pipe[i][j]);
+				env->pipe[i][j] = -1;
+			}
+		}
 	}
-	return (len);
-} */
+}
 
 void	close_fd(int *in, int *out)
 {
-	if (*in)
+	if (*in && *in != -1)
 	{
 		close(*in);
 		*in = -1;
 	}
-	if (*out != 1)
+	if (*out != 1 && *out != -1)
 	{
 		close(*out);
 		*out = -1;

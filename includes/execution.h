@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:49:06 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:25:39 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ struct s_exec
 	int	i;
 };
 
+void	close_fd_exeption(t_env *env, int in, int out);
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 int		is_builtin(char *cmd);

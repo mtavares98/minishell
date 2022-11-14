@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/30 21:22:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:35:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	close_pipes(int **pipe_fd, int i)
 	int	j;
 
 	j = -1;
-	while (++j <= i)
+	while (++j < i)
 	{
 		close(pipe_fd[j][0]);
 		close(pipe_fd[j][1]);
@@ -35,7 +35,7 @@ static int	start_pipes(int **pipe_fd)
 		if (pipe(pipe_fd[i]) == -1)
 		{
 			perror("pipe");
-			close_pipes(pipe_fd, i);
+			close_pipes(pipe_fd, i + 1);
 			return (1);
 		}
 	}
@@ -87,18 +87,18 @@ int	exec_builtins(int out, t_command **cmd)
 {
 	if (!string().strncmp((*cmd)->path, "echo", 5))
 		return (echo(*cmd, out));
-	/* else if (!string().strncmp(cmd->path, "cd", 3))
-		cd(cmd, envp); */
+	else if (!string().strncmp((*cmd)->path, "cd", 3))
+		return (cd(*cmd, this_env()));
 	else if (!string().strncmp((*cmd)->path, "pwd", 4))
 		return (pwd(out));
-	/* else if (!string().strncmp(cmd->path, "export", 7))
-		export(cmd, envp);
-	else if (!string().strncmp(cmd->path, "unset", 6))
-		unset(cmd, envp); */
+	else if (!string().strncmp((*cmd)->path, "export", 7))
+		return (export(out, *cmd, this_env()));
+	else if (!string().strncmp((*cmd)->path, "unset", 6))
+		return (unset(*cmd, this_env()));
 	else if (!string().strncmp((*cmd)->path, "env", 4))
 		return (env(*cmd, this_env()->env, out));
 	else if (!string().strncmp((*cmd)->path, "exit", 5))
-		return (exit_func(cmd, this_env(), out));
+		return (exit_func(cmd, this_env()));
 	else
 		return (0);
 }

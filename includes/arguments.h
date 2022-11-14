@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/04 17:31:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:24:51 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		argm_handler(char *str);
 int		validate_string(char *str);
 int		check_spaces(char *s);
 
-void	printlist(t_command *vars);
+// void	printlist(t_command *vars);
 t_tmp	*create_single_node(char *value);
 
 //Functions that will handle the arguments receive

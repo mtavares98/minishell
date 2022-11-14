@@ -6,74 +6,65 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/02 23:55:09 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:28:48 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 
-int	exit_func(t_command **cmd, t_env *env, int out)
+int	exit_func(t_command **cmd, t_env *env)
 {
 	int	status;
 
-	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]))
-		status = string().atoi((*cmd)->args[1]);
-	else if ((*cmd)->args[1])
-	{
-		write(out, "exit: ", 6);
-		write(out, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
-		write(out, ": numeric argument required\n", 28);
+	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
 		status = 2;
+	else if ((*cmd)->args[1] && (*cmd)->args[2])
+	{
+		write(2, "exit: ", 6);
+		write(2, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
+		write(2, ": too many arugments\n", 21);
+		return (1);
 	}
-	else if (!(*cmd)->args[1])
+	else if ((*cmd)->args[1])
+		status = string().atoi((*cmd)->args[1]);
+	else
 		status = 0;
-	if ((*cmd)->args[1] && is_nbr((*cmd)->args[1]) && (*cmd)->args[2])
-	{
-		write(out, "exit: too many arguments\n", 25);
-		status = 1;
-	}
-	if (status != 1)
-	{
-		free_memory(cmd, env);
-		if (env->env)
-			alloc().free_matrix((void **)env->env);
-		exit(status);
-	}
-	return (status);
+	free_memory(cmd, env);
+	if (env->env)
+		alloc().free_matrix((void **)env->env);
+	exit(status);
 }
 
-/* int	export(t_command *cmd, char **envp)
+int	export(int out, t_command *cmd, t_env *env)
 {
-	char	**tmp;
-	int		arg;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
+	if (!cmd->args[1])
+		print_exp(out, env->env);
 	while (cmd->args[++i])
 	{
-		j = string().len(cmd->args[i], '=') - 1;
-		if (cmd->args[i][j] == '=')
+		j = have_var(cmd->args[i], env->env);
+		if (j != -1)
 		{
-			j = have_var(cmd->args[i], envp);
-			if (j != -1)
-			{
-				free(envp[j]);
-				envp[j] = string().strdup(cmd->args[i]);
-			}
-			else
-				if (deal_with_non_existing_var(cmd, i, envp))
-					return (255);
+			free(env->env[j]);
+			env->env[j] = string().strdup(cmd->args[i]);
 		}
+		else
+			if (deal_with_non_existing_var(cmd, i, this_env()))
+				return (255);
 	}
 	return (0);
-} */
+}
 
 int	env(t_command *cmd, char **envp, int out)
 {
 	int	i;
 
 	i = -1;
+	if (!envp)
+		printf("Env doesn't exist\n");
 	while (cmd->args[++i])
 		;
 	if (i != 1)
@@ -81,8 +72,11 @@ int	env(t_command *cmd, char **envp, int out)
 	i = -1;
 	while (envp[++i])
 	{
-		write(out, envp[i], string().len(envp[i], -1));
-		write(out, "\n", 1);
+		if (string().strchr(envp[i], '='))
+		{
+			write(out, envp[i], string().len(envp[i], -1));
+			write(out, "\n", 1);
+		}
 	}
 	return (0);
 }
