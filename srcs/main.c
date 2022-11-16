@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/16 15:39:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:41:04 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	control_d(char *str)
 	if (str)
 		return ;
 	rl_clear_history();
+	write(1, "exit\n", 5);
 	exit(this_env()->status);
 }
 
