@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/13 17:59:05 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:38:40 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		deal_with_non_existing_var(t_command *cmd, int i, t_env *env);
 int		have_var(char *str, char **envp);
 int		length(char **envp);
 int		is_nbr(char *s);
+int		is_valid(char *str);
 
 #endif

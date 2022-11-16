@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/13 18:01:04 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:38:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ int	export(int out, t_command *cmd, t_env *env)
 		print_exp(out, env->env);
 	while (cmd->args[++i])
 	{
-		j = have_var(cmd->args[i], env->env);
-		if (j != -1)
+		if (is_valid(cmd->args[i]))
 		{
-			free(env->env[j]);
-			env->env[j] = string().strdup(cmd->args[i]);
+			j = have_var(cmd->args[i], env->env);
+			if (j != -1)
+			{
+				free(env->env[j]);
+				env->env[j] = string().strdup(cmd->args[i]);
+			}
+			else
+				if (deal_with_non_existing_var(cmd, i, this_env()))
+					return (255);
 		}
 		else
-			if (deal_with_non_existing_var(cmd, i, this_env()))
-				return (255);
+			print_error(cmd, 127, ": not a valid identifier\n");
 	}
 	return (0);
 }
@@ -67,7 +72,7 @@ int	env(t_command *cmd, char **envp, int out)
 		printf("Env doesn't exist\n");
 	while (cmd->args[++i])
 		;
-	if (i != 1)
+	if (i > 1)
 		return (1);
 	i = -1;
 	while (envp[++i])

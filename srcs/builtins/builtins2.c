@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:32:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 21:37:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:08:50 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	unset(t_command *cmd, t_env *env)
 			if (env->status)
 				return (1);
 		}
+		else
+			print_error(cmd, 1, ": not a valid identifier\n");
 	}
 	return (0);
 }
@@ -95,7 +97,7 @@ int	cd(t_command *cmd, t_env *env)
 {
 	if (cmd->args[1] && cmd->args[2])
 	{
-		write(2, "cd: too many arguments\n", 23);
+		print_error(cmd, 1, ": too many arguments\n");
 		return (1);
 	}
 	if (chdir(cmd->args[1]))
