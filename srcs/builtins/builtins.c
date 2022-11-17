@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/15 13:38:53 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:35:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ int	export(int out, t_command *cmd, t_env *env)
 		if (is_valid(cmd->args[i]))
 		{
 			j = have_var(cmd->args[i], env->env);
-			if (j != -1)
+			if (j != -1 && \
+			cmd->args[i][string().len(cmd->args[i], '=') - 1] == '=')
 			{
 				free(env->env[j]);
 				env->env[j] = string().strdup(cmd->args[i]);
 			}
-			else
+			else if (j == -1)
 				if (deal_with_non_existing_var(cmd, i, this_env()))
 					return (255);
 		}

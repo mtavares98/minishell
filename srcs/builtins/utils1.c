@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/08 00:54:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:39:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	print_exp(int out, char **envp)
 		len = string().len(envp[i], '=');
 		write(out, "declare -x ", 11);
 		write(out, envp[i], len);
-		if (!envp[i][len])
+		if (envp[i][len - 1] != '=')
 			write(out, "=", 1);
 		write(out, "\"", 1);
 		if (envp[i][len])
