@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/16 16:41:04 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/17 23:46:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av, char **envp)
 		return (printf("Error malloc on env\n"));
 	while (1)
 	{
-		str = readline("MMshell>");
+		str = readline("MMshell$");
 		counter()->mallocs++;
 		if (str && *str)
 			add_history(str);
