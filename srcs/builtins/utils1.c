@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/17 21:39:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/19 02:20:12 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	have_var(char *str, char **envp)
 
 	i = -1;
 	while (envp[++i])
-		if (!string().strncmp(str, envp[i], string().len(str, '=')))
+		if (!string().strncmp(str, envp[i], string().len(envp[i], '=') - 1))
 			return (i);
 	return (-1);
 }
