@@ -6,14 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 21:56:55 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/21 18:59:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This directory will be reponse of checking if a given file exist */
 
 #include "../../includes/minishell.h"
-#include "../../includes/arguments.h"
 
 /*
 	It will return a complete path for a file
@@ -50,7 +49,7 @@ int	get_full_path(t_command **cmd, char *path)
 	if (!*cmd)
 		return (1);
 	if (!path)
-		return (write(2, "Command not found\n", 18));
+		return (print_error_cmd((*cmd), 127, 0));
 	while (path)
 	{
 		if ((*cmd)->path)
@@ -64,10 +63,7 @@ int	get_full_path(t_command **cmd, char *path)
 		if (access((*cmd)->path, F_OK) != -1)
 			break ;
 		if (!*path)
-		{
-			printf("command not found\n");
-			return (3);
-		}
+			return (print_error_cmd((*cmd), 127, 1));
 	}
 	return (0);
 }
@@ -91,6 +87,7 @@ absolute path it will be search for a [ath based on $PATH. */
 int	check_files(t_command **cmd, char *path)
 {
 	t_command	*tmp;
+	int			status;
 
 	tmp = *cmd;
 	while (tmp)
@@ -104,8 +101,12 @@ int	check_files(t_command **cmd, char *path)
 			}
 		}
 		else if (!is_builtin(tmp->path))
-			if (get_full_path(&tmp, path))
+		{
+			status = get_full_path(&tmp, path);
+			this_env()->status = status;
+			if (status)
 				return (1);
+		}
 		tmp = tmp->next;
 	}
 	return (0);
