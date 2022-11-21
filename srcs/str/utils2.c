@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 22:44:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:30:20 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
-
 /*
 	The strnstr() function locates the first occurrence of the
 null-terminated string little in the string big, where not more than
@@ -122,4 +121,9 @@ char	*strjoin(char *s1, char *s2)
 		str[i++] = s2[j];
 	str[i] = 0;
 	return (str);
+}
+
+int	ft_ischar(char c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

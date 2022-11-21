@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/16 15:28:13 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:37:19 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	check_quotes(char *str, char ap)
 	i = 0;
 	while (str[++i] && str[i] != ap)
 		;
-	if (str[i] == ' ')
+	i++;
+	if (str[i] && string().ft_isspace(str[i]))
 		return (i);
-	while (str[++i])
+	while (str[i])
 	{
 		while (str[i] && str[i] != ' ')
 		{
@@ -50,8 +51,11 @@ int	check_quotes(char *str, char ap)
 				ct++;
 			i++;
 		}
-		if (ct % 2 == 0)
+		if (!str[i])
 			return (i);
+		if (ct % 2 == 0 && str[i] == ' ')
+			return (i);
+		i++;
 	}
 	return (i);
 }
@@ -68,7 +72,7 @@ int	add_quotes(char *str)
 			i = i + check_quotes(str + i, '\'');
 			return (i);
 		}
-		if (str[i] == '"' )
+		if (str[i] == '"')
 		{
 			i = i + check_quotes(str + i, '"');
 			return (i);
@@ -78,7 +82,7 @@ int	add_quotes(char *str)
 	return (i);
 }
 
-int	ft_split_aux(char *s, int word_len, char c)
+int	ft_split_aux(char *s, int word_len)
 {
 	if (*s == '\'' || *s == '"')
 	{
@@ -87,7 +91,7 @@ int	ft_split_aux(char *s, int word_len, char c)
 		else
 			word_len = check_quotes(s, '"');
 	}
-	else if (!string().strchr(s, c))
+	else if (check_spaces(s))
 		word_len = string().len(s, -1);
 	else
 		word_len = add_quotes(s);
@@ -108,11 +112,11 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	while (*s)
 	{
-		while (*s == c && *s)
+		while (string().ft_isspace(*s) && *s)
 			s++;
 		if (*s == '\0')
 			break ;
-		word_len = ft_split_aux(s, word_len, c);
+		word_len = ft_split_aux(s, word_len);
 		lst[i++] = string().substr(s, 0, word_len);
 		s += word_len;
 	}

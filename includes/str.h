@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:51 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/15 13:58:53 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:57:20 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct s_str
 	int		(*ft_isalnum)(char c);
 	char	*(*strdup)(char *s);
 	char	*(*strjoin)(char *s1, char *s2);
+	int		(*ft_ischar)(char c);
 };
 
 t_str	string(void);

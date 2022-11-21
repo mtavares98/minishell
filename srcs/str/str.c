@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/06 22:46:15 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:24:28 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_str	string(void)
 {
 	static t_str	str = {
 		ft_strlen, ft_strncmp, _atoi, ft_strchr, ft_strrchr, strtrim, isdig,
-		ft_isspace, itoa, ft_substr, ft_strnstr, ft_isalnum, ft_strdup, strjoin
+		ft_isspace, itoa, ft_substr, ft_strnstr, ft_isalnum, ft_strdup, strjoin, ft_ischar
 	};
 
 	return (str);

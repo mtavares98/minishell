@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/10/31 11:31:04 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:48:16 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,40 @@ int	select_string(char *str)
 {
 	int		word_len;
 	char	*new_str;
-	
+	char	qt;
+
 	new_str = NULL;
 	word_len = 0;
 	while (str[word_len] && str[word_len] != '|')
+	{
+		if (str[word_len] == '"' || str[word_len] == '\'')
+		{
+			qt = str[word_len];
+			word_len++;
+			while (str[word_len] && str[word_len] != qt)
+				word_len++;
+		}
 		word_len++;
+	}
 	new_str = string().substr(str, 0, word_len);
 	argm_handler(new_str);
 	alloc().free_array((void *)new_str);
 	return (word_len);
 }
-int	count_quotes(char *str, int	i, char c)
+
+int	count_quotes(char *str, int i, char c)
 {
+	if (!str[i + 1])
+	{
+		printf("Wrong Use of Quotes\n");
+		return (0);
+	}
+	i++;
 	while (str[i] && str[i] != c)
 		i++;
 	if (str[i] == c)
-		return(i + 1);
+		return (i);
+	printf("Wrong Use of Quotes\n");
 	return (0);
 }
 
@@ -44,25 +62,19 @@ int	validate_quotes(char *str)
 	{
 		if (str[i] == '\'' )
 		{
-			if (!count_quotes(str, i + 1, '\''))
-			{
-				printf("Wrong Use of Quotes\n");
+			i = count_quotes(str, i, '\'');
+			if (i == 0)
 				return (0);
-			}
-			i = count_quotes(str, i + 1, '\'');
 		}
 		if (str[i] == '"')
 		{
-			if (!count_quotes(str, i + 1, '"'))
-			{
-				printf("Wrong Use of Quotes\n");
+			i = count_quotes(str, i, '"');
+			if (i == 0)
 				return (0);
-			}
-			i = count_quotes(str, i + 1, '"');
 		}
-		if (i > string().len(str, -1))
-			return (1);
 		i++;
+		if (i >= string().len(str, -1))
+			return (1);
 	}
 	return (1);
 }
