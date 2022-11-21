@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/21 21:32:10 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:57:03 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ static size_t	ft_countword(char const *s, char c)
 int	check_quotes(char *str, char ap)
 {
 	int	i;
-	int	ct;
 
-	ct = 0;
 	i = 0;
 	while (str[++i] && str[i] != ap)
 		;
@@ -45,14 +43,8 @@ int	check_quotes(char *str, char ap)
 	while (str[i])
 	{
 		while (str[i] && str[i] != ' ')
-		{
-			if (str[i] == ap)
-				ct++;
 			i++;
-		}
 		if (!str[i])
-			return (i);
-		if (ct % 2 == 0 && str[i] == ' ')
 			return (i);
 		i++;
 	}

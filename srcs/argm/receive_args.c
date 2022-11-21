@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/18 01:07:21 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:00:14 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int	receive_args(char *str)
 			break ;
 		str = str + i + 1;
 	}
+	printlist(*this(), NULL);
 	return (1);
 }
