@@ -7,6 +7,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/builtins/builtins.c \
 			$(SRC_DIR)/builtins/builtins2.c \
 			$(SRC_DIR)/builtins/utils1.c \
+			$(SRC_DIR)/builtins/utils2.c \
 			$(SRC_DIR)/cmd/cmd.c \
 			$(SRC_DIR)/cmd/cmd_utils.c \
 			$(SRC_DIR)/cmd/cmd_utils2.c \
@@ -16,6 +17,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/exec/utils.c \
 			$(SRC_DIR)/exec/utils2.c \
 			$(SRC_DIR)/files_check/files_check.c \
+			$(SRC_DIR)/files_check/utils.c \
 			$(SRC_DIR)/gnl/get_next_line.c \
 			$(SRC_DIR)/gnl/get_next_line_utils.c \
 			$(SRC_DIR)/str/str.c \
@@ -40,7 +42,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) -fsanitize=address
 
 RM			=	rm -rf
 

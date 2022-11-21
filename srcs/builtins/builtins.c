@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/14 16:28:48 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:59:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+#include "../../includes/minishell.h"
 
 int	exit_func(t_command **cmd, t_env *env)
 {
 	int	status;
 
 	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
-		status = 2;
+		status = print_error(*cmd, 2, ": numeric argument required\n");
 	else if ((*cmd)->args[1] && (*cmd)->args[2])
 	{
-		write(2, "exit: ", 6);
-		write(2, (*cmd)->args[1], string().len((*cmd)->args[1], -1));
-		write(2, ": too many arugments\n", 21);
-		return (1);
+		status = print_error(*cmd, 1, ": too many arugments\n");
+		return (status);
 	}
 	else if ((*cmd)->args[1])
 		status = string().atoi((*cmd)->args[1]);
 	else
-		status = 0;
+		status = env->status;
 	free_memory(cmd, env);
 	if (env->env)
 		alloc().free_matrix((void **)env->env);
+	rl_clear_history();
 	exit(status);
 }
 
@@ -45,15 +45,21 @@ int	export(int out, t_command *cmd, t_env *env)
 		print_exp(out, env->env);
 	while (cmd->args[++i])
 	{
-		j = have_var(cmd->args[i], env->env);
-		if (j != -1)
+		if (is_valid(cmd->args[i]))
 		{
-			free(env->env[j]);
-			env->env[j] = string().strdup(cmd->args[i]);
+			j = have_var(cmd->args[i], env->env);
+			if (j != -1 && \
+			cmd->args[i][string().len(cmd->args[i], '=') - 1] == '=')
+			{
+				free(env->env[j]);
+				env->env[j] = string().strdup(cmd->args[i]);
+			}
+			else if (j == -1)
+				if (deal_with_non_existing_var(cmd, i, this_env()))
+					return (255);
 		}
 		else
-			if (deal_with_non_existing_var(cmd, i, this_env()))
-				return (255);
+			print_error(cmd, 127, ": not a valid identifier\n");
 	}
 	return (0);
 }
@@ -67,7 +73,7 @@ int	env(t_command *cmd, char **envp, int out)
 		printf("Env doesn't exist\n");
 	while (cmd->args[++i])
 		;
-	if (i != 1)
+	if (i > 1)
 		return (1);
 	i = -1;
 	while (envp[++i])

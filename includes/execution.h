@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/14 16:25:39 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:00:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ struct s_exec
 	int	i;
 };
 
+int		print_error_cmd(t_command *cmd, int status, char path_exists);
+void	update_status(t_env *env);
 void	close_fd_exeption(t_env *env, int in, int out);
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);

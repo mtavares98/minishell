@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:32:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 21:37:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:41:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_unset(t_command *cmd, char **env, int i)
 	j = -1;
 	while (env[++j])
 		if (!string().strncmp(cmd->args[i], env[j], \
-		string().len(cmd->args[i], -1)))
+		string().len(cmd->args[i], -1) - 1))
 			return (1);
 	return (0);
 }
@@ -95,7 +95,7 @@ int	cd(t_command *cmd, t_env *env)
 {
 	if (cmd->args[1] && cmd->args[2])
 	{
-		write(2, "cd: too many arguments\n", 23);
+		print_error(cmd, 1, ": too many arguments\n");
 		return (1);
 	}
 	if (chdir(cmd->args[1]))

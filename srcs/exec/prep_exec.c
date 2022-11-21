@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/05 23:13:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/13 18:10:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ int	exec_cmd(int *in, int *out, t_command **cmd)
 	}
 	close_fd(in, out);
 	if (!b && execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
-	{
 		perror("Execve");
-		b = 1;
-	}
 	free_memory(this(), this_env());
 	if (this_env()->env)
 		alloc().free_matrix((void **)this_env()->env);
+	rl_clear_history();
 	exit(EXIT_FAILURE);
 }
 
@@ -76,6 +74,7 @@ int	name(int *in, int *out, t_command **cmd)
 			free_memory(cmd, this_env());
 			if (this_env()->env)
 				alloc().free_matrix((void **)this_env()->env);
+			rl_clear_history();
 			exit(this_env()->status);
 		}
 		exec_cmd(in, out, cmd);
@@ -105,7 +104,8 @@ static void	handle_process(t_env *env, t_command **cmd)
 	cmdfunc().remove(0);
 	i = -1;
  	while (++i < num_cmd)
-		wait(NULL);
+		wait(&env->status);
+	update_status(env);
 	free_memory(cmd, env);
 }
 
@@ -124,7 +124,10 @@ int	prep_exec(t_command **cmd)
 		out = 1;
 		name(&in, &out, cmd);
 		if (!is_builtin((*cmd)->path))
+		{
 			wait(NULL);
+			update_status(this_env());
+		}
 		free_memory(cmd, this_env());
 		return (0);
 	}

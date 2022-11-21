@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/21 19:56:59 by mtavares         ###   ########.fr       */
+/*   Created: 2022/11/21 18:44:26 by mtavares          #+#    #+#             */
+/*   Updated: 2022/11/21 19:02:11 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/minishell.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include "str.h"
-# include "allocs.h"
-# include "execution.h"
-# include "cmd.h"
-# include "arguments.h"
-# include "env.h"
-
-void	printlist(t_command *vars, t_env *env);
-
-#endif
+int	print_error_cmd(t_command *cmd, int status, char path_exists)
+{
+	if (!path_exists)
+		write(2, "MMShell: ", 9);
+	write(2, cmd->args[0], string().len(cmd->args[0], -1));
+	if (path_exists)
+		write(2, ": command not found\n", 20);
+	else
+		write(2, ": No such file or directory\n", 28);
+	return (status);
+}

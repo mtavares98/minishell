@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/14 16:29:21 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 19:58:03 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	have_var(char *str, char **envp)
 
 	i = -1;
 	while (envp[++i])
-		if (!string().strncmp(str, envp[i], string().len(str, '=')))
+		if (!string().strncmp(str, envp[i], string().len(envp[i], '=') - 1))
 			return (i);
 	return (-1);
 }
@@ -82,9 +82,9 @@ void	print_exp(int out, char **envp)
 	while (envp[++i])
 	{
 		len = string().len(envp[i], '=');
-		write(out, "declare -x ", 12);
+		write(out, "declare -x ", 11);
 		write(out, envp[i], len);
-		if (!envp[i][len])
+		if (envp[i][len - 1] != '=')
 			write(out, "=", 1);
 		write(out, "\"", 1);
 		if (envp[i][len])

@@ -6,10 +6,9 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/29 21:28:52 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:14:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/string_utils.h"
 
@@ -97,6 +96,7 @@ char	*itoa(char *str, int *maxdig, int counter, int n)
 			return (NULL);
 		if (n < 0)
 			str[0] = '-';
+		str[counter + (n < 0)] = 0;
 	}
 	str[*maxdig - counter + (n < 0)] = (n % 10) * ((n > 0) - (n < 0)) + 48;
 	return (str);
