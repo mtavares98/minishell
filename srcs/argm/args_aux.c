@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/04 17:37:19 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:32:10 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	check_quotes(char *str, char ap)
 	i = 0;
 	while (str[++i] && str[i] != ap)
 		;
-	i++;
-	if (str[i] && string().ft_isspace(str[i]))
+	if (str[i + 1] && string().ft_isspace(str[i + 1]))
 		return (i);
 	while (str[i])
 	{

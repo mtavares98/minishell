@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/14 16:39:31 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:16:08 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 # include "cmd.h"
 # include "arguments.h"
 # include "env.h"
+# include "expander.h"
 
 void	printlist(t_command *vars, t_env *env);
+int		check_expander(char **split, t_env *env);
 
 #endif

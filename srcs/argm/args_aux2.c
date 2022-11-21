@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:47:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/14 16:38:53 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:57:23 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,12 @@ char	**recicly_split(char **split)
 	char	**new_split;
 
 	new_split = split;
-	i = 0;
-	while (new_split[i])
+	i = -1;
+	while (new_split[++i])
 	{
-		j = 0;
-		while (new_split[i][j])
-		{
+		j = -1;
+		while (new_split[i][++j])
 			new_split[i][j] = '\0';
-			j++;
-		}
-		i++;
 	}
 	return (new_split);
 }

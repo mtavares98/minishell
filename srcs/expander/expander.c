@@ -6,37 +6,119 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:28:52 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/15 12:24:30 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/21 18:22:40 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
 #include "../../includes/expander.h"
 
-// This argmuent comes from echo
-// Expander limits and specifications:
-// 1. set creates variables on your system, created a struct called set that will hold does values
-// 2. Dollar sign defines expansion, after dollar sign check for "{}" and see if we have a matching pair 
-// 2.a. Use validate quotes to check 
-// 3. Expander details:
-// a. echo ${x:-$(ls)}  we have parameter x, which is undefined, so we start by looking
-//	in the env vars if we have a matching var. If we do, in most cases we just print out the value of the
-//	env var, if not defined we print out the value of the $(ls) => Which is the list of elements in directory
-
-int	check_dollar(char *str, int i)
+char	*replace_argm(char *str, char *env)
 {
-	
-	return (1);
+	char	*tmp;
+	int		i;
+
+	tmp = str;
+	i = check_alloc_size(str, env);
+	str = alloc().calloc(i + 1);
+	if (!str)
+	{
+		str = tmp;
+		return (str);
+	}
+	i = ft_strcpy(tmp, str, '$');
+	ft_strcpy(env + string().len(env, '='), str + string().len(str, -1), -1);
+	i = i + string().len(env, '=');
+	ft_strcpy(tmp + i, str + string().len(str, -1), -1);
+	alloc().free_array(tmp);
+	return (str);
 }
 
-int	check_expander(t_command *cmd)
+char	*remove_exp(char *str)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	tmp = str;
+	i = 0;
+	j = 0;
+	while (tmp[i] && tmp[i] != '$')
+		i++;
+	while (tmp[++i] && string().ft_isalnum(tmp[i]))
+		j++;
+	while (tmp[i])
+		i++;
+	str = alloc().calloc(i - j + 1);
+	if (!str)
+	{
+		str = tmp;
+		return (str);
+	}
+	ft_strcpy(tmp, str, '$');
+	j = string().len(tmp, '$');
+	while (tmp[++j] && string().ft_isalnum(tmp[j]))
+		;
+	ft_strcpy(tmp + j, str + string().len(str, -1), -1);
+	return (str);
+}
+
+char	*search_for_env(char *str, char *tmp, t_env *env)
 {
 	int	i;
-
-	i = 0;
-	while (cmd->args[1][i] != '$')
+	int	ck;
+	
+	ck = 0;
+	i = -1;
+	while (env->env[++i])
 	{
-		if (cmd->args[1][i] == '$')
-			check_dollar(cmd->args[1], i);
+		if ((!string().strncmp(tmp, env->env[i], string().len(env->env[i], '=') - 1) 
+			&& (string().len(tmp, -1) == string().len(env->env[i], '=') - 1)))
+			{
+				str = replace_argm(str, env->env[i]);
+				ck++;
+			}
 	}
+	if (ck == 0)
+		str = remove_exp(str);
+	return (str);
+}
+
+char	*check_dollar(char *str, int j, t_env *env)
+{
+	int		i;
+	char	*tmp;
+
+	i = j + 1;
+	if (!string().ft_ischar(str[i]))
+		return str;
+	while (str[i] && string().ft_isalnum(str[i]))
+		i++;
+	tmp = string().substr(str, j + 1, i - j - 1);
+	if (tmp)
+		str = search_for_env(str, tmp, env);
+	alloc().free_array(tmp);
+	return (str);
+}
+
+int	check_expander(char **split, t_env *env)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (split[i][++j])
+		{
+			if (split[i][j] == '\'')
+				j = check_single_quote(split[i], j);
+			if (split[i][j] == '$' && split[i][j + 1])
+			{
+				split[i] = check_dollar(split[i], j, env);
+				j = -1;
+			}
+		}
+	}
+	return (1);
 }
