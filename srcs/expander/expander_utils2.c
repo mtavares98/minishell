@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 00:36:57 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 01:13:07 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:00:51 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/expander.h"
 
-static int	ft_int_lenght(long n)
+/* static int	ft_int_lenght(long n)
 {
 	if (n < 10 && n > -10)
 		return (1);
@@ -44,7 +44,7 @@ char	*ft_itoa(int n)
 	if (nb < 0)
 		trn[0] = '-';
 	return (trn);
-}
+} */
 
 char	*pid_switch(char *str)
 {
@@ -53,8 +53,9 @@ char	*pid_switch(char *str)
 	int		pd;
 	int		i;
 
+	i = 0;
 	pd = getpid();
-	pid = ft_itoa(pd);
+	pid = string().itoa(NULL, &i, 1, pd);
 	pd = string().len(str, -1) + string().len(pid, -1) - 1;
 	tmp = str;
 	str = alloc().calloc(pd);
@@ -77,8 +78,9 @@ char	*get_status(char *str)
 	char	*ch;
 	char	*tmp;
 	int		i;
-	
-	ch = ft_itoa(this_env()->status);
+
+	i = 0;
+	ch = string().itoa(NULL, &i, 1, this_env()->status);
 	tmp = str;
 	str = alloc().calloc(string().len(tmp, -1));
 	if (!str)

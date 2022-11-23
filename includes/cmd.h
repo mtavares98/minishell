@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/10/24 23:17:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:13:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ struct s_tmp
 
 struct s_command
 {
+	char		*outfile;
+	int			append;
+	char		*infile;
+	int			heredoc;
 	char		*path;
 	char		**args;
 	t_command	*next;

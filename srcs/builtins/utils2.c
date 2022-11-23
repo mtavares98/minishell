@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:45:22 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/15 14:01:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:04:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	is_valid(char *str)
 	int	i;
 
 	i = -1;
-	while (str[++i])
+	while (str[++i] && str[i] != '=')
 	{
 		if (i == 0 && !((str[i] >= 'a' && str[i] <= 'z') || \
 		(str[i] >= 'A' && str[i] <= 'Z')))
 			return (0);
-		if (i && !string().ft_isalnum)
+		if (i && !string().ft_isalnum(str[i]))
 			return (0);
 	}
 	return (1);

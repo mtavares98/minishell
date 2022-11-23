@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/21 18:59:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:58:17 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	is_builtin(char *cmd)
 /* This will return an int based on (*cmd)->path variable for check
 addindex the file exists. If the variable have absolute path it will test
 if that file exists based on the path provided. If it isn't an
-absolute path it will be search for a [ath based on $PATH. */
+absolute path it will be search for a Path based on $PATH. */
 
 int	check_files(t_command **cmd, char *path)
 {
@@ -96,7 +96,7 @@ int	check_files(t_command **cmd, char *path)
 		{
 			if (access((*cmd)->path, F_OK) == -1)
 			{
-				perror("access");
+				this_env()->status = print_error_cmd(tmp, 127, 1);
 				return (1);
 			}
 		}

@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/21 22:00:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:03:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	printlist(t_command *vars, t_env *env)
+void	printlist(t_command *vars)
 {
 	int	j;
 	int	i;
 
-	(void)env;
 	i = 1;
 	printf("===============\n");
 	while (vars)
@@ -35,8 +34,6 @@ void	printlist(t_command *vars, t_env *env)
 		vars = vars->next;
 		i++;
 	}
-	//if (env->pipe)
-	//	printf("Existe pipe\n");
 	printf("===============\n");
 }
 

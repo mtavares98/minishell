@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 01:05:32 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:15:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ int	main(int ac, char **av, char **envp)
 		return (printf("Error malloc on env\n"));
 	while (1)
 	{
-		str = readline("MMshell$");
+		str = readline("MMshell$ ");
+		control_d(str);
 		counter()->mallocs++;
 		if (str && *str)
 			add_history(str);
-		control_d(str);
 		receive_args(str);
 		alloc().free_array(str);
 		str = NULL;
+		// printlist(*this());
 		execution(this());
 	}
 }

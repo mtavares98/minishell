@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:47:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/16 21:57:23 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:32:07 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ static void	remove_aux(char c, int *i, char *tmp)
 		while (tmp[++j])
 			tmp[j] = tmp[j + 1];
 		tmp[j] = 0;
-		while (tmp[*i] != c && ct == 0)
+		while (tmp[*i] && tmp[*i] != c && ct == 0)
 			(*i)++;
 	}
-	*i -=1;
+	*i -= 1;
 }
 
 char	*remove_quotes(char *argm)
@@ -86,5 +86,6 @@ char	*remove_quotes(char *argm)
 		if (i >= string().len(tmp, -1))
 			return (tmp);
 	}
+	alloc().free_array(argm);
 	return (tmp);
 }

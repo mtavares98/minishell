@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:28:52 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 00:49:22 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:20:20 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/expander.h"
+#include "../../includes/arguments.h"
 
 char	*replace_argm(char *str, char *env)
 {
@@ -62,17 +63,17 @@ char	*search_for_env(char *str, char *tmp, t_env *env)
 {
 	int	i;
 	int	ck;
-	
+
 	ck = 0;
 	i = -1;
 	while (env->env[++i])
 	{
-		if ((!string().strncmp(tmp, env->env[i], string().len(env->env[i], '=') - 1) 
+		if ((!string().strncmp(tmp, env->env[i], string().len(env->env[i], '=') - 1)
 			&& (string().len(tmp, -1) == string().len(env->env[i], '=') - 1)))
-			{
-				str = replace_argm(str, env->env[i]);
-				ck++;
-			}
+		{
+			str = replace_argm(str, env->env[i]);
+			ck++;
+		}
 	}
 	if (ck == 0)
 		str = remove_exp(str);
@@ -87,19 +88,19 @@ char	*check_dollar(char *str, int j, t_env *env)
 	i = j + 1;
 	if (str[i] == '$')
 		str = pid_switch(str);
-	else if(str[i] == '?')
+	else if (str[i] == '?')
 		str = get_status(str);
 	else if (!string().ft_ischar(str[i]))
 		return (str);
-	else 
+	else
 	{
 		while (str[i] && string().ft_isalnum(str[i]))
 			i++;
 		tmp = string().substr(str, j + 1, i - j - 1);
 		if (!tmp)
-			return (str);  
+			return (str);
 		str = search_for_env(str, tmp, env);
-		alloc().free_array(tmp);	
+		alloc().free_array(tmp);
 	}
 	return (str);
 }
@@ -123,6 +124,7 @@ int	check_expander(char **split, t_env *env)
 				j = -1;
 			}
 		}
+		split[i] = remove_quotes(split[i]);
 	}
 	return (1);
 }
