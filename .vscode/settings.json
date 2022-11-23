@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*.robot": "python",
 		"*.h": "c",
 		"minishell.h": "c",
 		"cmd_utils.h": "c",
@@ -8,6 +9,7 @@
 		"cstdio": "c",
 		"new": "c",
 		"*.tcc": "c",
-		"type_traits": "c"
+		"type_traits": "c",
+		"cstdlib": "c"
 	}
 }

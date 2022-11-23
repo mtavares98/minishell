@@ -6,12 +6,11 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/04 21:31:50 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/18 01:16:58 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/arguments.h"
-
+#include "../../includes/minishell.h"
 
 char	*handle_split(char *split)
 {
@@ -40,6 +39,7 @@ int	argm_handler(char *str)
 	if (!split || !split[0])
 		return (0);
 	path = string().strdup(split[0]);
+	check_expander(split, this_env());
 	if (split[0][0] == '/')
 	{
 		split [0] = handle_split(split[0]);
