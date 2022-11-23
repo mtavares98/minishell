@@ -15,3 +15,13 @@ length da string == 5 - 2 == 3
 	printf("str: %s\n", str);
 	if (tmp)
 		alloc().free_array(tmp);
+
+
+	ft_strcpy(tmp, str, '$');
+	printf("1º str: %s\n", str);
+	i = string().len(tmp, '$');
+	while (tmp[++i] && string().ft_isalnum(tmp[i]))
+		;
+	printf("tmp[i]: %c\n", tmp[i]);
+	if (tmp[i])
+		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
