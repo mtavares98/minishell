@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 00:36:57 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 00:56:52 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 01:13:07 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,7 @@ char	*get_status(char *str)
 	i = i + 2;
 	if (tmp + i)
 		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
+	alloc().free_array(ch);
+	alloc().free_array(tmp);
 	return (str);
 }
