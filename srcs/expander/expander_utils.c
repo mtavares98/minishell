@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:06:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 17:43:07 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:48:43 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,19 @@ int	check_single_quote(char *split, int i, char c)
 	while (split[++i] && split[i] != c)
 		;
 	return (i);
+}
+
+int	check_dollar_sign(char *split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+	{
+		if (split[i] == '\'')
+			i = i + check_single_quote(split, i, '$');
+		if (split[i] == '$')
+			return (1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:28:52 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 18:02:51 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:47:48 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,17 @@ char	*remove_exp(char *str)
 	i = 0;
 	i = check_alloc_size(str, NULL, -1);
 	str = alloc().calloc(i + 1);
-	printf("i: %d\n", i);
 	if (!str)
 	{
 		str = tmp;
 		return (str);
 	}
 	i = ft_strcpy(tmp, str, '$');
-	printf("str: %s\n", str);
-	tmp = tmp + i;
-	while (++tmp && string().ft_isalnum(*tmp) && ++i)
+	while (tmp[++i] && string().ft_isalnum(tmp[i]))
 		;
-	printf("tmp: %c\n", *tmp);
-	if (tmp)
-		ft_strcpy(tmp, str + string().len(str, -1), -1);
-	tmp = tmp - i - 1;
-	printf("last str: %s\n", str);
-	//alloc().free_array(tmp);
+	if (tmp[i])
+		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
+	alloc().free_array(tmp);
 	return (str);
 }
 
@@ -95,7 +89,7 @@ char	*check_dollar(char *str, int j, t_env *env)
 	else if (str[i] == '?')
 		str = get_status(str);
 	else if (!string().ft_isalnum(str[i]))
-		remove_exp(str);
+		str = remove_exp(str);
 	else
 	{
 		while (str[i] && string().ft_isalnum(str[i]))
@@ -120,7 +114,6 @@ int	check_expander(char **split, t_env *env)
 		j = -1;
 		while (split[i][++j])
 		{
-			printf("j: %d\n", j);
 			if (split[i][j] == '\'')
 				j = check_single_quote(split[i], j, '\'');
 			if (split[i][j] == '"')
@@ -128,7 +121,7 @@ int	check_expander(char **split, t_env *env)
 			if (split[i][j] == '$' && split[i][j + 1])
 			{
 				split[i] = check_dollar(split[i], j, env);
-				if (split[i][j] != '$')
+				if (check_dollar_sign(split[i]))
 					j = -1;
 			}
 		}

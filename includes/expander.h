@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:14:24 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 00:46:27 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:47:04 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 int		check_alloc_size(char *str, char *env, int ctr);
 int		ft_strcpy(char *tmp, char *str, char c);
 int		check_single_quote(char *split, int i, char c);
+int		check_dollar_sign(char *split);
 char	*pid_switch(char *str);
 char	*get_status(char *str);
 
