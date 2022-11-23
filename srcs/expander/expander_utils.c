@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:06:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 00:37:25 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:43:07 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	check_alloc_size(char *str, char *env, int ctr)
 			while (str[++i] && str[i] != '\'')
 				ct++;
 		if (str[i] == '$' && j == 0)
-			while (str[++i] && string().ft_isalnum(str[i]))
-				j++;
+			while (++j && str[++i] && string().ft_isalnum(str[i]))
+				;
 		if (!str[i])
 			break;
 		ct++;
