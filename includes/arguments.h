@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/14 16:42:05 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:59:24 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ARGUMENTS_H
 
 # include "execution.h"
+# include "expander.h"
 
 int		receive_args(char *str);
 int		argm_handler(char *str);

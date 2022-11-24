@@ -1,13 +1,6 @@
 {
 	"files.associations": {
-		"*.h": "c",
-		"minishell.h": "c",
-		"cmd_utils.h": "c",
-		"cmd.h": "c",
-		"concepts": "c",
-		"cstdio": "c",
-		"new": "c",
-		"*.tcc": "c",
-		"type_traits": "c"
+		"*.robot": "python",
+		"ranges": "c"
 	}
 }

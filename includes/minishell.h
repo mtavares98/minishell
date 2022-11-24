@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/21 19:56:59 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:03:28 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # include "cmd.h"
 # include "arguments.h"
 # include "env.h"
+# include "expander.h"
 
-void	printlist(t_command *vars, t_env *env);
+void	printlist(t_command *vars);
+int		check_expander(char **split, t_env *env);
 
 #endif
