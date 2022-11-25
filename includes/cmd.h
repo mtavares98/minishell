@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 19:23:55 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:14:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CMD_H
 # define CMD_H
+
+# include "red.h"
 
 typedef struct s_command		t_command;
 typedef struct s_cmdfunc		t_cmdfunc;
@@ -31,21 +33,14 @@ struct s_tmp
 	t_tmp		*next;
 };
 
-// >> Append == 1
-// > Append == 0
-// << Heredoc == 1
-// < Heredoc == 0
-// < file1 cat > out1 > out2 > out3 => Outfile
-// < file1 cat < file2 < file3 =>Infile 
+// >> Is_double == 1 && is_output == 1
+// > Is_double == 0 && is_output == 1
+// << Is_double == 1 && is_output == 0
+// < Is_double == 0 && is_output == 0
 
 struct s_command
 {
-	int			append;
-	int			heredoc;
-	int			outfd;
-	int			infd;
-	struct red	*out;
-	struct red	*in;
+	t_red		*io;
 	char		*path;
 	char		**args;
 	t_command	*next;
