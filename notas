@@ -1,27 +1,5 @@
-ENV: A=B (LEN == 2)
-STR: ER$AB=F (LEN = 5)
-
-length da string == 5 - 2 == 3
-
-
-	printf("1 str: %s\n", str);
-	tmp = tmp + string().len(tmp, '$') + 1;
-	while (*tmp && string().ft_isalnum(*tmp))
-		tmp++;
-	ft_strcpy(tmp, str + string().len(str, -1), -1);
-	while (*tmp)
-		tmp++;
-	tmp = tmp - j;
-	printf("str: %s\n", str);
-	if (tmp)
-		alloc().free_array(tmp);
-
-
-	ft_strcpy(tmp, str, '$');
-	printf("1º str: %s\n", str);
-	i = string().len(tmp, '$');
-	while (tmp[++i] && string().ft_isalnum(tmp[i]))
-		;
-	printf("tmp[i]: %c\n", tmp[i]);
-	if (tmp[i])
-		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
+Fix do caso:
+Basicamente quando temos aspas duplas antes o sistema nao expande corretamente
+a variavel seguinte:
+echo "$fd"$A
+echo $A$rt$B"$C"$?

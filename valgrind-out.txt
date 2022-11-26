@@ -625,7 +625,7 @@
 ==114004== 
 ==114004== 4,112 bytes in 1 blocks are still reachable in loss record 51 of 66
 ==114004==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==114004==    by 0x489F00C: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==114004==    by 0x489F00C: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)libreadline
 ==114004==    by 0x487DA91: rl_make_bare_keymap (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
 ==114004==    by 0x4884D79: rl_generic_bind (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
 ==114004==    by 0x4885F1D: rl_bind_keyseq_if_unbound_in_map (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
