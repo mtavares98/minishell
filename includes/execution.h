@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/21 20:00:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/27 19:03:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <errno.h>
 # include "get_next_line.h"
 # include "str.h"
+# include "red.h"
 # include "cmd.h"
 # include "env.h"
 

@@ -1,6 +1,9 @@
 {
 	"files.associations": {
+		"*.h": "c",
 		"*.robot": "python",
-		"ranges": "c"
+		"ranges": "c",
+		"compare": "c",
+		"cmath": "c"
 	}
 }

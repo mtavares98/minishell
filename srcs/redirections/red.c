@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:23:13 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/25 18:17:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:30:05 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_redfunc	redfunc(void)
 
 t_red	**this_red(void)
 {
-	static t_red	io;
+	static t_red	*io;
 
 	return (&io);
 }
