@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_utils.h                                        :+:      :+:    :+:   */
+/*   red_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 16:24:06 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/28 00:27:39 by mtavares         ###   ########.fr       */
+/*   Created: 2022/11/27 23:58:35 by mtavares          #+#    #+#             */
+/*   Updated: 2022/11/28 00:32:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RED_UTILS_H
-# define RED_UTILS_H
+#include "../../includes/red_utils.h"
 
-# include "allocs.h"
-# include "red.h"
+void	remove_by_reference(t_red *remove)
+{
+	t_red	*tmp;
 
-void	remove_node_red(t_red *node);
-void	remove_by_reference(t_red *remove, t_red **red);
-t_red	*redadd(t_red **red, char *file, int is_double, int is_output);
-t_red	*redget(int i, t_red *red);
-void	redremove(int i, t_red **red);
-int		list_size_red(void);
-t_red	**red(void);
-
-#endif
+	tmp = *this_red(NULL);
+	if (!tmp || !remove)
+		return ;
+	if (tmp == remove)
+	{
+		remove_node_red(remove);
+		return ;
+	}
+	while (tmp->next && tmp->next != remove)
+		tmp = tmp->next;
+	if (tmp == remove)
+	{
+		tmp->next = remove->next;
+		remove_node_red(remove);
+	}
+}

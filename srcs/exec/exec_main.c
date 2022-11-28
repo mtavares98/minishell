@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 19:01:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:21:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ int	prep_red(t_command **cmd)
 		tmp = tmp->next;
 	}
 	tmp = *cmd;
-	head = tmp->io;
-	(void)head;
+	while (tmp)
+	{
+		head = tmp->io;
+		this_red(head);
+		while (head)
+		{
+			if (check_red(&head))
+				return (1);
+			head = head->next;
+		}
+	}
 	return (0);
 }
 

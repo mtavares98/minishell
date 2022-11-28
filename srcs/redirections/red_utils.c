@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:49:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 18:49:09 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:32:10 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/red_utils.h"
 
-static void	remove_node_red(t_red *node)
+void	remove_node_red(t_red *node)
 {
 	if (!node)
 		return ;
@@ -23,14 +23,12 @@ static void	remove_node_red(t_red *node)
 	alloc().free_array(node);
 }
 
-void	redremove(int i)
+void	redremove(int i, t_red **red)
 {
 	t_red	*rem;
 	t_red	*tmp;
-	t_red	**red;
 	int		j;
 
-	red = this_red();
 	if (i < 0)
 		return ;
 	if (i == 0)
@@ -50,12 +48,10 @@ void	redremove(int i)
 	remove_node_red(rem);
 }
 
-t_red	*redget(int i)
+t_red	*redget(int i, t_red *red)
 {
-	t_red	*red;
 	int		j;
 
-	red = (*this_red());
 	if (!red && i < 0)
 		return (NULL);
 	j = -1;
@@ -78,17 +74,15 @@ t_red	*new_node_red(char *file, int is_double, int is_output)
 	return (node);
 }
 
-t_red	*redadd(char *file, int is_double, int is_output)
+t_red	*redadd(t_red **red, char *file, int is_double, int is_output)
 {
 	t_red	*new;
-	t_red	**red;
 	t_red	*tmp;
 
 	tmp = NULL;
 	new = new_node_red(file, is_double, is_output);
 	if (!new)
 		return (NULL);
-	red = this_red();
 	if (!*red)
 	{
 		*red = new;

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:23:13 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 18:30:05 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:20:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@
 t_redfunc	redfunc(void)
 {
 	static t_redfunc	redfunc = {
-		redadd, redget, redremove
+		redadd, redget, redremove, remove_by_reference
 	};
 
 	return (redfunc);
 }
 
-t_red	**this_red(void)
+t_red	**this_red(t_red *red)
 {
 	static t_red	*io;
 
+	if (red)
+		io = red;
 	return (&io);
 }

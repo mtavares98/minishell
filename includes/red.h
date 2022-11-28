@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:41:29 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 23:02:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:33:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RED_H
 
 # include <unistd.h>
+# include <fcntl.h>
 # include "str.h"
 # include "cmd.h"
 # include "get_next_line.h"
@@ -26,6 +27,7 @@ struct s_redfunc
 	t_red	*(*add)(char *file, int is_double, int is_output);
 	t_red	*(*get)(int i);
 	void	(*remove)(int i);
+	void	(*remove_referenece)(t_red *red);
 };
 
 /*
@@ -47,7 +49,8 @@ struct s_red
 
 int			prep_heredoc(t_red *io);
 int			prep_red(t_command **cmd);
-t_red		**this_red(void);
+t_red		**this_red(t_red *red);
 t_redfunc	redfunc(void);
+int			check_red(t_red *red);
 
 #endif
