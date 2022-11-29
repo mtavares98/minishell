@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 14:03:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:41:24 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,3 @@ int	list_size(char **split)
 	return (i);
 }
 
-t_tmp	*create_single_node(char *value)
-{
-	t_tmp	*strc;
-
-	strc = alloc().calloc(sizeof(t_tmp));
-	if (!strc)
-		return (0);
-	strc->args = alloc().calloc(string().len(value, -1) + 1);
-	if (!strc->args)
-		return (0);
-	strc->args = value;
-	strc->next = NULL;
-	return (strc);
-}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 14:46:53 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:42:46 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	argm_handler(char *str)
 	if (!split || !split[0])
 		return (0);
 	check_expander(split, this_env());
+	check_redirection(split);
 	path = string().strdup(split[0]);
 	if (split[0][0] == '/')
 		split [0] = handle_split(split[0]);

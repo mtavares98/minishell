@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/18 00:59:24 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:47:19 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int		receive_args(char *str);
 int		argm_handler(char *str);
 int		validate_string(char *str);
 int		check_spaces(char *s);
+int		check_redirection(char **split);
 
 // void	printlist(t_command *vars);
-t_tmp	*create_single_node(char *value);
-
 //Functions that will handle the arguments receive
 //and separate them into path and argms:
 char	**ft_split(char *s, char c);

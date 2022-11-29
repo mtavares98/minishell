@@ -4,6 +4,7 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/handlers.c \
 			$(SRC_DIR)/argm/args_aux.c \
 			$(SRC_DIR)/argm/args_aux2.c \
+			$(SRC_DIR)/argm/redirection.c \
 			$(SRC_DIR)/builtins/builtins.c \
 			$(SRC_DIR)/builtins/builtins2.c \
 			$(SRC_DIR)/builtins/utils1.c \

@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 19:23:55 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:42:09 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_command		t_command;
 typedef struct s_cmdfunc		t_cmdfunc;
-typedef struct s_tmp			t_tmp;
+typedef struct s_red			t_red;
 
 struct s_cmdfunc
 {
@@ -25,10 +25,10 @@ struct s_cmdfunc
 	int			(*size)(void);
 };
 
-struct s_tmp
+struct s_red
 {
-	char		*args;
-	t_tmp		*next;
+	char		**args;
+	t_red		*next;
 };
 
 // >> Append == 1
