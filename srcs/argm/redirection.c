@@ -6,18 +6,43 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/29 20:41:21 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:33:43 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+//Redirections List, does not handle "|" yet
+//Still haven't apllied the clean function. REMINDER
+ 
+int	list_size1(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
+}
+
+char	**argms_node1(char **args, char **split)
+{
+	int	i;
+
+	i = -1;
+	args = alloc().calloc((list_size1(split) + 1) * sizeof(char **));
+	while (split[++i])
+		args[i] = string().strdup(split[i]);
+	args[i] = NULL;
+	return (args);
+}
+
 int	get_redirections(char **split)
 {
-	t_red *red;
+	static t_red *red;
 
-	(void)red;
-	(void)split;
+	red = malloc(sizeof(t_red) * 1);
+	red->args = argms_node1(red->args, split);
 	return (-1);
 }
 
