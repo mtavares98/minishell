@@ -1,6 +1,36 @@
 {
 	"files.associations": {
+		"*.h": "c",
+		"*.json": "jsonc",
 		"*.robot": "python",
-		"ranges": "c"
+		"ranges": "c",
+		"compare": "c",
+		"cmath": "c",
+		"*.tcc": "c",
+		"concepts": "c",
+		"cstdio": "c",
+		"deque": "c",
+		"list": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"unordered_set": "c",
+		"vector": "c",
+		"functional": "c",
+		"iterator": "c",
+		"memory_resource": "c",
+		"optional": "c",
+		"string_view": "c",
+		"numeric": "c",
+		"random": "c",
+		"fstream": "c",
+		"istream": "c",
+		"new": "c",
+		"ostream": "c",
+		"sstream": "c",
+		"streambuf": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"bit": "c"
 	}
 }

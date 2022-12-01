@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 00:36:57 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 17:36:50 by mgranate         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:28:17 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_status(char *str)
 	i = ft_strcpy(tmp, str, '$');
 	str[i] = ch[0];
 	i = i + 2;
-	if (tmp + i)
+	if (tmp[i])
 		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
 	alloc().free_array(ch);
 	alloc().free_array(tmp);

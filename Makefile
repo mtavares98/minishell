@@ -24,6 +24,11 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/files_check/utils.c \
 			$(SRC_DIR)/gnl/get_next_line.c \
 			$(SRC_DIR)/gnl/get_next_line_utils.c \
+			$(SRC_DIR)/redirections/red.c \
+			$(SRC_DIR)/redirections/heredoc.c \
+			$(SRC_DIR)/redirections/check_red.c \
+			$(SRC_DIR)/redirections/red_utils.c \
+			$(SRC_DIR)/redirections/red_utils2.c \
 			$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \

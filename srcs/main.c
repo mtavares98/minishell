@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 17:15:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:00:36 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	control_d(char *str)
 	if (str)
 		return ;
 	rl_clear_history();
-	write(1, "exit\n", 5);
+	write(1, "\nexit\n", 6);
 	exit(this_env()->status);
 }
 
@@ -70,7 +70,6 @@ int	main(int ac, char **av, char **envp)
 		receive_args(str);
 		alloc().free_array(str);
 		str = NULL;
-		// printlist(*this());
 		execution(this());
 	}
 }

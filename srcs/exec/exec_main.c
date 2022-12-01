@@ -3,20 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   exec_main.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/07 22:03:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:28:51 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
-#include "../../includes/arguments.h"
+
+int	prep_red(t_command **cmd)
+{
+	t_command	*tmp;
+	t_red		*head;
+
+	tmp = *cmd;
+	while (tmp)
+	{
+		if (prep_heredoc(tmp->io))
+			return (1);
+		tmp = tmp->next;
+	}
+	tmp = *cmd;
+	while (tmp)
+	{
+		head = tmp->io;
+		this_red(head);
+		while (head)
+		{
+			if (check_red(&head, tmp))
+				return (1);
+			head = head->next;
+		}
+	}
+	return (0);
+}
 
 int	execution(t_command **cmd)
 {
 	char	*pathenv;
 
+	if (prep_red(cmd))
+		return (1);
 	pathenv = getpath(this_env()->env);
 	if (check_files((cmd), pathenv + 5 * (pathenv != NULL)))
 	{

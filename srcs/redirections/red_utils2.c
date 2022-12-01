@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   red_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 18:44:26 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 23:10:30 by mtavares         ###   ########.fr       */
+/*   Created: 2022/11/27 23:58:35 by mtavares          #+#    #+#             */
+/*   Updated: 2022/11/28 00:32:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/red_utils.h"
 
-int	print_error_cmd(t_command *cmd, int status, char path_exists)
+void	remove_by_reference(t_red *remove)
 {
-	write(2, "MMShell: ", 9);
-	write(2, cmd->path, string().len(cmd->path, -1));
-	if (path_exists)
-		write(2, ": command not found\n", 20);
-	else
-		write(2, ": No such file or directory\n", 28);
-	return (status);
+	t_red	*tmp;
+
+	tmp = *this_red(NULL);
+	if (!tmp || !remove)
+		return ;
+	if (tmp == remove)
+	{
+		remove_node_red(remove);
+		return ;
+	}
+	while (tmp->next && tmp->next != remove)
+		tmp = tmp->next;
+	if (tmp == remove)
+	{
+		tmp->next = remove->next;
+		remove_node_red(remove);
+	}
 }
