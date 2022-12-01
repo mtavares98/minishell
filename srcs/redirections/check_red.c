@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:32:04 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/28 00:31:19 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 13:40:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/red.h"
 
-int	check_io_dup(t_red *red)
+static int	check_io_dup(t_red *red)
 {
 	t_red	*tmp;
 
@@ -26,12 +26,14 @@ int	check_io_dup(t_red *red)
 	return (0);
 }
 
-int	treat_output(t_red *red)
+static int	treat_output(t_red *red, t_command *cmd)
 {
+	if (cmd->outfd != -1)
+		close(cmd->outfd);
 	if (red->is_double)
 	{
-		red->fd = open(red->file, O_CREAT | O_APPEND | O_WRONLY, 0644);
-		if (red->fd == -1)
+		cmd->outfd = open(red->file, O_CREAT | O_APPEND | O_WRONLY, 0644);
+		if (cmd->outfd == -1)
 		{
 			perror("MMSHELL: open");
 			return (1);
@@ -39,29 +41,33 @@ int	treat_output(t_red *red)
 	}
 	else if (!red->is_double)
 	{
-		red->fd = open(red->file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		if (red->fd == -1)
+		cmd->outfd = open(red->file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		if (cmd->outfd == -1)
 		{
 			perror("MMSHELL: open");
 			return (1);
 		}
 	}
 	if (check_io_dup(red))
-	{
-		redfunc().remove(0);
-	}
+		redfunc().remove_referenece(red);
 }
 
-int	treat_input(t_red *red)
+static int	treat_input(t_red *red, t_command *cmd)
 {
 	if (check_io_dup(red))
 	{
-		redfunc().remove(0);
+		if (red->is_double)
+			close(red->fd);
+		redfunc().remove_referenece(red);
 		return (0);
 	}
+	if (cmd->infd != -1)
+		close(cmd->infd);
 	if (!red->is_double)
-		red->fd = open(red->file, O_RDONLY);
-	if (red->fd == -1)
+		cmd->infd = open(red->file, O_RDONLY);
+	else
+		cmd->infd = red->fd;
+	if (cmd->infd == -1)
 	{
 		perror("MMSHELL: open");
 		return (1);
@@ -69,10 +75,10 @@ int	treat_input(t_red *red)
 	return (0);
 }
 
-int	check_red(t_red *red)
+int	check_red(t_red *red, t_command *cmd)
 {
 	if (!red->is_output)
-		return (treat_input(red));
+		return (treat_input(red, cmd));
 	if (red->is_output)
 		return (treat_output);
 }

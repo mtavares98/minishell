@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:49:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/28 00:32:10 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 13:40:23 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	remove_node_red(t_red *node)
 {
 	if (!node)
 		return ;
-	if (node->fd != -1 && node->fd && node->fd != 1)
-		close(node->fd);
 	if (node->file)
 		alloc().free_array(node->file);
 	alloc().free_array(node);

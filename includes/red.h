@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:41:29 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/28 00:33:32 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:35:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int			prep_heredoc(t_red *io);
 int			prep_red(t_command **cmd);
 t_red		**this_red(t_red *red);
 t_redfunc	redfunc(void);
-int			check_red(t_red *red);
+int			check_red(t_red *red, t_command *cmd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 19:04:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:30:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ struct s_tmp
 
 struct s_command
 {
+	int			outfd;
+	int			infd;
 	t_red		*io;
 	char		*path;
 	char		**args;

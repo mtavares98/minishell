@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/25 17:49:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:33:03 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_command	*new_node(char *path, char **split)
 		node->path = path_node(path, node->path);
 	if (split)
 		node->args = argms_node(node->args, split);
+	node->infd = -1;
+	node->outfd = -1;
 	node->next = NULL;
 	return (node);
 }

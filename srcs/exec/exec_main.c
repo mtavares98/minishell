@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/28 00:21:21 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 12:28:51 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	prep_red(t_command **cmd)
 		this_red(head);
 		while (head)
 		{
-			if (check_red(&head))
+			if (check_red(&head, tmp))
 				return (1);
 			head = head->next;
 		}
