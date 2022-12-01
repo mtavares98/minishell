@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/01 17:24:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:27:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "red.h"
 
 typedef struct s_command		t_command;
-typedef struct s_red			t_red;
 typedef struct s_cmdfunc		t_cmdfunc;
 typedef struct s_red			t_red;
 
@@ -26,12 +25,6 @@ struct s_cmdfunc
 	t_command	*(*get)(int i);
 	void		(*remove)(int i);
 	int			(*size)(void);
-};
-
-struct s_red
-{
-	char		**args;
-	t_red		*next;
 };
 
 struct s_command
