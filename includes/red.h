@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:41:29 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/01 12:35:49 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:34:08 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "str.h"
 # include "cmd.h"
 # include "get_next_line.h"
+
 
 typedef struct s_red		t_red;
 typedef struct s_redfunc	t_redfunc;
