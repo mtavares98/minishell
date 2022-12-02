@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:25:05 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/27 23:04:03 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:59:10 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/red.h"
+#include "../../includes/cmd.h"
 
 static int	fill_heredoc(int fd, char *delimiter)
 {

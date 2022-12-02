@@ -6,18 +6,30 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/01 17:27:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/02 15:44:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CMD_H
 # define CMD_H
 
-# include "red.h"
+# include <unistd.h>
+# include <fcntl.h>
+# include "str.h"
+# include "get_next_line.h"
 
-typedef struct s_command		t_command;
-typedef struct s_cmdfunc		t_cmdfunc;
 typedef struct s_red			t_red;
+typedef struct s_command		t_command;
+typedef struct s_redfunc		t_redfunc;
+typedef struct s_cmdfunc		t_cmdfunc;
+
+/*
+	>> Is_double == 1 && is_output == 1
+	> Is_double == 0 && is_output == 1
+	<< Is_double == 1 && is_output == 0
+	< Is_double == 0 && is_output == 0
+	File = name of the file or delimiter of heredoc
+*/
 
 struct s_cmdfunc
 {
@@ -37,8 +49,22 @@ struct s_command
 	t_command	*next;
 };
 
+struct s_red
+{
+	int		fd;
+	int		is_double;
+	int		is_output;
+	char	*file;
+	t_red	*next;
+};
+
 t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
 int			list_size(char **split);
+int			prep_heredoc(t_red *io);
+int			prep_red(t_command **cmd);
+t_red		**this_red(t_red *red);
+t_redfunc	redfunc(void);
+int			check_red(t_red *red, t_command *cmd);
 
 #endif
