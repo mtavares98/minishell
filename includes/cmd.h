@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/02 15:44:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:49:10 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ struct s_command
 	t_command	*next;
 };
 
+/*
+		The struct t_red * it will exist multiple of them,
+	the fuction this_red() it passes a value different than NULL,
+	to get the other linked list when have a pipe
+*/
+
+struct s_redfunc
+{
+	t_red	*(*add)(char *file, int is_double, int is_output);
+	t_red	*(*get)(int i, t_red *red);
+	void	(*remove)(int i);
+	void	(*remove_referenece)(t_red *remove);
+};
+
 struct s_red
 {
 	int		fd;
@@ -65,6 +79,6 @@ int			prep_heredoc(t_red *io);
 int			prep_red(t_command **cmd);
 t_red		**this_red(t_red *red);
 t_redfunc	redfunc(void);
-int			check_red(t_red *red, t_command *cmd);
+int			check_red(t_red **red, t_command *cmd);
 
 #endif
