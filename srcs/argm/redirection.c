@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2022/12/02 10:34:09 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:06:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	get_redirections(char *split, int i)
 {
 	printf("%d\n", i);
 	printf("%s\n", split);
-	if (i == 1)
+	/* if (i == 1)
 		redfunc().add(split, 0, 1);
 	if (i == 2)
-		redfunc().add(split, 1, 1);
+		(redfunc()).add(split, 1, 1);
 	if (i == 3)
-		redfunc().add(split, 0, 0);	
+		(redfunc()).add(split, 0, 0);
 	if (i == 4)
-		redfunc().add(split, 1, 0);
+		(redfunc()).add(split, 1, 0); */
 	return (1);
 }
 

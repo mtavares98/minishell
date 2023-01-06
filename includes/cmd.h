@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/02 15:44:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:49:47 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ struct s_command
 	char		*path;
 	char		**args;
 	t_command	*next;
+};
+
+struct s_redfunc
+{
+	t_red	*(*add)(char *file, int is_double, int is_output, t_red **begin);
+	t_red	*(*get)(int i, t_red *red);
+	void	(*remove)(int i, t_red **begin);
+	void	(*remove_referenece)(t_red *remove, t_red **begin);
 };
 
 struct s_red

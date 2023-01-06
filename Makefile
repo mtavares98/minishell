@@ -1,3 +1,6 @@
+#			$(SRC_DIR)/redirections/heredoc.c \
+			$(SRC_DIR)/redirections/check_red.c \
+
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
 			$(SRC_DIR)/argm/nodes.c \
@@ -25,8 +28,6 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/gnl/get_next_line.c \
 			$(SRC_DIR)/gnl/get_next_line_utils.c \
 			$(SRC_DIR)/redirections/red.c \
-			$(SRC_DIR)/redirections/heredoc.c \
-			$(SRC_DIR)/redirections/check_red.c \
 			$(SRC_DIR)/redirections/red_utils.c \
 			$(SRC_DIR)/redirections/red_utils2.c \
 			$(SRC_DIR)/str/str.c \
@@ -51,7 +52,7 @@ CC			=	gcc
 
 #-fsanitize=address
 
-CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -I$(INC) -fsanitize=address
 
 RM			=	rm -rf
 
@@ -86,14 +87,14 @@ header:
 $(NAME):	$(OBJ)
 	@printf "%b" "$(OK_COLOR)"
 	@echo  "✨✨ Upgraded Successfuly!! ✨✨"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L/usr/local/lib -I/usr/local/include -lreadline
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I/usr/include/readline -lreadline
 	@printf "%b" "$(NO_COLOR)"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@printf "%b" "$(OBJ_COLOR)"
 	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -L/usr/local/lib -I/usr/local/include -lreadline -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/local/include -c $< -o $@
 	@printf "%b" "$(NO_COLOR)"
 
 clean:	header

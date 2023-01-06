@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/01 12:28:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:07:23 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/execution.h"
 
-int	prep_red(t_command **cmd)
+/* int	prep_red(t_command **cmd)
 {
 	t_command	*tmp;
 	t_red		*head;
@@ -37,14 +37,14 @@ int	prep_red(t_command **cmd)
 		}
 	}
 	return (0);
-}
+} */
 
 int	execution(t_command **cmd)
 {
 	char	*pathenv;
 
-	if (prep_red(cmd))
-		return (1);
+	/* if (prep_red(cmd))
+		return (1); */
 	pathenv = getpath(this_env()->env);
 	if (check_files((cmd), pathenv + 5 * (pathenv != NULL)))
 	{
