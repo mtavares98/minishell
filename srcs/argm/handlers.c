@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/29 19:42:46 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:50:15 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ char	*handle_split(char *split)
 	return (tmp);
 }
 
-
 int	argm_handler(char *str)
 {
-	char			**split;
-	char			*path;
+	t_command	*cmd;
+	char		**split;
+	char		*path;
 
 	split = ft_split(str, ' ');
 	if (!split || !split[0])
@@ -43,7 +43,9 @@ int	argm_handler(char *str)
 	path = string().strdup(split[0]);
 	if (split[0][0] == '/')
 		split [0] = handle_split(split[0]);
-	cmdfunc().add(path, split);
+	cmd = cmdfunc().add(path, split);
+	this_red(cmd->io);
+	check_redirection(split);
 	alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);

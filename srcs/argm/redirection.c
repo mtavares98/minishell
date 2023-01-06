@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/06 16:06:59 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:41:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 //Redirections List, does not handle "|" yet
 //Still haven't apllied the clean function. REMINDER
 
+/*
+	while (cmd)
+	{
+		this_red(cmd->io);
+		
+	}
+*/
+
 int	get_redirections(char *split, int i)
 {
 	printf("%d\n", i);
 	printf("%s\n", split);
-	/* if (i == 1)
-		redfunc().add(split, 0, 1);
+	if (i == 1)
+		redfunc().add(split, 0, 1, this_red(NULL));
 	if (i == 2)
-		(redfunc()).add(split, 1, 1);
+		(redfunc()).add(split, 1, 1, this_red(NULL));
 	if (i == 3)
-		(redfunc()).add(split, 0, 0);
+		(redfunc()).add(split, 0, 0, this_red(NULL));
 	if (i == 4)
-		(redfunc()).add(split, 1, 0); */
+		(redfunc()).add(split, 1, 0, this_red(NULL));
 	return (1);
 }
 
