@@ -6,7 +6,7 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:28:52 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/29 19:31:53 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:06:40 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ int	check_expander(char **split, t_env *env)
 			if (split[i][j] == '$' && split[i][j + 1])
 			{
 				split[i] = check_dollar(split[i], j, env);
-				if (check_dollar_sign(split[i]))
-					j = -1;
+				//if (check_dollar_sign(split[i]))
+				j = -1;
 			}
 		}
 		split[i] = remove_quotes(split[i]);

@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/06 16:41:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:48:49 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//Redirections List, does not handle "|" yet
-//Still haven't apllied the clean function. REMINDER
-
-/*
-	while (cmd)
-	{
-		this_red(cmd->io);
-		
-	}
-*/
-
-int	get_redirections(char *split, int i)
+int	get_redirections(char **split, int i)
 {
+	t_red	*red;
+	int		j;
+
+	j = -1;
+	while (split[++j])
+	{
+		red = get_red(split, red);
+	}
 	printf("%d\n", i);
-	printf("%s\n", split);
 	if (i == 1)
 		redfunc().add(split, 0, 1, this_red(NULL));
 	if (i == 2)
@@ -46,13 +42,13 @@ int	check_redirection(char **split)
 	while (split[++i])
 	{
 		if (!string().strncmp(split[i], ">", string().len(split[i], -1)))
-			get_redirections(split[i - 1], 1);
-		else if (!string().strncmp(split[i - 1], ">>", string().len(split[i], -1)))
-			get_redirections(split[i], 2);
-		else if (!string().strncmp(split[i - 1], "<", string().len(split[i], -1)))
-			get_redirections(split[i], 3);
-		else if (!string().strncmp(split[i - 1], "<<", string().len(split[i], -1)))
-			get_redirections(split[i], 4);
+			get_redirections(split, 1);
+		else if (!string().strncmp(split[i], ">>", string().len(split[i], -1)))
+	 		get_redirections(split, 2);
+		else if (!string().strncmp(split[i], "<", string().len(split[i], -1)))
+			get_redirections(split, 3);
+		else if (!string().strncmp(split[i], "<<", string().len(split[i], -1)))
+			get_redirections(split, 4);
 	}
 return (0);
 }

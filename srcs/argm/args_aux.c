@@ -6,13 +6,13 @@
 /*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/21 21:57:03 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:52:36 by mgranate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static size_t	ft_countword(char const *s, char c)
+static size_t	ft_countword(char const *s)
 {
 	size_t	count;
 
@@ -21,11 +21,11 @@ static size_t	ft_countword(char const *s, char c)
 	count = 0;
 	while (*s)
 	{
-		while (*s == c)
+		while (string().ft_isspace(*s))
 			s++;
 		if (*s)
 			count++;
-		while (*s != c && *s)
+		while ( *s && !string().ft_isspace(*s))
 			s++;
 	}
 	return (count);
@@ -89,7 +89,7 @@ int	ft_split_aux(char *s, int word_len)
 	return (word_len);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(char *s)
 {
 	char	**lst;
 	size_t	word_len;
@@ -97,7 +97,7 @@ char	**ft_split(char *s, char c)
 
 	if (!s)
 		return (0);
-	lst = alloc().calloc((ft_countword(s, c) + 1) * sizeof(char *));
+	lst = alloc().calloc((ft_countword(s) + 1) * sizeof(char *));
 	if (!lst)
 		return (0);
 	i = 0;
