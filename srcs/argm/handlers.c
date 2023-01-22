@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/29 19:42:46 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/22 04:04:26 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static   int    print_error(char *s)
+{
+    printf("%s", s);
+    return(0);
+}
+
+int check_argument(char *split)
+{
+    if (!split)
+        return(print_error("sh: syntax error near unexpected token `newline'\n"));
+    if (split[0] == '<' || split[0] == '>')
+        return(print_error("sh: syntax error near unexpected token `<'\n"));
+    return(1);
+}
+
+static int validate_arguments(char **split)
+{
+    int i;
+    int j;
+
+    i = -1;
+    j = 1;
+    while(split[++i])
+    {
+        if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+            j = check_argument(split[i + 1]);
+        else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+            j = check_argument(split[i + 1]);
+        else if (split[i][0] == '>')
+            j = check_argument(split[i + 1]);
+        else if (split[i][0] == '<')
+            j = check_argument(split[i + 1]);
+        if (j == 0)
+            return(j);
+    }
+    return(j);
+}
 
 char	*handle_split(char *split)
 {
@@ -29,22 +67,28 @@ char	*handle_split(char *split)
 	return (tmp);
 }
 
-
 int	argm_handler(char *str)
 {
-	char			**split;
-	char			*path;
+	t_command	*cmd;
+	char		**split;
+	char		*path;
 
-	split = ft_split(str, ' ');
+	split = ft_split(str);
 	if (!split || !split[0])
 		return (0);
 	check_expander(split, this_env());
-	check_redirection(split);
+    if (!validate_arguments(split))
+    {
+        alloc().free_matrix((void **) split);
+        return (0);
+    }
 	path = string().strdup(split[0]);
-	if (split[0][0] == '/')
-		split [0] = handle_split(split[0]);
-	cmdfunc().add(path, split);
-	alloc().free_matrix((void **)split);
+    if (split[0][0] == '/')
+        split [0] = handle_split(split[0]);
+    cmd = cmdfunc().add(path, split);
+    this_red(cmd->io);
+    check_redirection(split);
+    alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
 }

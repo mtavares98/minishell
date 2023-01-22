@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:49:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/23 17:38:06 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:38:15 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,24 @@ void	remove_node_red(t_red *node)
 	alloc().free_array(node);
 }
 
-void	redremove(int i)
+void	redremove(int i, t_red **begin)
 {
 	t_red	*rem;
 	t_red	*tmp;
 	int		j;
 
+	if (!*begin)
+		return ;
 	if (i < 0)
 		return ;
 	if (i == 0)
 	{
-		rem = *this_red(NULL);
-		*this_red(NULL) = (*this_red(NULL))->next;
+		rem = *begin;
+		*begin = (*begin)->next;
 	}
 	else
 	{
-		tmp = *this_red(NULL);
+		tmp = *begin;
 		j = 0;
 		while (++j < i && tmp->next)
 			tmp = tmp->next;
@@ -72,7 +74,7 @@ t_red	*new_node_red(char *file, int is_double, int is_output)
 	return (node);
 }
 
-t_red	*redadd(char *file, int is_double, int is_output)
+t_red	*redadd(char *file, int is_double, int is_output, t_red **begin)
 {
 	t_red	*new;
 	t_red	*tmp;
@@ -81,12 +83,12 @@ t_red	*redadd(char *file, int is_double, int is_output)
 	new = new_node_red(file, is_double, is_output);
 	if (!new)
 		return (NULL);
-	if (!*this_red(NULL))
+	if (!*begin)
 	{
-		*this_red(NULL) = new;
+		*begin = new;
 		return (new);
 	}
-	tmp = *this_red(NULL);
+	tmp = *begin;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;

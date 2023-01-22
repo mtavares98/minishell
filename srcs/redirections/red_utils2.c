@@ -6,29 +6,27 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:58:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/23 17:36:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:40:07 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/red_utils.h"
 
-void	remove_by_reference(t_red *remove)
+void	remove_by_reference(t_red *remove, t_red **begin)
 {
 	t_red	*tmp;
 
-	tmp = *this_red(NULL);
+	tmp = *begin;
 	if (!tmp || !remove)
 		return ;
-	if (tmp == remove)
+	if (*begin == remove)
+		*begin = (*begin)->next;
+	else
 	{
-		remove_node_red(remove);
-		return ;
-	}
-	while (tmp->next && tmp->next != remove)
-		tmp = tmp->next;
-	if (tmp == remove)
-	{
+		tmp = *begin;
+		while (tmp->next && remove != tmp->next)
+			tmp = tmp->next;
 		tmp->next = remove->next;
-		remove_node_red(remove);
 	}
+	remove_node_red(remove);
 }

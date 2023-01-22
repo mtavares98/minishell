@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2022/12/02 10:34:09 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/22 04:04:09 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//Redirections List, does not handle "|" yet
-//Still haven't apllied the clean function. REMINDER
 
 int	get_redirections(char *split, int i)
 {
-	printf("%d\n", i);
-	printf("%s\n", split);
 	if (i == 1)
-		redfunc().add(split, 0, 1);
+		redfunc().add(split, 0, 1, this_red(NULL));
 	if (i == 2)
-		redfunc().add(split, 1, 1);
+		redfunc().add(split, 1, 1, this_red(NULL));
 	if (i == 3)
-		redfunc().add(split, 0, 0);	
+		redfunc().add(split, 0, 0, this_red(NULL));
 	if (i == 4)
-		redfunc().add(split, 1, 0);
+		redfunc().add(split, 1, 0, this_red(NULL));
 	return (1);
 }
 
@@ -34,17 +30,17 @@ int	check_redirection(char **split)
 {
 	int	i;
 
-	i = -1;
-	while (split[++i])
-	{
-		if (!string().strncmp(split[i], ">", string().len(split[i], -1)))
-			get_redirections(split[i - 1], 1);
-		else if (!string().strncmp(split[i - 1], ">>", string().len(split[i], -1)))
-			get_redirections(split[i], 2);
-		else if (!string().strncmp(split[i - 1], "<", string().len(split[i], -1)))
-			get_redirections(split[i], 3);
-		else if (!string().strncmp(split[i - 1], "<<", string().len(split[i], -1)))
-			get_redirections(split[i], 4);
-	}
+    i = -1;
+    while (split[++i])
+    {
+       if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+            get_redirections(split[i + 1], 2);
+       else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+           get_redirections(split[i + 1], 4);
+       else if (split[i][0] == '>')
+            get_redirections(split[i + 1], 1);
+       else if (split[i][0] == '<')
+            get_redirections(split[i + 1], 3);
+    }
 return (0);
 }
