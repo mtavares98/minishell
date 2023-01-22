@@ -12,6 +12,40 @@
 
 #include "../../includes/minishell.h"
 
+static   int    print_error(char *s)
+{
+    printf("%s", s);
+    return(0);
+}
+
+int check_argument(char *split)
+{
+    if (!split)
+        return(print_error("sh: syntax error near unexpected token `newline'\n"));
+    if (split[0] == '<' || split[0] == '>')
+        return(print_error("sh: syntax error near unexpected token `<'\n"));
+    return(1);
+}
+
+static int validate_arguments(char **split)
+{
+    int i;
+
+    i = -1;
+    while(split[++i])
+    {
+        if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+            return(check_argument(split[i + 1]));
+        else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+            return(check_argument(split[i + 1]));
+        else if (split[i][0] == '>')
+            return(check_argument(split[i + 1]));
+        else if (split[i][0] == '<')
+            return(check_argument(split[i + 1]));
+    }
+    return(1);
+}
+
 char	*handle_split(char *split)
 {
 	int		sz;
@@ -39,6 +73,11 @@ int	argm_handler(char *str)
 	if (!split || !split[0])
 		return (0);
 	check_expander(split, this_env());
+    if (!validate_arguments(split))
+    {
+        alloc().free_matrix((void **) split);
+        return (0);
+    }
 	path = string().strdup(split[0]);
     if (split[0][0] == '/') {
         split [0] = handle_split(split[0]);
