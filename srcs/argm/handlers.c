@@ -30,20 +30,24 @@ int check_argument(char *split)
 static int validate_arguments(char **split)
 {
     int i;
+    int j;
 
     i = -1;
+    j = 1;
     while(split[++i])
     {
         if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
-            return(check_argument(split[i + 1]));
+            j = check_argument(split[i + 1]);
         else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-            return(check_argument(split[i + 1]));
+            j = check_argument(split[i + 1]);
         else if (split[i][0] == '>')
-            return(check_argument(split[i + 1]));
+            j = check_argument(split[i + 1]);
         else if (split[i][0] == '<')
-            return(check_argument(split[i + 1]));
+            j = check_argument(split[i + 1]);
+        if (j == 0)
+            return(j);
     }
-    return(1);
+    return(j);
 }
 
 char	*handle_split(char *split)
@@ -79,9 +83,8 @@ int	argm_handler(char *str)
         return (0);
     }
 	path = string().strdup(split[0]);
-    if (split[0][0] == '/') {
+    if (split[0][0] == '/')
         split [0] = handle_split(split[0]);
-    }
     cmd = cmdfunc().add(path, split);
     this_red(cmd->io);
     check_redirection(split);

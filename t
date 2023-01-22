@@ -1,9 +1,0 @@
-includes
-Makefile
-minishell
-notas
-objs
-README.md
-srcs
-t
-valgrind-out.txt
