@@ -107,12 +107,17 @@ int	check_expander(char **split, t_env *env)
 {
 	int		i;
 	int		j;
+	int		ctr;
 
+	ctr = 1;
 	i = -1;
 	while (split[++i])
 	{
 		j = -1;
-		while (split[i][++j])
+		if (split[i] != split[0])
+			if (split[i - 1][0] == '<' && split[i - 1][1] == '<')
+				ctr = 0;
+		while (split[i][++j] && ctr == 1)
 		{
 			if (split[i][j] == '\'')
 				j = check_single_quote(split[i], j, '\'');
@@ -124,6 +129,7 @@ int	check_expander(char **split, t_env *env)
 			}
 		}
 		split[i] = remove_quotes(split[i]);
+		ctr = 1;
 	}
 	return (1);
 }

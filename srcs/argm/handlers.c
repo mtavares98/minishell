@@ -40,11 +40,13 @@ int	argm_handler(char *str)
 		return (0);
 	check_expander(split, this_env());
 	path = string().strdup(split[0]);
-	if (split[0][0] == '/')
-		split [0] = handle_split(split[0]);
-	cmd = cmdfunc().add(path, split);
-	this_red(cmd->io);
-	alloc().free_matrix((void **)split);
+    if (split[0][0] == '/') {
+        split [0] = handle_split(split[0]);
+    }
+    cmd = cmdfunc().add(path, split);
+    this_red(cmd->io);
+    check_redirection(split);
+    alloc().free_matrix((void **)split);
 	alloc().free_array((void *)path);
 	return (1);
 }

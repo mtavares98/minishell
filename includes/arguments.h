@@ -22,6 +22,7 @@ int		validate_string(char *str);
 int		check_spaces(char *s);
 int		skip_quotes(char *s, char c);
 int 	check_reds(char *s);
+int	    check_redirection(char **split);
 
 void	splitcpy(char *dst, char *src, int sz);
 // void	printlist(t_command *vars);
