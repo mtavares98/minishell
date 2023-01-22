@@ -3,114 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/17 18:52:36 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/22 04:15:41 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static size_t	ft_countword(char const *s)
+static size_t	ft_countword(char *s)
 {
-	size_t	count;
+    size_t	count;
 
-	if (!*s)
-		return (0);
-	count = 0;
+    count = 0;
+    while (*s)
+    {
+        while (string().ft_isspace(*s))
+            s++;
+        if (*s && *s != '<' && *s != '>')
+            count++;
+        while ( *s && !string().ft_isspace(*s))
+        {
+            if (*s == '"')
+                s += skip_quotes(s + 1, '"');
+            if (*s == '\'')
+                s += skip_quotes(s + 1, '\'');
+            if ((*s == '<' || *s == '>' || *s == '|'))
+            {
+				s += check_reds(s);
+				count++;
+				break ;
+			}
+			if(!*s)
+				break;
+            s++;
+        }
+    }
+    return (count);
+}
+
+int	split_len(char *s)
+{
+	int	i;
+
+	i = string().len(s, -1);
+	if (*s == '>' || *s == '<' || *s == '|')
+		return(check_reds(s));
 	while (*s)
 	{
-		while (string().ft_isspace(*s))
-			s++;
-		if (*s)
-			count++;
-		while ( *s && !string().ft_isspace(*s))
-			s++;
+		if (*s == '"')
+            s += skip_quotes(s + 1, '"');
+        if (*s == '\'')
+            s += skip_quotes(s + 1, '\'');
+		if (*s == '>' || *s == '<')
+			break;
+		if (*s && string().ft_isspace(*s))
+			return(i -string().len(s, -1));
+		if(!*s)
+			break;
+		s++;
 	}
-	return (count);
-}
-
-int	check_quotes(char *str, char ap)
-{
-	int	i;
-
-	i = 0;
-	while (str[++i] && str[i] != ap)
-		;
-	if (str[i + 1] && string().ft_isspace(str[i + 1]))
-		return (i);
-	while (str[i])
-	{
-		while (str[i] && str[i] != ' ')
-			i++;
-		if (!str[i])
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-int	add_quotes(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != ' ')
-	{
-		if (str[i] == '\'' )
-		{
-			i = i + check_quotes(str + i, '\'');
-			return (i);
-		}
-		if (str[i] == '"')
-		{
-			i = i + check_quotes(str + i, '"');
-			return (i);
-		}
-		i++;
-	}
-	return (i);
-}
-
-int	ft_split_aux(char *s, int word_len)
-{
-	if (*s == '\'' || *s == '"')
-	{
-		if (*s == '\'')
-			word_len = check_quotes(s, '\'');
-		else
-			word_len = check_quotes(s, '"');
-	}
-	else if (check_spaces(s))
-		word_len = string().len(s, -1);
-	else
-		word_len = add_quotes(s);
-	return (word_len);
+	return(i - string().len(s, -1));
 }
 
 char	**ft_split(char *s)
 {
-	char	**lst;
-	size_t	word_len;
+	char	**split;
+	int		sz;
 	int		i;
+	int		cw;
 
 	if (!s)
-		return (0);
-	lst = alloc().calloc((ft_countword(s) + 1) * sizeof(char *));
-	if (!lst)
-		return (0);
+		return(NULL);
+	cw = ft_countword(s);
+	split = malloc(sizeof(char *) * (cw + 1));
+	if(!split)
+		return(NULL);
 	i = 0;
-	while (*s)
+	while (cw > 0)
 	{
-		while (string().ft_isspace(*s) && *s)
+		while(*s && string().ft_isspace(*s))
 			s++;
-		if (*s == '\0')
-			break ;
-		word_len = ft_split_aux(s, word_len);
-		lst[i++] = string().substr(s, 0, word_len);
-		s += word_len;
+		sz = split_len(s);
+		split[i] = malloc(sz + 1);
+		splitcpy(split[i], s, sz);
+		s += sz;
+		cw--;
+		i++;
 	}
-	lst[i] = NULL;
-	return (lst);
+	split[i] = 0;
+	return(split);
 }
