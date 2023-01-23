@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/23 14:11:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:47:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@ void	print_list(t_command *begin)
 
 	while (begin)
 	{
-		write(1, "FDS\n", 4);
-		write(1, "END FDS\n", 8);
-		write(1, "Command\n", 8);
-		write(1, "Path\n", 5);
-		write(1, begin->path, string().len(begin->path, -1));
-		write(1, "\n", 1);
-		write(1, "CMD\n", 4);
+		printf_fd(1, "FDS\n");
+		printf_fd(1, "input %i\n", begin->infd);
+		printf_fd(1, "output %i\n", begin->outfd);
+		printf_fd(1, "END FDS\n");
+		printf_fd(1, "Command\n");
+		printf_fd(1, "Path\n");
+		printf_fd(1, "%s\n", begin->path);
+		printf_fd(1, "CMD\n");
 		i = -1;
-		while (begin->args && begin->args[++i]) {
-			write(1, begin->args[i], string().len(begin->args[i], -1));
-			write(1, "\n", 1);
-		}
-		write(1, "End Command\n", 12);
-		write(1, "Redirections\n", 13);
+		while (begin->args && begin->args[++i])
+			printf_fd(1, "%s\n", begin->args[i]);
+		printf_fd(1, "End Command\n");
+		printf_fd(1, "Redirections\n");
 		this_red(begin->io);
 		tmp = *this_red(NULL);
 		printf("%p\n", *this_red(NULL));
 		while (tmp)
 		{
-			write(1, tmp->file, string().len(tmp->file, -1));
+			printf_fd(1, "%s\n", tmp->file);
+			printf_fd(1, "is_double = %i\n", tmp->is_double);
+			printf_fd(1, "is_output = %i\n", tmp->is_output);
 			tmp = tmp->next;
 		}
-		write(1, "End Redirections\n\n", 18);
+		printf_fd(1, "End Redirections\n\n");
 		begin = begin->next;
 	}
 }

@@ -47,6 +47,8 @@ NAME		=	minishell
 
 SHELL		=	/bin/bash
 
+LIB			=	libprintf_fd.a
+
 INC			=	includes/
 
 CC			=	gcc
@@ -85,18 +87,21 @@ header:
 	@echo "         |_/\_____/\_|  |_/\__,_|_|\_\___| v2"
 	@echo
 
-$(NAME):	$(OBJ)
+$(NAME):	$(LIB) $(OBJ)
 	@printf "%b" "$(OK_COLOR)"
 	@echo  "✨✨ Upgraded Successfuly!! ✨✨"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I/usr/include/readline -lreadline
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -lreadline -L lib/printf_fd -lprintf_fd
 	@printf "%b" "$(NO_COLOR)"
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@printf "%b" "$(OBJ_COLOR)"
 	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I/usr/local/include -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/local/include -I lib/printf_fd/include -c $< -o $@
 	@printf "%b" "$(NO_COLOR)"
+
+$(LIB):
+	make -C lib/printf_fd
 
 clean:	header
 	@echo $(PURPLE) "🧹🧹 Cleaning... 🧹🧹" $(EOC)
