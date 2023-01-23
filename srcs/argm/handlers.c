@@ -3,52 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/22 04:04:26 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/23 17:32:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static   int    print_error(char *s)
+static int	print_error(char *s)
 {
-    printf("%s", s);
-    return(0);
+	printf("%s", s);
+	return(0);
 }
 
 int check_argument(char *split)
 {
-    if (!split)
-        return(print_error("sh: syntax error near unexpected token `newline'\n"));
-    if (split[0] == '<' || split[0] == '>')
-        return(print_error("sh: syntax error near unexpected token `<'\n"));
-    return(1);
+	if (!split)
+		return(print_error("bash: syntax error near unexpected token `newline'\n"));
+	if (split[0] == '<' || split[0] == '>')
+		return(print_error("bash: syntax error near unexpected token %c\n"));
+	return(1);
 }
 
-static int validate_arguments(char **split)
-{
-    int i;
-    int j;
+// static int validate_arguments(char **split)
+// {
+//     int i;
+//     int j;
 
-    i = -1;
-    j = 1;
-    while(split[++i])
-    {
-        if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
-            j = check_argument(split[i + 1]);
-        else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-            j = check_argument(split[i + 1]);
-        else if (split[i][0] == '>')
-            j = check_argument(split[i + 1]);
-        else if (split[i][0] == '<')
-            j = check_argument(split[i + 1]);
-        if (j == 0)
-            return(j);
-    }
-    return(j);
-}
+//     i = -1;
+//     j = 1;
+//     while(split[++i])
+//     {
+//         if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+//             j = check_argument(split[i + 1]);
+//         else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+//             j = check_argument(split[i + 1]);
+//         else if (split[i][0] == '>')
+//             j = check_argument(split[i + 1]);
+//         else if (split[i][0] == '<')
+//             j = check_argument(split[i + 1]);
+//         else if (split[i][0] == '|')
+//             if (!split[i + 1] || split[i + 1][0] == '|')
+//                 j = print_error("Pipes not accuratly placed\n");
+//         if (j == 0)
+//             return(j);
+//     }
+//     return(j);
+//}
 
 char	*handle_split(char *split)
 {
@@ -69,26 +72,32 @@ char	*handle_split(char *split)
 
 int	argm_handler(char *str)
 {
-	t_command	*cmd;
+	//t_command	*cmd;
 	char		**split;
-	char		*path;
+	int			i;
 
+	i = -1;
 	split = ft_split(str);
 	if (!split || !split[0])
 		return (0);
 	check_expander(split, this_env());
-    if (!validate_arguments(split))
-    {
-        alloc().free_matrix((void **) split);
-        return (0);
-    }
-	path = string().strdup(split[0]);
-    if (split[0][0] == '/')
-        split [0] = handle_split(split[0]);
-    cmd = cmdfunc().add(path, split);
-    this_red(cmd->io);
-    check_redirection(split);
-    alloc().free_matrix((void **)split);
-	alloc().free_array((void *)path);
+	// if (!validate_arguments(split))
+	// {
+	//     alloc().free_matrix((void **) split);
+	//     return (0);
+	// }
+	while(split[++i])
+	{
+	//	cmd = cmdfunc().add(NULL, NULL);
+	//	while(split[i] && split[i][0] != '|')
+//		{
+			//check_redirection(split);
+			//Se for redirections (2 strings) e o iterador + 2
+			// If not red
+//		}
+	}
+
+	//cmd = cmdfunc().add(path, split);
+	alloc().free_matrix((void **)split);
 	return (1);
 }
