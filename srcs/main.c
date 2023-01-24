@@ -6,11 +6,47 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/24 16:00:36 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:47:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../includes/minishell.h"
+
+void	print_list(t_command *begin)
+{
+	t_red	*tmp;
+	int		i;
+
+	while (begin)
+	{
+		printf_fd(1, "FDS\n");
+		printf_fd(1, "input %i\n", begin->infd);
+		printf_fd(1, "output %i\n", begin->outfd);
+		printf_fd(1, "END FDS\n");
+		printf_fd(1, "Command\n");
+		printf_fd(1, "Path\n");
+		printf_fd(1, "%s\n", begin->path);
+		printf_fd(1, "CMD\n");
+		i = -1;
+		while (begin->args && begin->args[++i])
+			printf_fd(1, "%s\n", begin->args[i]);
+		printf_fd(1, "End Command\n");
+		printf_fd(1, "Redirections\n");
+		this_red(begin->io);
+		tmp = *this_red(NULL);
+		printf("%p\n", *this_red(NULL));
+		while (tmp)
+		{
+			printf_fd(1, "%s\n", tmp->file);
+			printf_fd(1, "is_double = %i\n", tmp->is_double);
+			printf_fd(1, "is_output = %i\n", tmp->is_output);
+			tmp = tmp->next;
+		}
+		printf_fd(1, "End Redirections\n\n");
+		begin = begin->next;
+	}
+}
 
 void	control_d(char *str)
 {
@@ -70,6 +106,7 @@ int	main(int ac, char **av, char **envp)
 		receive_args(str);
 		alloc().free_array(str);
 		str = NULL;
-		execution(this());
+		print_list(*this());
+		/* execution(this()); */
 	}
 }

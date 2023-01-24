@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/22 04:15:41 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/23 17:24:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t	ft_countword(char *s)
     {
         while (string().ft_isspace(*s))
             s++;
-        if (*s && *s != '<' && *s != '>')
+        if (*s && *s != '<' && *s != '>'&& *s != '|')
             count++;
         while ( *s && !string().ft_isspace(*s))
         {
@@ -40,6 +40,7 @@ static size_t	ft_countword(char *s)
             s++;
         }
     }
+	printf("%ld\n", count);
     return (count);
 }
 
