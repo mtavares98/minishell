@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/29 19:41:24 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/25 01:23:14 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ void	printlist(t_command *vars)
 	printf("===============\n");
 }
 
-int	list_size(char **split)
+int	list_size(char **split, char *c)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (split[i])
-		i++;
+	i = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (c[++j])
+			if (c[j] == split[i][0])
+				return(i);
+	}
 	return (i);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:24:48 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 01:22:26 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static size_t	ft_countword(char *s)
             s++;
         }
     }
-	printf("%ld\n", count);
     return (count);
 }
 
