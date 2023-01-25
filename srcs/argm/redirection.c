@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 01:40:21 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/25 22:09:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	add_command(char **split, t_command *cmd, int i)
 
 int	get_redirections(char *split, t_command *cmd, int i)
 {
-	 char *file;
+	char *file;
 
-	 file = string().strdup(split);
-	 if (!file)
+	file = string().strdup(split);
+	if (!file)
 		  return (0);
 	if (i == 1)
 		redfunc().add(file, 0, 1, &cmd->io);
@@ -63,15 +63,15 @@ int	get_redirections(char *split, t_command *cmd, int i)
 
 int	check_redirection(char **split, t_command *cmd, int i)
 {
-	 if(split[i][0] != '>' && split[i][0] != '<')
-	 	return(0);
-	 if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
-		  get_redirections(split[i + 1], cmd, 2);
-	 else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-		  get_redirections(split[i + 1],  cmd, 4);
-	 else if (split[i][0] == '>')
-		  get_redirections(split[i + 1], cmd, 1);
-	 else if (split[i][0] == '<')
-		  get_redirections(split[i + 1], cmd, 3);
+	if(split[i][0] != '>' && split[i][0] != '<')
+		return(0);
+	if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+		get_redirections(split[i + 1], cmd, 2);
+	else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+		get_redirections(split[i + 1],  cmd, 4);
+	else if (split[i][0] == '>')
+		get_redirections(split[i + 1], cmd, 1);
+	else if (split[i][0] == '<')
+		get_redirections(split[i + 1], cmd, 3);
 	return (1);
 }

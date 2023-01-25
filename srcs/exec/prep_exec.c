@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 16:34:42 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:51:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	exec_cmd(int *in, int *out, t_command **cmd)
 		b = 1;
 	}
 	close_fd(in, out);
-	if (!b && execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
+	if ((*cmd)->path && !b && \
+	execve((*cmd)->path, (*cmd)->args, this_env()->env) == -1)
 		perror("Execve");
 	free_memory(this());
 	if (this_env()->env)
@@ -42,7 +43,7 @@ int	name(t_command **cmd, int num_cmd)
 {
 	int	pid;
 
-	if (is_builtin((*cmd)->path) && num_cmd == 1)
+	if ((*cmd)->path && is_builtin((*cmd)->path) && num_cmd == 1)
 	{
 		(this_env())->status = exec_builtins((*cmd)->outfd, cmd);
 		return ((this_env())->status);
@@ -56,7 +57,7 @@ int	name(t_command **cmd, int num_cmd)
 	if (pid == 0)
 	{
 		close_fd_exeption(this(), (*cmd)->infd, (*cmd)->outfd);
-		if (is_builtin((*cmd)->path))
+		if ((*cmd)->path && is_builtin((*cmd)->path))
 		{
 			(this_env())->status = exec_builtins((*cmd)->outfd, cmd);
 			free_memory(cmd);

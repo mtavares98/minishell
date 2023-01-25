@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:25:05 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/10 12:29:34 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:02:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,15 @@ static int	fill_heredoc(int fd, char *delimiter)
 	{
 		if (s)
 			free(s);
-		write(1, "> ", 2);
+		printf_fd(1, "> ");
 		s = get_next_line(0);
 		if (!s)
 			return (1);
-		if (!string().strncmp(delimiter, s, string().len(delimiter, -1)))
-			write(fd, s, string().len(s, -1));
-		else
-			write(fd, "\n", 1);
+		if (string().strncmp(delimiter, s, string().len(delimiter, -1)))
+			printf_fd(fd, "%s", s);
 	}
-	close(fd);
-	if (!s)
-		return (1);
+	if (fd != -1)
+		close(fd);
 	free(s);
 	return (0);
 }

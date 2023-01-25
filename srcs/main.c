@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 16:43:06 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:19:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,11 @@ int	main(int ac, char **av, char **envp)
 		counter()->mallocs++;
 		if (str && *str)
 			add_history(str);
-		receive_args(str);
+		if (str && *str)
+			receive_args(str);
 		alloc().free_array(str);
 		str = NULL;
-		execution(this());
+		if (*this())
+			execution(this());
 	}
 }
