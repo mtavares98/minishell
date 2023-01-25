@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 22:32:16 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:15:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct s_env		t_env;
 
 struct s_env
 {
-	char			**env;
-	unsigned char	status;
+	char	**env;
+	int		status;
 };
 
 t_env	*this_env(void);

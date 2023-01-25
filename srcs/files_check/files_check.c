@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 21:49:34 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:35:23 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_full_path(t_command **cmd, char *path)
 	if (!*cmd)
 		return (1);
 	if (!path)
-		return (print_error_cmd((*cmd), 127, 0));
+		return (print_error_cmd(127, 0, (*cmd)->args[0]));
 	while (path)
 	{
 		if ((*cmd)->path)
@@ -63,7 +63,7 @@ int	get_full_path(t_command **cmd, char *path)
 		if (access((*cmd)->path, F_OK) != -1)
 			break ;
 		if (!*path)
-			return (print_error_cmd((*cmd), 127, 1));
+			return (print_error_cmd(127, 1, (*cmd)->args[0]));
 	}
 	return (0);
 }
@@ -84,30 +84,27 @@ addindex the file exists. If the variable have absolute path it will test
 if that file exists based on the path provided. If it isn't an
 absolute path it will be search for a Path based on $PATH. */
 
-int	check_files(t_command **cmd, char *path)
+int	check_files(t_command *cmd, char *path)
 {
-	t_command	*tmp;
-	int			status;
+	int	status;
 
-	tmp = *cmd;
-	while (tmp)
+	if (cmd)
 	{
-		if (tmp->path && string().strchr(tmp->path, '/'))
+		if (cmd->path && string().strchr(cmd->path, '/'))
 		{
-			if (access((*cmd)->path, F_OK) == -1)
+			if (access(cmd->path, F_OK) == -1)
 			{
-				this_env()->status = print_error_cmd(tmp, 127, 1);
-				return (1);
+				this_env()->status = print_error_cmd(127, 1, cmd->path);
+				return (127);
 			}
 		}
-		else if (tmp->path && !is_builtin(tmp->path))
+		else if (cmd->path)
 		{
-			status = get_full_path(&tmp, path);
+			status = get_full_path(&cmd, path);
 			this_env()->status = status;
 			if (status)
-				return (1);
+				return (127);
 		}
-		tmp = tmp->next;
 	}
 	return (0);
 }

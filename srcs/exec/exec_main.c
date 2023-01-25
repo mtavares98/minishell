@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 22:24:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:27:38 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	prep_red(t_command **cmd)
 int	execution(t_command **cmd)
 {
 	int		cmd_num;
-	char	*pathenv;
 
 	cmd_num = get_num_cmd(*this());
 	if (cmd_num > 1 && prep_fds(*cmd, cmd_num))
@@ -105,12 +104,7 @@ int	execution(t_command **cmd)
 	}
 	if (prep_red(cmd))
 		return (1);
-	pathenv = getpath(this_env()->env);
-	if (check_files(cmd, pathenv + 5 * (pathenv != NULL)))
-	{
-		free_memory(cmd);
-		return (2);
-	}
+	print_list(*this());
 	if (prep_exec(cmd))
 		return (1);
 	return (0);
