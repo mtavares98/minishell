@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:58:35 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/22 18:40:07 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:25:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/red_utils.h"
+#include <red_utils.h>
 
 void	remove_by_reference(t_red *remove, t_red **begin)
 {

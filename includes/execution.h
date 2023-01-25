@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/02 15:59:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:37:20 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ struct s_exec
 	int	i;
 };
 
+int		check_heredoc(t_red *io);
+int		get_num_cmd(t_command *cmd);
 int		print_error_cmd(t_command *cmd, int status, char path_exists);
 void	update_status(t_env *env);
-void	close_fd_exeption(t_env *env, int in, int out);
+void	close_fd_exeption(t_command **cmd, int in, int out);
 int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 int		is_builtin(char *cmd);
-int		get_cmd_not_builtin(t_command *cmd);
 char	*getpath(char **envp);
 int		exec_builtins(int out, t_command **cmd);
 void	close_fd(int *in, int *out);

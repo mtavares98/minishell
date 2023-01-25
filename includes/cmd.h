@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 15:04:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 22:24:11 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ struct s_red
 	t_red	*next;
 };
 
+int			list_size(char **split, char *c);
 t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
-int			list_size(char **split, char *c);
-int			prep_heredoc(t_red *io);
+int			prep_heredoc(t_red *io, int *fd);
 int			prep_red(t_command **cmd);
 t_red		**this_red(t_red *red);
 t_redfunc	redfunc(void);

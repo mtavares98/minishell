@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 14:58:17 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:49:34 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	check_files(t_command **cmd, char *path)
 	tmp = *cmd;
 	while (tmp)
 	{
-		if (string().strchr(tmp->path, '/'))
+		if (tmp->path && string().strchr(tmp->path, '/'))
 		{
 			if (access((*cmd)->path, F_OK) == -1)
 			{
@@ -100,7 +100,7 @@ int	check_files(t_command **cmd, char *path)
 				return (1);
 			}
 		}
-		else if (!is_builtin(tmp->path))
+		else if (tmp->path && !is_builtin(tmp->path))
 		{
 			status = get_full_path(&tmp, path);
 			this_env()->status = status;

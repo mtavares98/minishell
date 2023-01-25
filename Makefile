@@ -1,5 +1,3 @@
-#			$(SRC_DIR)/redirections/heredoc.c \
-			$(SRC_DIR)/redirections/check_red.c \
 
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
@@ -31,6 +29,8 @@ SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/redirections/red.c \
 			$(SRC_DIR)/redirections/red_utils.c \
 			$(SRC_DIR)/redirections/red_utils2.c \
+			$(SRC_DIR)/redirections/heredoc.c \
+			$(SRC_DIR)/redirections/check_red.c \
 			$(SRC_DIR)/str/str.c \
 			$(SRC_DIR)/str/utils1.c \
 			$(SRC_DIR)/str/utils2.c \
@@ -51,7 +51,7 @@ LIB			=	libprintf_fd.a
 
 INC			=	includes/
 
-CC			=	gcc
+CC			=	cc
 
 #-fsanitize=address
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 01:10:30 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/25 18:00:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_command	*new_node(char *path, char **split)
 		return (NULL);
 	node->path = path;
 	node->args = split;
-	node->infd = -1;
-	node->outfd = -1;
+	node->infd = 0;
+	node->outfd = 1;
 	node->io = NULL;
 	node->next = NULL;
 	return (node);

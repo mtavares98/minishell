@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 01:36:58 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/25 22:07:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,28 @@ int check_argument(char *split)
 
 static int validate_arguments(char **split)
 {
-     int i;
-     int j;
+	 int i;
+	 int j;
 
-     i = -1;
-     j = 1;
-    while(split[++i])
-    {
-        if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
-             j = check_argument(split[i + 1]);
-        else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-             j = check_argument(split[i + 1]);
-        else if (split[i][0] == '>')
-             j = check_argument(split[i + 1]);
-        else if (split[i][0] == '<')
-             j = check_argument(split[i + 1]);
-        else if (split[i][0] == '|')
-            if (!split[i + 1] || split[i + 1][0] == '|')
-                j = print_error("Pipes not accuratly placed\n");
-        if (j == 0)
-            return(j);
-    }
-     return(j);
+	 i = -1;
+	 j = 1;
+	while(split[++i])
+	{
+		if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
+			 j = check_argument(split[i + 1]);
+		else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
+			 j = check_argument(split[i + 1]);
+		else if (split[i][0] == '>')
+			 j = check_argument(split[i + 1]);
+		else if (split[i][0] == '<')
+			 j = check_argument(split[i + 1]);
+		else if (split[i][0] == '|')
+			if (!split[i + 1] || split[i + 1][0] == '|')
+				j = print_error("Pipes not accuratly placed\n");
+		if (j == 0)
+			return(j);
+	}
+	 return(j);
 }
 
 char	*handle_split(char *split)
@@ -83,20 +83,20 @@ int	argm_handler(char *str)
 	check_expander(split, this_env());
 	if (!validate_arguments(split))
 	{
-	     alloc().free_matrix((void **) split);
-	     return (0);
+		alloc().free_matrix((void **) split);
+		return (0);
 	}
-	while(split[++i])
+	while (split[++i])
 	{
 		cmd = cmdfunc().add(NULL, NULL);
-		while(split[i] && split[i][0] != '|')
+		while (split[i] && split[i][0] != '|')
 		{
 			if (check_redirection(split, cmd, i))
 				i += 2;
-			if (split[i] && !check_redirection(split, cmd, i))
+			else if (split[i] && split[i][0] != '|')
 				i = add_command(split, cmd, i);
 		}
-		if(!split[i])
+		if (!split[i])
 			break ;
 	}
 	alloc().free_matrix((void **)split);

@@ -4,7 +4,11 @@ a variavel seguinte:
 echo "$fd"$A
 echo $A$rt$B"$C"$?
 
-<< da => Este caso e o heredock. Ele permite ao utilizador escrever ate encontrar a variavel que inicio o heredoc (neste caso e o "da"). Este caso em partiular a variavel NAO expande
+<< da => Este caso e o heredoc. Ele permite ao utilizador escrever ate encontrar a variavel que inicio o heredoc (neste caso e o "da"). Este caso em partiular a variavel NAO expande
 
 ls > t => Vai criar um ficheiro chamado t com a informacao executada do comando ls
 ls >> t => Faz append, ou seja o comando de cima elimina e mete nova informacao, com esta red ele faz apend da informacao que ja la esta. Esta red tambem cria ficheiro quando nao existe
+
+
+Minishell issue:
+
