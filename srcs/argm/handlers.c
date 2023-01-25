@@ -93,7 +93,7 @@ int	argm_handler(char *str)
 		{
 			if (check_redirection(split, cmd, i))
 				i += 2;
-			if (split[i] && !check_redirection(split, cmd, i))
+			else if (split[i] && split[i][0] != '|')
 				i = add_command(split, cmd, i);
 		}
 		if(!split[i])

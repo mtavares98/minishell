@@ -8,3 +8,12 @@ echo $A$rt$B"$C"$?
 
 ls > t => Vai criar um ficheiro chamado t com a informacao executada do comando ls
 ls >> t => Faz append, ou seja o comando de cima elimina e mete nova informacao, com esta red ele faz apend da informacao que ja la esta. Esta red tambem cria ficheiro quando nao existe
+
+
+Minishell issue:
+- Heredoc esta imprimir o ficheiro em vez do conteudo
+- car << 2
+- Heredoc sem arg antes da segfault
+- wc > a >> b < out | wc == Leaks
+- ls | echo bolas | wc == Leaks
+

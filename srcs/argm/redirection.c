@@ -39,7 +39,7 @@ int	add_command(char **split, t_command *cmd, int i)
 	if (string().strchr(split[i], '/'))
 		split[i] = handle_path(split[i]);
 	while (split[i] && split[i][0] != '|' && split[i][0] != '<' && split[i][0] != '>')
-		cmd->args[j++] = string().strdup(split[i++]);
+		cmd->args[j] = string().strdup(split[i++]);
 	return(i);
 }
 
@@ -48,7 +48,6 @@ int	get_redirections(char *split, t_command *cmd, int i)
 	 char *file;
 
 	 file = string().strdup(split);
-	 printf("file: %s\n", file);
 	 if (!file)
 		  return (0);
 	if (i == 1)
