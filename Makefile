@@ -1,4 +1,3 @@
-
 SRC		=	$(SRC_DIR)/allocs/allocs.c \
 			$(SRC_DIR)/argm/receive_args.c \
 			$(SRC_DIR)/argm/nodes.c \
@@ -47,7 +46,7 @@ NAME		=	minishell
 
 SHELL		=	/bin/bash
 
-LIB			=	libprintf_fd.a
+LIB			=	lib/printf_fd/libprintf_fd.a
 
 INC			=	includes/
 
@@ -106,10 +105,11 @@ $(LIB):
 clean:	header
 	@echo $(PURPLE) "🧹🧹 Cleaning... 🧹🧹" $(EOC)
 	@$(RM) $(OBJ_DIR)
+	@make clean -C lib/printf_fd
 	@printf "%b" "$(NO_COLOR)"
 
 fclean:	clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 git:
 	@git add .

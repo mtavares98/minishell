@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 17:58:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:40:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	exit_func(t_command **cmd, t_env *env)
 	if (env->env)
 		alloc().free_matrix((void **)env->env);
 	rl_clear_history();
-	exit(status);
+	exit((unsigned char)status);
 }
 
 int	export(int out, t_command *cmd, t_env *env)

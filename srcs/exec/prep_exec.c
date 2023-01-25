@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:37:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:38:36 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_cmd(int *in, int *out, t_command **cmd)
 	if (this_env()->env)
 		alloc().free_matrix((void **)this_env()->env);
 	rl_clear_history();
-	exit(EXIT_FAILURE);
+	exit(b);
 }
 
 void	child_process(t_command **cmd)
