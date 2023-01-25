@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 00:54:35 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/25 17:58:50 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		argm_handler(char *str);
 int		validate_string(char *str);
 int		check_spaces(char *s);
 int		skip_quotes(char *s, char c);
-int 	check_reds(char *s);
-int	    check_redirection(char **split, t_command *cmd, int i);
+int		check_reds(char *s);
+int		check_redirection(char **split, t_command *cmd, int i);
 int		add_command(char **split, t_command *cmd, int i);
 
 void	splitcpy(char *dst, char *src, int sz);
@@ -33,7 +33,7 @@ char	**ft_split(char *s);
 char	**recicly_split(char **split);
 char	*get_substring(char *str, char c);
 char	*handle_split(char *split);
-char	*path_handler2(char * str, char *path);
+char	*path_handler2(char *str, char *path);
 char	*handler_path(char *str);
 char	*remove_quotes(char *argm);
 

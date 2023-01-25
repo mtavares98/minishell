@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 01:10:11 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/25 17:59:12 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ struct s_red
 	t_red	*next;
 };
 
+int			list_size(char **split, char *c);
 t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
-int			list_size(char **split, char *c);
-int			prep_heredoc(t_red *io);
+int			prep_heredoc(t_red *io, int *fd);
 int			prep_red(t_command **cmd);
 t_red		**this_red(t_red *red);
 t_redfunc	redfunc(void);
-int			check_red(t_red *red, t_command *cmd);
+int			check_red(t_red **red, t_command *cmd);
 
 #endif

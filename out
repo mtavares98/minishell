@@ -1,0 +1,10 @@
+includes
+lib
+Makefile
+minishell
+notas
+objs
+out
+README.md
+srcs
+valgrind-out.txt

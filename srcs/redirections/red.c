@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   red.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 16:23:13 by mtavares          #+#    #+#             */
-/*   Updated: 2022/12/02 10:15:33 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/04 21:54:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/red_utils.h"
+#include <red_utils.h>
 
 /*
 	Order heredoc, output files, input files
@@ -27,7 +27,7 @@
 t_redfunc	redfunc(void)
 {
 	static t_redfunc	redfunc = {
-		redadd, redget, redremove, remove_by_reference
+		red_add, red_get, red_remove, remove_by_reference
 	};
 
 	return (redfunc);

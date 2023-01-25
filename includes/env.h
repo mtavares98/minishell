@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:11:48 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/17 18:35:18 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:36:28 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ struct s_env
 
 t_env	*this_env(void);
 char	**create_env(char **envp);
-void	free_memory(t_command **cmd, t_env *env);
+void	free_memory(t_command **cmd);
 
 #endif

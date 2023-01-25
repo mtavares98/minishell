@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:09:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/21 20:01:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:51:09 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,35 @@ void	update_status(t_env *env)
 	}
 }
 
-void	free_memory(t_command **cmd, t_env *env)
+void	free_memory(t_command **cmd)
 {
-	int	i;
-	int	j;
-
 	if (cmd)
 	{
 		while (*cmd)
-			cmdfunc().remove(0);
-	}
-	if (env->pipe)
-	{
-		i = 0;
-		while (env->pipe[i])
-		{
-			j = -1;
-			while (++j < 2)
-				if (env->pipe[i][j] != -1)
-					close(env->pipe[i][j]);
-			i++;
-		}
-		alloc().free_matrix((void **)env->pipe);
-		env->pipe = NULL;
+			(cmdfunc()).remove(0);
 	}
 }
 
-void	close_fd_exeption(t_env *env, int in, int out)
+void	close_fd_exeption(t_command **cmd, int in, int out)
 {
-	int	i;
-	int	j;
+	t_command	*tmp;
 
-	i = -1;
-	if (!env->pipe)
+	if (!*cmd)
 		return ;
-	while (env->pipe[++i])
+	tmp = *cmd;
+	while (tmp)
 	{
-		j = -1;
-		while (++j < 2)
+		if (!tmp->infd && tmp->infd != in)
 		{
-			if (env->pipe[i][j] != in && env->pipe[i][j] != out \
-			&& env->pipe[i][j] != -1)
-			{
-				close(env->pipe[i][j]);
-				env->pipe[i][j] = -1;
-			}
+			close(tmp->infd);
+			tmp->infd = -1;
 		}
+		if (tmp->outfd != 1 && tmp->outfd != out)
+		{
+			close(tmp->outfd);
+			tmp->outfd = -1;
+		}
+		tmp = tmp->next;
 	}
 }
 
