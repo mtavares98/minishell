@@ -105,7 +105,6 @@ int	execution(t_command **cmd)
 	}
 	if (prep_red(cmd))
 		return (1);
-	print_list(*this());
 	pathenv = getpath(this_env()->env);
 	if (check_files((cmd), pathenv + 5 * (pathenv != NULL)))
 	{

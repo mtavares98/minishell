@@ -51,7 +51,7 @@ LIB			=	libprintf_fd.a
 
 INC			=	includes/
 
-CC			=	gcc
+CC			=	cc
 
 #-fsanitize=address
 
