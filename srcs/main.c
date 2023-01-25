@@ -107,6 +107,6 @@ int	main(int ac, char **av, char **envp)
 		alloc().free_array(str);
 		str = NULL;
 		print_list(*this());
-		/* execution(this()); */
+		execution(this());
 	}
 }

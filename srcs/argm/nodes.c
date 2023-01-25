@@ -40,14 +40,11 @@ void	printlist(t_command *vars)
 int	list_size(char **split, char *c)
 {
 	int	i;
-	int	j;
 
 	i = -1;
 	while (split[++i])
 	{
-		j = -1;
-		while (c[++j])
-			if (c[j] == split[i][0])
+		if (string().strchr(c, split[i][0]))
 				return(i);
 	}
 	return (i);

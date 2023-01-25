@@ -46,12 +46,11 @@ t_command	*new_node(char *path, char **split)
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
-	if (path)
-		node->path = path_node(path, node->path);
-	if (split)
-		node->args = argms_node(node->args, split);
+	node->path = path;
+	node->args = split;
 	node->infd = -1;
 	node->outfd = -1;
+	node->io = NULL;
 	node->next = NULL;
 	return (node);
 }
