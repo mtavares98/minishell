@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arguments.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:17:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 00:54:35 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int		validate_string(char *str);
 int		check_spaces(char *s);
 int		skip_quotes(char *s, char c);
 int 	check_reds(char *s);
-int	    check_redirection(char **split, t_command *cmd);
+int	    check_redirection(char **split, t_command *cmd, int i);
+int		add_command(char **split, t_command *cmd, int i);
 
 void	splitcpy(char *dst, char *src, int sz);
 // void	printlist(t_command *vars);

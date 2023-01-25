@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2022/12/01 17:26:19 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 01:10:30 by mgranate_ls      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**argms_node(char **args, char **split)
 	int	i;
 
 	i = -1;
-	args = alloc().calloc((list_size(split) + 1) * sizeof(char **));
+	args = alloc().calloc((list_size(split, "-1") + 1) * sizeof(char **));
 	while (split[++i])
 		args[i] = string().strdup(split[i]);
 	return (args);
@@ -46,12 +46,11 @@ t_command	*new_node(char *path, char **split)
 	node = alloc().calloc(sizeof(t_command));
 	if (!node)
 		return (NULL);
-	if (path)
-		node->path = path_node(path, node->path);
-	if (split)
-		node->args = argms_node(node->args, split);
+	node->path = path;
+	node->args = split;
 	node->infd = -1;
 	node->outfd = -1;
+	node->io = NULL;
 	node->next = NULL;
 	return (node);
 }

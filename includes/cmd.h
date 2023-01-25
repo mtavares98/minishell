@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/22 18:38:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:04:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ struct s_red
 
 t_command	**this(void);
 t_cmdfunc	cmdfunc(void);
-int			list_size(char **split);
+int			list_size(char **split, char *c);
 int			prep_heredoc(t_red *io);
 int			prep_red(t_command **cmd);
 t_red		**this_red(t_red *red);
