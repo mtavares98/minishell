@@ -12,4 +12,3 @@ ls >> t => Faz append, ou seja o comando de cima elimina e mete nova informacao,
 
 Minishell issue:
 - Falta cd sem argumentos
-- Perceber se é preciso tratar do a | cat, cat | a
