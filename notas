@@ -11,6 +11,7 @@ ls >> t => Faz append, ou seja o comando de cima elimina e mete nova informacao,
 
 TODO list para antes de entregar
 	1. Proteger para mallocs desprotegidos
-	2.Norminette
+	2. Passar valgrind por leaks ou fds abertos
+	3. Norminette
 
 Minishell issue:
