@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:32:04 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 22:24:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:14:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	treat_output(t_red **red, t_command *cmd)
 	}
 	if (!check_io_dup(*red))
 	{
-		if (cmd->outfd != 1 && cmd->outfd != -1)
+		if (cmd->outfd != -1 && cmd->outfd != 1)
 			close(cmd->outfd);
 		cmd->outfd = (*red)->fd;
 	}

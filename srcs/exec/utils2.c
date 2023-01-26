@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:09:18 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/10 12:51:09 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:17:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	close_fd_exeption(t_command **cmd, int in, int out)
 	tmp = *cmd;
 	while (tmp)
 	{
-		if (!tmp->infd && tmp->infd != in)
+		if (tmp->infd != 0 && tmp->infd != -1 && tmp->infd != in)
 		{
 			close(tmp->infd);
 			tmp->infd = -1;
 		}
-		if (tmp->outfd != 1 && tmp->outfd != out)
+		if (tmp->outfd != 1 && tmp->outfd != -1 && tmp->outfd != out)
 		{
 			close(tmp->outfd);
 			tmp->outfd = -1;

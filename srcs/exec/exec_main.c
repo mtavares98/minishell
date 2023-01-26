@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 00:08:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:29:11 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	prep_red(t_command **cmd)
 	tmp = *cmd;
 	while (tmp)
 	{
+		fd[0] = -1;
+		fd[1] = -1;
 		if (check_heredoc(tmp->io) && pipe(fd) == -1)
 		{
 			perror("MMSHELL: pipe");

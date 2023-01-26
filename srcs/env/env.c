@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 01:05:42 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/26 01:22:06 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static char	*shell_lvl(char *envp)
 	if (!tmp)
 		return (NULL);
 	env = string().strjoin("SHLVL=", tmp);
-	if (tmp)
-		alloc().free_array(tmp);
+	if (!env)
+		return (NULL);
+	alloc().free_array(tmp);
 	return (env);
 }
 
