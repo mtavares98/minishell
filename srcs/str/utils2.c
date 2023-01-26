@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/14 16:30:20 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:18:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
+
 /*
 	The strnstr() function locates the first occurrence of the
 null-terminated string little in the string big, where not more than
 len characters are searched.
 Characters that appear after a ‘\0’ characterare not searched.
 */
+
 char	*ft_strnstr(char *big, char *little, size_t len)
 {
 	size_t	i;
@@ -122,6 +124,8 @@ char	*strjoin(char *s1, char *s2)
 	str[i] = 0;
 	return (str);
 }
+
+/* Check with Mario to see if i can delete that function */
 
 int	ft_ischar(char c)
 {

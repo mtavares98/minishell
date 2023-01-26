@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:27:38 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:08:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	execution(t_command **cmd)
 	}
 	if (prep_red(cmd))
 		return (1);
-	print_list(*this());
 	if (prep_exec(cmd))
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:35:23 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:16:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ int	check_files(t_command *cmd, char *path)
 		{
 			if (access(cmd->path, F_OK) == -1)
 			{
-				this_env()->status = print_error_cmd(127, 1, cmd->path);
+				(this_env())->status = print_error_cmd(127, 1, cmd->path);
 				return (127);
 			}
 		}
 		else if (cmd->path)
 		{
 			status = get_full_path(&cmd, path);
-			this_env()->status = status;
+			(this_env())->status = status;
 			if (status)
 				return (127);
 		}

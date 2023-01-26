@@ -6,11 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:32:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/17 21:41:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:14:01 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+
+void	print_list(t_command *begin);
 
 int	set_env(t_command *cmd, t_env *env, int i)
 {
@@ -93,7 +95,11 @@ int	change_env(t_env *env)
 
 int	cd(t_command *cmd, t_env *env)
 {
-	if (cmd->args[1] && cmd->args[2])
+	if (!cmd->args[1])
+		if (set_var(cmd))
+			return (1);
+	print_list(*this());
+	if (cmd->args[2])
 	{
 		print_error(cmd, 1, ": too many arguments\n");
 		return (1);

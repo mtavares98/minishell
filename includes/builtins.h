@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/15 13:38:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:15:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		exit_func(t_command **cmd, t_env *env);
 int		echo(t_command *cmd, int out);
 int		pwd(int out);
 void	print_exp(int out, char **envp);
+int		set_var(t_command *cmd);
 int		print_error(t_command *cmd, int status, char *str);
 int		deal_with_non_existing_var(t_command *cmd, int i, t_env *env);
 int		have_var(char *str, char **envp);

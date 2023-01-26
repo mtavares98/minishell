@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:45:22 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/23 17:04:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 00:09:03 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,39 @@ int	print_error(t_command *cmd, int status, char *str)
 	write(2, "'", 1);
 	write(2, str, string().len(str, -1));
 	return (status);
+}
+
+static char	*get_var(char **env, char *key)
+{
+	int		i;
+	char	*value;
+
+	i = -1;
+	while (env[++i])
+	{
+		if (!string().strncmp(key, env[i], string().len(key, -1)))
+		{
+			value = string().strdup(env[i] + string().len(env[i], '='));
+			return (value);
+		}
+	}
+	return (NULL);
+}
+
+int	set_var(t_command *cmd)
+{
+	char	**tmp;
+	char	*value;
+
+	value = get_var(this_env()->env, "HOME=");
+	if (!value)
+		return (print_error(cmd, 1, "HOME not set"));
+	tmp = cmd->args;
+	cmd->args = alloc().calloc(sizeof(char *) * (3));
+	if (!cmd->args)
+		return (2);
+	cmd->args[0] = tmp[0];
+	cmd->args[1] = value;
+	alloc().free_array(tmp);
+	return (0);
 }
