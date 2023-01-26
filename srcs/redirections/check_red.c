@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:32:04 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 01:14:27 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:03:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ static int	treat_output(t_red **red, t_command *cmd)
 
 static int	treat_input(t_red **red, t_command *cmd)
 {
-	if (check_io_dup(*red))
-		return (0);
 	if (!(*red)->is_double)
 		(*red)->fd = open((*red)->file, O_RDONLY);
 	if ((*red)->fd == -1)
 	{
 		perror("MMSHELL: open");
 		return (1);
+	}
+	if (check_io_dup(*red))
+	{
+		close((*red)->fd);
+		return (0);
 	}
 	if (cmd->infd != -1 && cmd->infd != 0)
 		close(cmd->infd);

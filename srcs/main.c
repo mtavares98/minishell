@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 22:19:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:07:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	control_d(char *str)
 		return ;
 	rl_clear_history();
 	write(1, "\nexit\n", 6);
+	if (this_env()->env)
+		alloc().free_matrix((void **)this_env()->env);
 	exit(this_env()->status);
 }
 

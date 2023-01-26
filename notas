@@ -15,3 +15,4 @@ TODO list para antes de entregar
 	3. Norminette
 
 Minishell issue:
+	- Falta abstrair a função de dar valores pode ser possível cat < Makefile out fica args cat,out e a redirection < Makefile
