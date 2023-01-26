@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:09:39 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 17:58:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:48:37 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		check_spaces(char *s);
 int		skip_quotes(char *s, char c);
 int		check_reds(char *s);
 int		check_redirection(char **split, t_command *cmd, int i);
-int		add_command(char **split, t_command *cmd, int i);
+int		add_command(char *split, t_command *cmd);
 
 void	splitcpy(char *dst, char *src, int sz);
 // void	printlist(t_command *vars);

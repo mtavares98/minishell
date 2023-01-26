@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 22:07:49 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:55:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	argm_handler(char *str)
 			if (check_redirection(split, cmd, i))
 				i += 2;
 			else if (split[i] && split[i][0] != '|')
-				i = add_command(split, cmd, i);
+				add_command(split[i++], cmd);
 		}
 		if (!split[i])
 			break ;

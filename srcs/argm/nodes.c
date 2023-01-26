@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 01:23:14 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/26 16:50:14 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	list_size(char **split, char *c)
 	while (split[++i])
 	{
 		if (string().strchr(c, split[i][0]))
-				return(i);
+			return(i);
 	}
 	return (i);
 }
-

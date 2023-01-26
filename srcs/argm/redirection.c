@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 22:09:52 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:53:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,33 @@ char	*handle_path(char *split)
 	return (tmp);
 }
 
-int	add_command(char **split, t_command *cmd, int i)
+int	add_command(char *split, t_command *cmd)
 {
-	int	j;
+	char	**tmp;
+	int		j;
+	int		args_num;
 
-	cmd->args = alloc().calloc((list_size(split + i, "<|>") + 1) * sizeof(char *));
-	j = 0;
-	cmd->path = string().strdup(split[i]);
-	if (string().strchr(split[i], '/'))
-		split[i] = handle_path(split[i]);
-	while (split[i] && split[i][0] != '|' && split[i][0] != '<' && split[i][0] != '>')
-		cmd->args[j++] = string().strdup(split[i++]);
-	return(i);
+	args_num = -1 * (cmd->args != NULL);
+	while (cmd->args && cmd->args[++args_num])
+		;
+	if (!cmd->path)
+		cmd->path = string().strdup(split);
+	if (!cmd->path)
+		return (0);
+	tmp = cmd->args;
+	cmd->args = alloc().calloc((args_num + 2) * sizeof(char *));
+	if (!cmd->args)
+	{
+		cmd->args = tmp;
+		return (0);
+	}
+	j = -1;
+	while (++j < args_num)
+		cmd->args[j] = tmp[j];
+	cmd->args[j] = string().strdup(split);
+	if (!cmd->args[j])
+		return (0);
+	return (1);
 }
 
 int	get_redirections(char *split, t_command *cmd, int i)
