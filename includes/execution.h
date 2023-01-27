@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:36:11 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:43:43 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ struct s_exec
 	int	i;
 };
 
+int		fork_heredoc(int fd, char *delimiter, int *fd_not_used);
 int		check_heredoc(t_red *io);
 int		get_num_cmd(t_command *cmd);
 int		print_error_cmd(int status, char path_exists, char *file);

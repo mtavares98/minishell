@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 00:18:21 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:52:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char	*strjoin(char *s1, char *s2)
 
 /* Check with Mario to see if i can delete that function */
 
-int	ft_ischar(char c)
+/* int	ft_ischar(char c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
+} */

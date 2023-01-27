@@ -6,14 +6,14 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 15:07:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:52:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "../includes/minishell.h"
 
-void	print_list(t_command *begin)
+/* void	print_list(t_command *begin)
 {
 	t_red	*tmp;
 	int		i;
@@ -46,7 +46,7 @@ void	print_list(t_command *begin)
 		printf_fd(1, "End Redirections\n\n");
 		begin = begin->next;
 	}
-}
+} */
 
 void	control_d(char *str)
 {

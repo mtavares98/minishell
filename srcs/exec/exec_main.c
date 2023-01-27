@@ -6,14 +6,12 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 01:29:11 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:50:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <execution.h>
 #include <minishell.h>
-
-void	print_list(t_command *begin);
 
 int	get_num_cmd(t_command *cmd)
 {
@@ -56,26 +54,33 @@ static int	prep_fds(t_command *cmd, int num_cmd)
 	return (0);
 }
 
-int	prep_red(t_command **cmd)
+static int	heredoc(t_command *cmd)
 {
-	int			fd[2];
-	t_command	*tmp;
-	t_red		*head;
+	int	fd[2];
 
-	tmp = *cmd;
-	while (tmp)
+	while (cmd)
 	{
 		fd[0] = -1;
 		fd[1] = -1;
-		if (check_heredoc(tmp->io) && pipe(fd) == -1)
+		if (check_heredoc(cmd->io) && pipe(fd) == -1)
 		{
 			perror("MMSHELL: pipe");
 			return (1);
 		}
-		if (prep_heredoc(tmp->io, fd))
+		if (prep_heredoc(cmd->io, fd))
 			return (1);
-		tmp = tmp->next;
+		cmd = cmd->next;
 	}
+	return (0);
+}
+
+int	prep_red(t_command **cmd)
+{
+	t_command	*tmp;
+	t_red		*head;
+
+	if (heredoc(*cmd))
+		return (1);
 	tmp = *cmd;
 	while (tmp)
 	{
