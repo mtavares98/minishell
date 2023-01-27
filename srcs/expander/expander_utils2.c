@@ -48,17 +48,16 @@ char	*get_status(char *str)
 	i = 0;
 	ch = string().itoa(NULL, &i, 1, this_env()->status);
 	tmp = str;
-	str = alloc().calloc(string().len(tmp, -1));
+	str = alloc().calloc(string().len(tmp, -1) + string().len(ch, -1) + 1);
 	if (!str)
 	{
 		str = tmp;
 		return (str);
 	}
 	i = ft_strcpy(tmp, str, '$');
-	str[i] = ch[0];
-	i = i + 2;
-	if (tmp[i])
-		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
+	ft_strcpy(ch , str + string().len(str, -1), -1);
+	i = i + string().len(ch, -1) + 1;
+	ft_strcpy(tmp + i, str + string().len(str, -1), -1);
 	alloc().free_array(ch);
 	alloc().free_array(tmp);
 	return (str);

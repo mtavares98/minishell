@@ -15,4 +15,15 @@ TODO list para antes de entregar
 	3. Norminette
 
 Minishell issue:
-	- Falta abstrair a função de dar valores pode ser possível cat < Makefile out fica args cat,out e a redirection < Makefile
+	- Falta abstrair a função de dar valores pode ser possível cat < Makefile out fica args cat,out e a redirection < Makefile\
+
+Long does not:  bash: exit: 9223372036854775808: numeric argument required
+
+Incorrect error code:
+mgranate@c2r1s2:~/Desktop/minishel2$ exit 12345
+exit
+c2r1s2% echo $?
+57
+We had a 5 instead of 57
+
+The issue is becasue the error exit code is only printing the 1 character
