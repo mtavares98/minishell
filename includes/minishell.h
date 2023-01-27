@@ -29,6 +29,6 @@
 
 void	printlist(t_command *vars);
 int		check_expander(char **split, t_env *env);
-int		her_expander(char *her, t_env *env);
+char	*her_expander(char *her, t_env *env);
 
 #endif

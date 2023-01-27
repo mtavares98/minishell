@@ -103,7 +103,7 @@ char	*check_dollar(char *str, int j, t_env *env)
 	return (str);
 }
 
-int	her_expander(char *her, t_env *env)
+char	*her_expander(char *her, t_env *env)
 {
 	int	i;
 
@@ -113,7 +113,7 @@ int	her_expander(char *her, t_env *env)
 		if(her[i] == '$' && her[i + 1])
 			her = check_dollar(her, i, env);
 	}
-	return(1);
+	return(her);
 }
 
 int	check_expander(char **split, t_env *env)

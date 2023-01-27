@@ -40,7 +40,7 @@ static int	fill_heredoc(int fd, char *delimiter)
 			return (1);
 		if (string().strncmp(delimiter, s, string().len(delimiter, -1)))
 		{
-			//her_expander(s, this_env());
+			s = her_expander(s, this_env());
 			printf_fd(fd, "%s", s);
 		}
 	}
