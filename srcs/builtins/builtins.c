@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:40:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:33:26 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	exit_func(t_command **cmd, t_env *env)
 {
-	int	status;
+	unsigned char	status;
 
 	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
 		status = print_error(*cmd, 2, ": numeric argument required\n");
@@ -25,14 +25,14 @@ int	exit_func(t_command **cmd, t_env *env)
 		return (status);
 	}
 	else if ((*cmd)->args[1])
-		status = string().atoi((*cmd)->args[1]);
+		status = (unsigned char)string().atoi((*cmd)->args[1]);
 	else
 		status = env->status;
 	free_memory(cmd);
 	if (env->env)
 		alloc().free_matrix((void **)env->env);
 	rl_clear_history();
-	exit((unsigned char)status);
+	exit((int)status);
 }
 
 int	export(int out, t_command *cmd, t_env *env)

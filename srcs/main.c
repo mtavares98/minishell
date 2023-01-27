@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 15:07:37 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:36:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,16 @@ void	print_list(t_command *begin)
 
 void	control_d(char *str)
 {
+	unsigned char	status;
+
 	if (str)
 		return ;
 	rl_clear_history();
 	write(1, "\nexit\n", 6);
 	if (this_env()->env)
 		alloc().free_matrix((void **)this_env()->env);
-	exit(this_env()->status);
+	status = (unsigned char)this_env()->status;
+	exit(status);
 }
 
 void	gen_handler(int signal)

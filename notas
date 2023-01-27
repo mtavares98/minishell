@@ -17,7 +17,7 @@ TODO list para antes de entregar
 Minishell issue:
 	- Falta abstrair a função de dar valores pode ser possível cat < Makefile out fica args cat,out e a redirection < Makefile\
 
-Long does not:  bash: exit: 9223372036854775808: numeric argument required
+Long does not:  bash: exit: 9223372036854775808: numeric argument required (Missing tests)
 
 Incorrect error code:
 mgranate@c2r1s2:~/Desktop/minishel2$ exit 12345
