@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:40:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:37:30 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	exit_func(t_command **cmd, t_env *env)
 {
-	int	status;
+	unsigned char	status;
 
 	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
 		status = print_error(*cmd, 2, ": numeric argument required\n");
@@ -25,14 +25,14 @@ int	exit_func(t_command **cmd, t_env *env)
 		return (status);
 	}
 	else if ((*cmd)->args[1])
-		status = string().atoi((*cmd)->args[1]);
+		status = (unsigned char)string().atoi((*cmd)->args[1]);
 	else
 		status = env->status;
 	free_memory(cmd);
 	if (env->env)
 		alloc().free_matrix((void **)env->env);
 	rl_clear_history();
-	exit((unsigned char)status);
+	exit(status);
 }
 
 int	export(int out, t_command *cmd, t_env *env)
@@ -70,7 +70,7 @@ int	env(t_command *cmd, char **envp, int out)
 
 	i = -1;
 	if (!envp)
-		printf("Env doesn't exist\n");
+		printf_fd(2, "Env doesn't exist\n");
 	while (cmd->args[++i])
 		;
 	if (i > 1)
@@ -79,10 +79,7 @@ int	env(t_command *cmd, char **envp, int out)
 	while (envp[++i])
 	{
 		if (string().strchr(envp[i], '='))
-		{
-			write(out, envp[i], string().len(envp[i], -1));
-			write(out, "\n", 1);
-		}
+			printf_fd(out, "%s\n", envp[i]);
 	}
 	return (0);
 }
@@ -97,8 +94,7 @@ int	pwd(int out)
 		perror("pwd");
 		return (1);
 	}
-	write(out, pwd, string().len(pwd, -1));
-	write(out, "\n", 1);
+	printf_fd(out, "%s\n", pwd);
 	free(pwd);
 	return (0);
 }
@@ -110,11 +106,11 @@ int	echo(t_command *cmd, int out)
 	i = 0 + (!string().strncmp(cmd->args[1], "-n", 3));
 	while (cmd->args[++i])
 	{
-		write(out, cmd->args[i], string().len(cmd->args[i], -1));
+		printf_fd(out, cmd->args[i]);
 		if (cmd->args[i + 1])
-			write(out, " ", 1);
+			printf_fd(out, " ");
 	}
 	if (string().strncmp(cmd->args[1], "-n", 3))
-		write(out, "\n", 1);
+		printf_fd(out, "\n");
 	return (0);
 }
