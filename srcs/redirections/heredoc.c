@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:25:05 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 01:55:28 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/27 23:26:01 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,16 @@ static int	fill_heredoc(int fd, char *delimiter)
 	return (0);
 }
 
-void	close_fd_red(t_command **cmd, int *fd)
+void	close_fd_red(t_command **cmd, int *fd, int fd_used)
 {
 	t_command	*cmd_tmp;
 	t_red		*io_tmp;
 
 	cmd_tmp = *cmd;
+	if (fd[0] != -1)
+		close(fd[0]);
+	if (fd[1] != -1 && fd[1] != fd_used)
+		close(fd[1]);
 	close_fd_exeption(this(), fd[0], fd[1]);
 	while (cmd_tmp)
 	{
@@ -82,11 +86,7 @@ static int	fork_heredoc(int fd, char *delimiter, int *fd_not_used)
 	}
 	if (pid == 0)
 	{
-		close_fd_red(this(), fd_not_used);
-		if (fd_not_used[0] != -1)
-			close(fd_not_used[0]);
-		if (fd_not_used[1] != -1 && fd_not_used[1] != fd)
-			close(fd_not_used[1]);
+		close_fd_red(this(), fd_not_used, fd);
 		if (fill_heredoc(fd, delimiter))
 			exit (1);
 		exit(0);
@@ -113,9 +113,9 @@ int	prep_heredoc(t_red *io, int *fd)
 			else
 			{
 				bol = fork_heredoc(fd[1], io->file, fd);
+				close(fd[1]);
 				io->fd = fd[0];
 			}
-			close(fd[1]);
 			if (bol)
 			{
 				close(fd[0]);
