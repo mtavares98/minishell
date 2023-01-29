@@ -55,6 +55,12 @@ void	remove_node(t_command *node)
 		alloc().free_array(node->path);
 	if (node->args)
 		alloc().free_matrix((void *)node->args);
+	if (node->io)
+	{
+		this_red(node->io);
+		while (*this_red(NULL))
+			(redfunc()).remove(0, this_red(NULL));
+	}
 	if (node)
 		alloc().free_array(node);
 }

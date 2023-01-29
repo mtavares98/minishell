@@ -11,51 +11,17 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../includes/minishell.h"
-
-/* void	print_list(t_command *begin)
-{
-	t_red	*tmp;
-	int		i;
-
-	while (begin)
-	{
-		printf_fd(1, "FDS\n");
-		printf_fd(1, "input %i\n", begin->infd);
-		printf_fd(1, "output %i\n", begin->outfd);
-		printf_fd(1, "END FDS\n");
-		printf_fd(1, "Command\n");
-		printf_fd(1, "Path\n");
-		printf_fd(1, "%s\n", begin->path);
-		printf_fd(1, "CMD\n");
-		i = -1;
-		while (begin->args && begin->args[++i])
-			printf_fd(1, "%s\n", begin->args[i]);
-		printf_fd(1, "End Command\n");
-		printf_fd(1, "Redirections\n");
-		this_red(begin->io);
-		tmp = *this_red(NULL);
-		printf("%p\n", *this_red(NULL));
-		while (tmp)
-		{
-			printf_fd(1, "%s\n", tmp->file);
-			printf_fd(1, "is_double = %i\n", tmp->is_double);
-			printf_fd(1, "is_output = %i\n", tmp->is_output);
-			tmp = tmp->next;
-		}
-		printf_fd(1, "End Redirections\n\n");
-		begin = begin->next;
-	}
-} */
+#include <minishell.h>
 
 void	control_d(char *str)
 {
 	if (str)
 		return ;
 	rl_clear_history();
-	write(1, "\nexit\n", 6);
+	write(1, "exit\n", 6);
 	if (this_env()->env)
 		alloc().free_matrix((void **)this_env()->env);
+	free_memory(this());
 	exit(this_env()->status);
 }
 
@@ -63,12 +29,12 @@ void	gen_handler(int signal)
 {
 	if (signal == SIGQUIT)
 		return ;
-	if (signal == SIGINT)
+	if (signal == SIGINT && !*this())
 	{
 		this_env()->status = 130;
-		rl_replace_line("", 0);
 		write(1, "\n", 1);
 		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 	return ;

@@ -12,23 +12,53 @@
 
 #include <minishell.h>
 
+static void	control_d_her(char *str, char *delimiter)
+{
+	if (str)
+		return ;
+	rl_clear_history();
+	printf_fd(2, "MMSHELL: warning: expected `%s'\n", delimiter);
+	if (this_env()->env)
+		alloc().free_matrix((void **)this_env()->env);
+	free_memory(this());
+	exit(this_env()->status);
+}
+
+static void	gen_handler_her(int signal)
+{
+	if (signal == SIGQUIT)
+		return ;
+	if (signal == SIGINT)
+	{
+		(this_env())->status = 130;
+		write(1, "\n", 1);
+		exit((this_env())->status);
+	}
+	return ;
+}
+
 static int	fill_heredoc(int fd, char *delimiter)
 {
 	char	*s;
 
 	s = NULL;
+	signal(SIGQUIT, gen_handler_her);
+	signal(SIGINT, gen_handler_her);
 	while (string().strncmp(delimiter, s, string().len(delimiter, -1)))
 	{
 		if (s)
 			free(s);
-		printf_fd(1, "> ");
-		s = get_next_line(0);
+		s = readline("> ");
 		if (!s)
-			return (1);
+		{
+			if (fd != -1)
+				close(fd);
+			control_d_her(s, delimiter);
+		}
 		if (string().strncmp(delimiter, s, string().len(delimiter, -1)))
 		{
 			s = her_expander(s, this_env());
-			printf_fd(fd, "%s", s);
+			printf_fd(fd, "%s\n", s);
 		}
 	}
 	if (fd != -1)

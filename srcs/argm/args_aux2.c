@@ -77,10 +77,12 @@ char	*remove_quotes(char *argm)
 
 	i = -1;
 	tmp = string().strdup(argm);
+	if (!tmp)
+		return (NULL);
 	while (tmp[++i])
 	{
 		if (tmp[i] == '\'' )
-			remove_aux( '\'', &i, tmp);
+			remove_aux('\'', &i, tmp);
 		else if (tmp[i] == '"')
 			remove_aux('"', &i, tmp);
 		if (i >= string().len(tmp, -1))

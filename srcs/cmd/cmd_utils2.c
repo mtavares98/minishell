@@ -28,17 +28,6 @@ char	*path_node(char	*path, char *new_path)
 	return (new_path);
 }
 
-char	**argms_node(char **args, char **split)
-{
-	int	i;
-
-	i = -1;
-	args = alloc().calloc((list_size(split, "-1") + 1) * sizeof(char **));
-	while (split[++i])
-		args[i] = string().strdup(split[i]);
-	return (args);
-}
-
 t_command	*new_node(char *path, char **split)
 {
 	t_command	*node;

@@ -37,7 +37,6 @@ int		get_num_cmd(t_command *cmd);
 int		print_error_cmd(int status, char path_exists, char *file);
 void	update_status(t_env *env);
 void	close_fd_exeption(t_command **cmd, int in, int out);
-int		**get_pipesfd(int num_cmd);
 char	*get_complete_path(char *cmd, char **path);
 int		is_builtin(char *cmd);
 char	*getpath(char **envp);

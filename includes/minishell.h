@@ -27,7 +27,6 @@
 # include "expander.h"
 # include "printf_fd.h"
 
-void	printlist(t_command *vars);
 int		check_expander(char **split, t_env *env);
 char	*her_expander(char *her, t_env *env);
 

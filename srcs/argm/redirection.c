@@ -19,10 +19,12 @@ char	*handle_path(char *split)
 	int		i;
 
 	i = 0;
-	sz = string().len(split, - 1);
+	sz = string().len(split, -1);
 	while (split[--sz] != '/')
 		i++;
 	tmp = string().substr(split, sz + 1, i);
+	if (!tmp)
+		return (NULL);
 	while (split[++i])
 		split[i] = '\0';
 	alloc().free_array(split);
@@ -60,30 +62,30 @@ int	add_command(char *split, t_command *cmd)
 
 int	get_redirections(char *split, t_command *cmd, int i)
 {
-	char *file;
+	char	*file;
 
 	file = string().strdup(split);
 	if (!file)
-		  return (0);
+		return (0);
 	if (i == 1)
-		redfunc().add(file, 0, 1, &cmd->io);
+		(redfunc()).add(file, 0, 1, &cmd->io);
 	if (i == 2)
-		redfunc().add(file, 1, 1, &cmd->io);
+		(redfunc()).add(file, 1, 1, &cmd->io);
 	if (i == 3)
-		redfunc().add(file, 0, 0, &cmd->io);
+		(redfunc()).add(file, 0, 0, &cmd->io);
 	if (i == 4)
-		redfunc().add(file, 1, 0, &cmd->io);
+		(redfunc()).add(file, 1, 0, &cmd->io);
 	return (1);
 }
 
 int	check_redirection(char **split, t_command *cmd, int i)
 {
-	if(split[i][0] != '>' && split[i][0] != '<')
-		return(0);
+	if (split[i][0] != '>' && split[i][0] != '<')
+		return (0);
 	if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
 		get_redirections(split[i + 1], cmd, 2);
 	else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-		get_redirections(split[i + 1],  cmd, 4);
+		get_redirections(split[i + 1], cmd, 4);
 	else if (split[i][0] == '>')
 		get_redirections(split[i + 1], cmd, 1);
 	else if (split[i][0] == '<')

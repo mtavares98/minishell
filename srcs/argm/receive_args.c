@@ -12,31 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-// int	select_string(char *str)
-// {
-// 	int		word_len;
-// 	char	*new_str;
-// 	char	qt;
-
-// 	new_str = NULL;
-// 	word_len = 0;
-// 	while (str[word_len] && str[word_len] != '|')
-// 	{
-// 		if (str[word_len] == '"' || str[word_len] == '\'')
-// 		{
-// 			qt = str[word_len];
-// 			word_len++;
-// 			while (str[word_len] && str[word_len] != qt)
-// 				word_len++;
-// 		}
-// 		word_len++;
-// 	}
-// 	new_str = string().substr(str, 0, word_len);
-// 	argm_handler(new_str);
-// 	alloc().free_array((void *)new_str);
-// 	return (word_len);
-// }
-
 int	count_quotes(char *str, int i, char c)
 {
 	if (!str[i + 1])
@@ -84,12 +59,5 @@ int	receive_args(char *str)
 	if (!validate_quotes(str))
 		return (0);
 	argm_handler(str);
-	// while (*str)
-	// {
-	// 	i = select_string(str);
-	// 	if (!(str[i]))
-	// 		break ;
-	// 	str = str + i + 1;
-	// }
 	return (1);
 }

@@ -59,6 +59,8 @@ int	deal_with_non_existing_var(t_command *cmd, int i, t_env *env)
 		env->env[j] = tmp[j];
 	alloc().free_array((void *)tmp);
 	env->env[j] = string().strdup(cmd->args[i]);
+	if (!env->env[i])
+		return (0);
 	return (0);
 }
 
