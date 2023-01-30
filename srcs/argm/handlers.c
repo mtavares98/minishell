@@ -14,60 +14,56 @@
 
 static int	print_error(char *s)
 {
-	printf("%s", s);
-	return(0);
+	printf_fd(2, "%s", s);
+	return (0);
 }
 
-int check_argument(char *split)
+int	check_argument(char *split)
 {
 	if (!split)
-		return(print_error("bash: syntax error near unexpected token `newline'\n"));
+		return (print_error
+			("bash: syntax error near unexpected token `newline'\n"));
 	if (split[0] == '<' || split[0] == '>')
-		return(print_error("bash: syntax error near unexpected token %c\n"));
-	return(1);
+		return (print_error("bash: syntax error near unexpected token %c\n"));
+	return (1);
 }
 
-static int validate_arguments(char **split)
+static int	validate_arguments(char **split)
 {
-	 int i;
-	 int j;
+	int	i;
+	int	j;
 
-	 i = -1;
-	 j = 1;
-	while(split[++i])
+	i = -1;
+	j = 1;
+	while (split[++i])
 	{
 		if (split[i][1] && split[i][0] == '>' && split[i][1] == '>')
-			 j = check_argument(split[i + 1]);
+			j = check_argument(split[i + 1]);
 		else if (split[i][1] && split[i][0] == '<' && split[i][1] == '<')
-			 j = check_argument(split[i + 1]);
+			j = check_argument(split[i + 1]);
 		else if (split[i][0] == '>')
-			 j = check_argument(split[i + 1]);
+			j = check_argument(split[i + 1]);
 		else if (split[i][0] == '<')
-			 j = check_argument(split[i + 1]);
+			j = check_argument(split[i + 1]);
 		else if (split[i][0] == '|')
 			if (!split[i + 1] || split[i + 1][0] == '|')
 				j = print_error("Pipes not accuratly placed\n");
 		if (j == 0)
-			return(j);
+			return (j);
 	}
-	 return(j);
+	return (j);
 }
 
-char	*handle_split(char *split)
+int	make_cmds(char **split, int i, t_command *cmd)
 {
-	int		sz;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	sz = string().len(split, - 1);
-	while (split[--sz] != '/')
-		i++;
-	tmp = string().substr(split, sz + 1, i);
-	while (split[++i])
-		split[i] = '\0';
-	alloc().free_array(split);
-	return (tmp);
+	while (split[i] && split[i][0] != '|')
+	{
+		if (check_redirection(split, cmd, i))
+			i += 2;
+		else if (split[i] && split[i][0] != '|')
+			add_command(split[i++], cmd);
+	}
+	return (i);
 }
 
 int	argm_handler(char *str)
@@ -89,13 +85,7 @@ int	argm_handler(char *str)
 	while (split[++i])
 	{
 		cmd = cmdfunc().add(NULL, NULL);
-		while (split[i] && split[i][0] != '|')
-		{
-			if (check_redirection(split, cmd, i))
-				i += 2;
-			else if (split[i] && split[i][0] != '|')
-				add_command(split[i++], cmd);
-		}
+		i = make_cmds(split, i, cmd);
 		if (!split[i])
 			break ;
 	}

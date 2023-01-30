@@ -12,31 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-void	printlist(t_command *vars)
-{
-	int	j;
-	int	i;
-
-	i = 1;
-	printf("===============\n");
-	while (vars)
-	{
-		j = 0;
-		printf("===== List nº %d=======\n", i);
-		printf("Path == %s\n", vars->path);
-		if (!vars->args)
-			return ;
-		while (vars->args[j])
-		{
-			printf("Arg[%d] == %s\n", j, vars->args[j]);
-			j++;
-		}
-		vars = vars->next;
-		i++;
-	}
-	printf("===============\n");
-}
-
 int	list_size(char **split, char *c)
 {
 	int	i;
@@ -45,7 +20,7 @@ int	list_size(char **split, char *c)
 	while (split[++i])
 	{
 		if (string().strchr(c, split[i][0]))
-			return(i);
+			return (i);
 	}
 	return (i);
 }

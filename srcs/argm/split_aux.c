@@ -17,18 +17,18 @@ int	skip_quotes(char *s, char c)
 	int	i;
 
 	i = 0;
-    while (s[i] && s[i] != c)
-        i++;
-    return (i + 1);
+	while (s[i] && s[i] != c)
+		i++;
+	return (i + 1);
 }
 
-int check_reds(char *s)
+int	check_reds(char *s)
 {
-    if (s[1] && (s[0] == '>' && s[1] == '>'))
-        return(2);
-    else if (s[1] && (s[0] == '<' && s[1] == '<'))
-    	return(2);
-    return(1);
+	if (s[1] && (s[0] == '>' && s[1] == '>'))
+		return (2);
+	else if (s[1] && (s[0] == '<' && s[1] == '<'))
+		return (2);
+	return (1);
 }
 
 void	splitcpy(char *dst, char *src, int sz)

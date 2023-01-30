@@ -15,9 +15,9 @@
 int	ft_strcpy(char *tmp, char *str, char c)
 {
 	int	i;
-	
+
 	i = -1;
-	if (!tmp[0] && !tmp)
+	if (!tmp && !tmp[0])
 		return (0);
 	while (tmp[++i])
 	{
@@ -60,11 +60,13 @@ int	check_alloc_size(char *str, char *env, int ctr)
 		if (str[i] == '\'' && ct++)
 			while (str[++i] && str[i] != '\'')
 				ct++;
+		if (str[i] == '$' && str[i + 1] == '$')
+			i += 2;
 		if (str[i] == '$' && j == 0)
 			while (++j && str[++i] && string().ft_isalnum(str[i]))
 				;
 		if (!str[i])
-			break;
+			break ;
 		ct++;
 	}
 	ct = check_alloc_size_aux(env, ctr, ct);
@@ -76,19 +78,4 @@ int	check_single_quote(char *split, int i, char c)
 	while (split[++i] && split[i] != c)
 		;
 	return (i);
-}
-
-int	check_dollar_sign(char *split)
-{
-	int	i;
-
-	i = -1;
-	while (split[++i])
-	{
-		if (split[i] == '\'')
-			i = i + check_single_quote(split, i, '$');
-		if (split[i] == '$')
-			return (1);
-	}
-	return (0);
 }

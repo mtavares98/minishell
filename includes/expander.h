@@ -20,7 +20,9 @@
 int		check_alloc_size(char *str, char *env, int ctr);
 int		ft_strcpy(char *tmp, char *str, char c);
 int		check_single_quote(char *split, int i, char c);
-int		check_dollar_sign(char *split);
+
+char	*remove_exp(char *str);
+char	*check_dollar(char *str, int j, t_env *env);
 char	*pid_switch(char *str);
 char	*get_status(char *str);
 

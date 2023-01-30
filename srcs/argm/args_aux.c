@@ -25,10 +25,8 @@ static size_t	ft_countword(char *s)
 			count++;
 		while (*s && !string().ft_isspace(*s))
 		{
-			if (*s == '"')
-				s += skip_quotes(s + 1, '"');
-			if (*s == '\'')
-				s += skip_quotes(s + 1, '\'');
+			if (*s == '"' || *s == '\'')
+				s += skip_quotes(s + 1, '"' + 5 * (*s == '\''));
 			if ((*s == '<' || *s == '>' || *s == '|'))
 			{
 				s += check_reds(s);
@@ -76,21 +74,21 @@ char	**ft_split(char *s)
 
 	if (!s)
 		return (NULL);
-	cw = ft_countword(s);
-	split = alloc().calloc(sizeof(char *) * (cw + 1));
+	cw = ft_countword(s) + 1;
+	split = alloc().calloc(sizeof(char *) * (cw));
 	if (!split)
 		return (NULL);
 	i = 0;
-	while (cw > 0)
+	while (--cw > 0)
 	{
 		while (*s && string().ft_isspace(*s))
 			s++;
 		sz = split_len(s);
 		split[i] = alloc().calloc(sz + 1);
-		splitcpy(split[i], s, sz);
+		if (!split[i])
+			return (NULL);
+		splitcpy(split[i++], s, sz);
 		s += sz;
-		cw--;
-		i++;
 	}
 	split[i] = 0;
 	return (split);

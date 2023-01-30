@@ -97,7 +97,7 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@printf "%b" "$(OBJ_COLOR)"
 	@echo  "🔨🔨  Compiling Objects... 🔨🔨"
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I /usr/local/include -I lib/printf_fd/include -c $< -o $@
+	@$(CC) $(CFLAGS) -I includes -I /usr/local/include -I lib/printf_fd/include -c $< -o $@
 	@printf "%b" "$(NO_COLOR)"
 
 $(LIB):

@@ -10,32 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/expander.h"
+#include <expander.h>
 
-char	*pid_switch(char *str)
+char	*remove_exp(char *str)
 {
 	char	*tmp;
-	char	*pid;
-	int		pd;
 	int		i;
 
-	i = 0;
-	pd = getpid();
-	pid = string().itoa(NULL, &i, 1, pd);
-	pd = string().len(str, -1) + string().len(pid, -1) - 1;
 	tmp = str;
-	str = alloc().calloc(pd);
+	i = 0;
+	i = check_alloc_size(str, NULL, -1);
+	str = alloc().calloc(i + 1);
 	if (!str)
 	{
 		str = tmp;
 		return (str);
 	}
-	pd = ft_strcpy(tmp, str, '$');
-	pd = pd + ft_strcpy(pid, str + pd, -1);
-	i = string().len(tmp, '$') + 1;
-	ft_strcpy(tmp + i, str + pd, -1);
+	i = ft_strcpy(tmp, str, '$');
+	if (tmp[i] == '$' && tmp[i + 1] == '$')
+		i += 1;
+	while (tmp[++i] && string().ft_isalnum(tmp[i]))
+		;
+	if (tmp[i])
+		ft_strcpy(tmp + i, str + string().len(str, -1), -1);
 	alloc().free_array(tmp);
-	alloc().free_array(pid);
 	return (str);
 }
 
@@ -55,7 +53,7 @@ char	*get_status(char *str)
 		return (str);
 	}
 	i = ft_strcpy(tmp, str, '$');
-	ft_strcpy(ch , str + string().len(str, -1), -1);
+	ft_strcpy(ch, str + string().len(str, -1), -1);
 	i = i + string().len(ch, -1) + 1;
 	ft_strcpy(tmp + i, str + string().len(str, -1), -1);
 	alloc().free_array(ch);
