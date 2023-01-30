@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/30 14:56:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:41:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	control_d(char *str)
 	if (this_env()->env)
 		alloc().free_matrix((void **)this_env()->env);
 	free_memory(this());
-	exit(this_env()->status);
+	status = (unsigned char)(this_env())->status;
+	exit(status);
 }
 
 void	gen_handler(int signal)
@@ -68,7 +69,7 @@ int	main(int ac, char **av, char **envp)
 		return (printf("Error malloc on env\n"));
 	while (1)
 	{
-		str = readline("MMshell$ ");
+		str = readline("MMSHELL$ ");
 		control_d(str);
 		counter()->mallocs++;
 		if (str && *str)
