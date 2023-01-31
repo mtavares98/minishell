@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:08:39 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 16:50:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:28:42 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "str.h"
-# include "get_next_line.h"
 
 typedef struct s_red			t_red;
 typedef struct s_command		t_command;

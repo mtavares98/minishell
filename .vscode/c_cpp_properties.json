@@ -4,11 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/includes",
                 "${workspaceFolder}/lib/printf_fd/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c17",
+            "cStandard": "c89",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],

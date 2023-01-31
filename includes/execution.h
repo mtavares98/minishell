@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:43:43 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:47:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include <errno.h>
-# include "get_next_line.h"
+# include <stdio.h>
 # include "str.h"
 # include "cmd.h"
 # include "env.h"
 
-typedef struct s_exec			t_exec;
+typedef struct s_exec	t_exec;
 
 struct s_exec
 {
@@ -31,7 +30,7 @@ struct s_exec
 	int	i;
 };
 
-int		fork_heredoc(int fd, char *delimiter, int *fd_not_used);
+int		fill_heredoc(int fd, char *delimiter);
 int		check_heredoc(t_red *io);
 int		get_num_cmd(t_command *cmd);
 int		print_error_cmd(int status, char path_exists, char *file);

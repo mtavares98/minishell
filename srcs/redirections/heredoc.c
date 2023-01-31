@@ -6,13 +6,69 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:25:05 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:46:05 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 13:58:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 #include <execution.h>
-#include <get_next_line.h>
+
+static void	close_fd_red(t_command **cmd, int *fd, int fd_used)
+{
+	t_command	*cmd_tmp;
+	t_red		*io_tmp;
+
+	cmd_tmp = *cmd;
+	if (fd[0] != -1)
+		close(fd[0]);
+	if (fd[1] != -1 && fd[1] != fd_used)
+		close(fd[1]);
+	close_fd_exeption(this(), fd[0], fd[1]);
+	while (cmd_tmp)
+	{
+		io_tmp = cmd_tmp->io;
+		while (io_tmp)
+		{
+			if (io_tmp->fd != -1)
+				close(io_tmp->fd);
+			io_tmp = io_tmp->next;
+		}
+		cmd_tmp = cmd_tmp->next;
+	}
+}
+
+static int	child_heredoc(int fd, char *delimiter, int *fd_not_used)
+{
+	int	status;
+
+	close_fd_red(this(), fd_not_used, fd);
+	status = fill_heredoc(fd, delimiter);
+	free_memory(this());
+	if (this_env()->env)
+		alloc().free_matrix((void **)this_env()->env);
+	rl_clear_history();
+	exit(status);
+}
+
+static int	fork_heredoc(int fd, char *delimiter, int *fd_not_used)
+{
+	int		pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		return (1);
+	}
+	if (pid == 0)
+		child_heredoc(fd, delimiter, fd_not_used);
+	else
+	{
+		wait(&this_env()->status);
+		update_status(this_env());
+	}
+	return (0);
+}
 
 int	check_heredoc(t_red *io)
 {
