@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 23:25:14 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/26 16:55:45 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:03:05 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 static int	print_error(char *s)
 {

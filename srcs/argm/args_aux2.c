@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:47:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 14:32:07 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:02:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/arguments.h"
+#include "arguments.h"
 
 char	*get_substring(char *str, char c)
 {

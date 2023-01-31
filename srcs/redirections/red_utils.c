@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:49:36 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 22:25:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:13:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <red_utils.h>
+#include "red_utils.h"
 
 void	remove_node_red(t_red *node)
 {

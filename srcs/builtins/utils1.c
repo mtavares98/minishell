@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:11:35 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:38:35 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:38 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	is_nbr(char *s)
 {

@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/29 16:12:03 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:07:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
-#include "../../includes/minishell.h"
+#include "builtins.h"
 
 int	exit_func(t_command **cmd, t_env *env)
 {

@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:26:31 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:53:07 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:14:12 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/string_utils.h"
+#include "string_utils.h"
 
 /* This function returns a len of a string */
 

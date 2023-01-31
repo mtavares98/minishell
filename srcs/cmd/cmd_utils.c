@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:11:33 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/25 17:48:26 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cmd_utils.h"
+#include "cmd_utils.h"
 
 t_command	*cmdadd(char *path, char **split)
 {

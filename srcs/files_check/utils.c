@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:44:26 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/25 23:16:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:12:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	print_error_cmd(int status, char path_exists, char *file)
 {

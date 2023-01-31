@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 16:33:42 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:50:57 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:05:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <execution.h>
-#include <minishell.h>
+#include "execution.h"
 
 int	get_num_cmd(t_command *cmd)
 {

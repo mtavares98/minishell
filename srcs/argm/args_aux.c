@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:03:00 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 22:06:21 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:02:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 static size_t	ft_countword(char *s)
 {

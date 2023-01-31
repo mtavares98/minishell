@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 21:48:18 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 13:47:53 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:09:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <readline/readline.h>
 # include <stdio.h>
 # include "str.h"
 # include "cmd.h"

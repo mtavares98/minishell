@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:32:11 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:53:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:17 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	set_env(t_command *cmd, t_env *env, int i)
 {

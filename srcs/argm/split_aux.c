@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate_ls <mgranate_ls@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 04:06:17 by mgranate_ls       #+#    #+#             */
-/*   Updated: 2023/01/22 04:11:25 by mgranate_ls      ###   ########.fr       */
+/*   Updated: 2023/01/31 14:03:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	skip_quotes(char *s, char c)
 {

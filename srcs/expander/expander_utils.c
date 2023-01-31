@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:06:40 by mgranate          #+#    #+#             */
-/*   Updated: 2022/11/23 18:48:43 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:11:28 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/expander.h"
+#include "expander.h"
 
 int	ft_strcpy(char *tmp, char *str, char c)
 {

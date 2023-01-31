@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:25:05 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 13:58:48 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:13:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
-#include <execution.h>
+#include "execution.h"
 
 static void	close_fd_red(t_command **cmd, int *fd, int fd_used)
 {

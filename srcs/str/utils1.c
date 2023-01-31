@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:47:33 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/17 18:16:39 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:14:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/string_utils.h"
+#include "string_utils.h"
 
 /*
 	This function evaluates if a char is space

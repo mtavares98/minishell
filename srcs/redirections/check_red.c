@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:32:04 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:31:05 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:13:03 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <execution.h>
+#include "execution.h"
 
 static int	check_io_dup(t_red *red)
 {

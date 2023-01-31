@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 15:24:59 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/25 18:00:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:59 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cmd_utils.h"
+#include "cmd_utils.h"
 
 char	*path_node(char	*path, char *new_path)
 {

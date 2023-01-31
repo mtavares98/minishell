@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 01:09:18 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 01:17:02 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:11:22 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execution.h"
+#include "execution.h"
 
 void	update_status(t_env *env)
 {

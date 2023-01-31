@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 17:51:10 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/09 22:44:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:11:16 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execution.h"
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 char	*getpath(char **envp)
 {

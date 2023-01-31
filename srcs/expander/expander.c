@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgranate <mgranate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:28:52 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/17 19:06:40 by mgranate         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:12:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/expander.h"
-#include "../../includes/arguments.h"
+#include "arguments.h"
 
 char	*replace_argm(char *str, char *env)
 {

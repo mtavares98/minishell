@@ -6,11 +6,10 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/30 15:41:27 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:14:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <minishell.h>
 
 void	control_d(char *str)

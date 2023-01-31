@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2022/11/04 23:23:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:02:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/allocs_utils.h"
-#include <stdio.h>
+#include "allocs_utils.h"
 
 /*
 	It will free a matrix

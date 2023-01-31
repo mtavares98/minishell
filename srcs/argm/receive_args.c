@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:52:55 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:11:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:03:26 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	count_quotes(char *str, int i, char c)
 {

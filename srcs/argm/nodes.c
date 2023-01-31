@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:50:29 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/26 16:50:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:03:16 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	list_size(char **split, char *c)
 {

@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/26 16:53:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:03:33 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 char	*handle_path(char *split)
 {

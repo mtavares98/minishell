@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 22:26:25 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:52:55 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:14:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/string_utils.h"
+#include "string_utils.h"
 
 /*
 	Allocates (with malloc(3)) and returns a substring

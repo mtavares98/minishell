@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:45:22 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 00:09:03 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:04:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	is_valid(char *str)
 {

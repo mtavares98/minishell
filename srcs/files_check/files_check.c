@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 00:16:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:12:36 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This directory will be reponse of checking if a given file exist */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /*
 	It will return a complete path for a file

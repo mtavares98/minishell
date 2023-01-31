@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:55:41 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 01:22:06 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:05:13 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 static char	*shell_lvl(char *envp)
 {

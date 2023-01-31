@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 00:20:30 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/26 00:15:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:09:45 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "cmd.h"
 # include "str.h"
 # include "env.h"
+# include "printf_fd.h"
+# include <readline/readline.h>
 # include <unistd.h>
 # include <stdio.h>
 

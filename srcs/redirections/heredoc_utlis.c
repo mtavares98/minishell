@@ -6,11 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:39:40 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:00:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:13:10 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 static int	*fd_used(int *data)
 {

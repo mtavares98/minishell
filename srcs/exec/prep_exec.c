@@ -6,12 +6,11 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 13:07:44 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/27 23:53:58 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:10:20 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <execution.h>
-#include <minishell.h>
+#include "execution.h"
 
 int	exec_cmd(int *in, int *out, t_command **cmd)
 {
