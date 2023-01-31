@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:12:36 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:10:40 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ char	*get_complete_path(char *cmd, char **path)
 	char	*np;
 
 	path_size = string().len(*path, ':');
+	path_size += (!(*path)[path_size]);
 	np = alloc().calloc(string().len(cmd, -1) + path_size + 1);
 	if (!np)
 		return (NULL);
-	i = -1 * (path != NULL);
-	while (path && *path && ++i < path_size - 1)
-		np[i] = *(*path)++;
-	if (**path == ':' || **path != '\0')
+	i = 0;
+	while (*path && **path && **path != ':')
 	{
-		np[i++] = '/';
+		np[i++] = **path;
 		*path += 1;
 	}
+	np[i++] = '/';
+	*path += (**path != '\0');
 	j = 0;
 	while (cmd && cmd[j])
 		np[i++] = cmd[j++];
@@ -50,22 +51,24 @@ int	get_full_path(t_command **cmd, char *path)
 		return (1);
 	if (!path)
 		return (print_error_cmd(127, 0, (*cmd)->args[0]));
-	while (path)
+	while (*path)
 	{
 		if ((*cmd)->path)
+		{
 			alloc().free_array((*cmd)->path);
+			(*cmd)->path = NULL;
+		}
 		(*cmd)->path = get_complete_path((*cmd)->args[0], &path);
 		if (!(*cmd)->path)
 		{
 			perror("Error malloc");
 			return (2);
 		}
+		printf_fd(1, "%s\n", (*cmd)->path);
 		if (access((*cmd)->path, F_OK) != -1)
-			break ;
-		if (!*path)
-			return (print_error_cmd(127, 1, (*cmd)->args[0]));
+			return (0);
 	}
-	return (0);
+	return (print_error_cmd(127, 1, (*cmd)->args[0]));
 }
 
 /* This function check if a command is builtin */

@@ -27,3 +27,6 @@ c2r1s2% echo $?
 We had a 5 instead of 57
 
 The issue is becasue the error exit code is only printing the 1 character
+
+
+usr/local/sbin/brew
