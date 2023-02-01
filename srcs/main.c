@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:42:47 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:14:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:09:16 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	main(int ac, char **av, char **envp)
 		str = NULL;
 		if (*this())
 			execution(this());
+		free_memory(this());
 	}
 }

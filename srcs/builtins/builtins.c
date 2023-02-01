@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:47:43 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:07:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:59:47 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	exit_func(t_command **cmd, t_env *env)
 {
 	unsigned char	status;
 
+	printf_fd(1, "exit\n");
 	if ((*cmd)->args[1] && !is_nbr((*cmd)->args[1]))
 		status = print_error(*cmd, 2, ": numeric argument required\n");
 	else if ((*cmd)->args[1] && (*cmd)->args[2])

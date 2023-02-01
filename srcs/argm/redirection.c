@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 19:43:44 by mgranate          #+#    #+#             */
-/*   Updated: 2023/01/31 14:03:33 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:24:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,23 @@ char	*handle_path(char *split)
 	return (tmp);
 }
 
+int	set_cmd(char *split, t_command *cmd, char **tmp, int args_num)
+{
+	int	j;
+
+	j = -1;
+	while (++j < args_num)
+		cmd->args[j] = tmp[j];
+	alloc().free_array((void *)tmp);
+	cmd->args[j] = string().strdup(split);
+	if (!cmd->args[j])
+		return (0);
+	return (1);
+}
+
 int	add_command(char *split, t_command *cmd)
 {
 	char	**tmp;
-	int		j;
 	int		args_num;
 
 	args_num = -1 * (cmd->args != NULL);
@@ -51,11 +64,7 @@ int	add_command(char *split, t_command *cmd)
 		cmd->args = tmp;
 		return (0);
 	}
-	j = -1;
-	while (++j < args_num)
-		cmd->args[j] = tmp[j];
-	cmd->args[j] = string().strdup(split);
-	if (!cmd->args[j])
+	if (!set_cmd(split, cmd, tmp, args_num))
 		return (0);
 	return (1);
 }

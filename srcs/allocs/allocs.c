@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:40:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:02:44 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:17:01 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	free_matrix(void **matrix)
 		counter()->frees++;
 	}
 	free(matrix);
-	matrix = NULL;
 	counter()->frees++;
 }
 
@@ -41,8 +40,6 @@ void	free_array(void *array)
 	if (!array)
 		return ;
 	free(array);
-	array = NULL;
-	array = NULL;
 	counter()->frees++;
 }
 

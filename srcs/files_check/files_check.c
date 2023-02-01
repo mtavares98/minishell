@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 16:37:38 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 17:10:40 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:37:48 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*get_complete_path(char *cmd, char **path)
 
 int	get_full_path(t_command **cmd, char *path)
 {
-	if (!*cmd)
-		return (1);
+	if ((*cmd)->args && !(*cmd)->args[0][0])
+		return (print_error_cmd(127, 0, (*cmd)->args[0]));
 	if (!path)
 		return (print_error_cmd(127, 0, (*cmd)->args[0]));
 	while (*path)
@@ -64,7 +64,6 @@ int	get_full_path(t_command **cmd, char *path)
 			perror("Error malloc");
 			return (2);
 		}
-		printf_fd(1, "%s\n", (*cmd)->path);
 		if (access((*cmd)->path, F_OK) != -1)
 			return (0);
 	}
@@ -91,23 +90,22 @@ int	check_files(t_command *cmd, char *path)
 {
 	int	status;
 
-	if (cmd)
+	if (!cmd)
+		return (0);
+	if (cmd->path && string().strchr(cmd->path, '/'))
 	{
-		if (cmd->path && string().strchr(cmd->path, '/'))
+		if (access(cmd->path, F_OK) == -1)
 		{
-			if (access(cmd->path, F_OK) == -1)
-			{
-				(this_env())->status = print_error_cmd(127, 1, cmd->path);
-				return (127);
-			}
+			(this_env())->status = print_error_cmd(127, 1, cmd->path);
+			return (127);
 		}
-		else if (cmd->path)
-		{
-			status = get_full_path(&cmd, path);
-			(this_env())->status = status;
-			if (status)
-				return (127);
-		}
+	}
+	else if (cmd->path)
+	{
+		status = get_full_path(&cmd, path);
+		(this_env())->status = status;
+		if (status)
+			return (127);
 	}
 	return (0);
 }

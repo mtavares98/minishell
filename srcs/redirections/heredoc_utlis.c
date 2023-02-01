@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:39:40 by mtavares          #+#    #+#             */
-/*   Updated: 2023/01/31 14:13:10 by mtavares         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:28:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int	fill_heredoc(int fd, char *delimiter)
 		if (s)
 		{
 			s = her_expander(s, this_env());
-			printf_fd(fd, "%s\n", s);
+			if (fd != -1)
+				printf_fd(fd, "%s\n", s);
 			free(s);
 		}
 		s = readline("> ");
